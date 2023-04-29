@@ -1,0 +1,28 @@
+on: push
+name: FTP Deploy and Push Discord
+jobs:
+  web-deploy:
+      name: Deploy
+      runs-on: ubuntu-latest
+      steps:
+      - name: Get latest code
+        uses: actions/checkout@v3
+
+      - name: Sync files
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:                                        
+          server: ${{ secrets.FTP_SERVER }}     
+          username: ${{ secrets.FTP_USERNAME }} 
+          password: ${{ secrets.FTP_PASSWORD }} 
+          local-dir: ./main/
+          server-dir: /pub/imaginarium-of-the-table.wew.jp/
+              
+      - name: Push Call Discord
+        uses: sarisia/actions-status-discord@v1
+        if: always()
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        with:
+          nodetail: true
+          status: ${{ job.status }}
+          title: "空想世界が机上に展開されました"

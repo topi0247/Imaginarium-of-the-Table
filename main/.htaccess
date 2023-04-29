@@ -1,0 +1,18 @@
+RewriteEngine on
+RewriteBase /
+
+RewriteCond %{REQUEST_FILENAME}\.cgi -f
+RewriteRule ^(.+)$ $1\.cgi
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME}\.html -f
+RewriteRule ^(.*)$ $1.html [L]
+
+RewriteCond %{THE_REQUEST} ^.*\.html
+RewriteRule ^(.*)\.html$ https://imaginarium-of-the-table.wew.jp/$1 [L,R=301]
+
+RewriteRule ^index.html$ https://imaginarium-of-the-table.wew.jp [L,R=301]
+
+ErrorDocument 404 /error.html
+ErrorDocument 500 /error.html

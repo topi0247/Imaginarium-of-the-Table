@@ -1,0 +1,264 @@
+@charset "UTF-8";
+:root[theme="light"] {
+    --theme-color1: ;
+    --theme-color1-light: ;
+    --theme-color1-op: ;
+    --theme-color1-dark: ;
+    --theme-color2: ;
+    --white: #fff;
+    --bg-color: var(--white);
+    --text-color: #3a3a3a;
+    --form-hover-color: var(--text-color);
+    --form-hover-bg:var(--bg-color);
+    --form-hover-border:var(--text-color);
+}
+
+:root[theme="dark"] {
+    --theme-color1: ;
+    --theme-color1-light: ;
+    --theme-color1-op: ;
+    --theme-color1-dark: ;
+    --theme-color2: ;
+    --white: #fff;
+    --bg-color: #3a3a3a;
+    --text-color: var(--white);
+    --form-hover-color: var(--text-color);
+    --form-hover-bg:var(--bg-color);
+    --form-hover-border:var(--text-color);
+}
+
+/* ==== リセット ==== */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+:focus{
+    outline: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+a, a::after, a::before, button, button::after, button::before, input, textarea, select, label:has(input){
+  transition: all 0.3s;
+}
+
+a, a::after, a::before, button, button::after, button::before, input:not([type="text"]), label:has(input[type="checkbox"]){
+  cursor: pointer;
+  cursor: hand;
+}
+
+button,input {
+    border: none;
+    border: 0;
+}
+
+button{
+    background: transparent;
+    outline: none;
+}
+
+input, textarea {
+  box-shadow: none;
+  -webkit-appearance: none;
+}
+
+input[type="text"],textarea{
+  cursor: auto;
+}
+
+p, dl, ul, form {
+  margin: 25px 0;
+  word-break: break-all;
+}
+
+p:first-child, dl:first-child, ul:first-child,form:first-child {
+  margin-top: 0;
+}
+
+p:last-child, dl:last-child, ul:last-child, form:last-child {
+  margin-bottom: 0;
+}
+
+@media only screen and (max-width: 1024px) {
+  p:last-child, form:last-child {
+    margin-bottom: 0;
+  }
+}
+
+/* ==== レイアウト ==== */
+body,button,input,textarea,select {
+  color:var(--text-color);
+  font-size: 1.6rem;
+  line-height: calc(1.6rem + 1.05rem);
+  background: var(--bg-color);
+}
+
+/* スクロールバー */
+::-webkit-scrollbar {}
+
+/* スクロールバーの軌道 */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, .5);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+body#INDEX{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* ==== ボタン・入力 ==== */
+input[type="checkbox"], input[type="radio"] {
+    display: none;
+}
+
+button,input:not([type="text"]),label:has(input){
+    color: var(--bg-color);
+    background: var(--text-color);
+    border: 1px solid var(--bg-color);
+}
+
+input[type="text"],textarea{
+    border: 1px solid var(--text-color);
+}
+
+input:not([type="text"]):hover,input:not([type="text"]):focus,
+label:has(input):hover,label:has(input:checked){
+    color: var(--form-hover-color);
+    background: var(--form-hover-bg);
+}
+
+
+input:hover,input:focus,
+label:has(input):hover,label:has(input:checked){
+    border-color:var(--form-hover-border);
+}
+
+
+/* ヘッダー */
+header {}
+
+main {
+    max-width: 1000px;
+    margin: auto;
+}
+
+article {
+    margin: 0 0 100px;
+}
+
+/* フッター */
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+}
+
+.fixed-menu {
+    position: fixed;
+    bottom: 50px;
+    width: 100%;
+    z-index: 1;
+}
+
+.fixed-menu ul {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.fixed-menu a,.fixed-menu button{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background:var(--text-color);
+    color: var(--bg-color);
+    width: 40px;
+    height: 40px;
+    font-size: 25px;
+}
+
+.fixed-menu a::before,
+.fixed-menu button::before,
+.fixed-menu span::before {
+  position: absolute;
+  font-family: 'Material Icons';
+}
+
+.fixed-menu li.pagetop button::before{
+    content:'\eacf';
+}
+
+.fixed-menu li.lightmode button::before{
+    content:'\e518';
+}
+
+.fixed-menu li.darkmode button::before{
+    content:'\e51c';
+}
+
+/* 見出し */
+h1 {
+    text-align: center;
+    color: var(--theme-color1);
+    font-size: 50px;
+}
+
+h1 a{
+    color:var(--text-color);
+}
+
+h2,h3,h4,h5 {}
+
+/* リンク */
+a:hover {
+  opacity: 0.5;
+}
+
+/* リスト */
+ul {}
+
+ul li {}
+
+dl {}
+
+dl dd {}
+
+/* 装飾 */
+b, em, strong {
+  font-weight: bold;
+}
+
+em {}
+
+strong {}
+
+hr {}
+
+.text-left { text-align: left; }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.text-bold { font-weight: bold; }
+.text-small { font-size: smaller; }
+.text-large{ font-size: larger; }
+.opacity { opacity: 0.5; }
+
+
+/* ==== スマホ ==== */
+@media only screen and (max-width: 1024px) {}

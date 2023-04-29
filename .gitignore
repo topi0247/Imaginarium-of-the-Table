@@ -1,0 +1,4 @@
+# 更新に含まないファイル
+*/backup/*.*
+*images/*.png
+*/images/*.jpg
