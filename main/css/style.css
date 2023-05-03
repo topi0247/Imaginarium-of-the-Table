@@ -13,8 +13,8 @@
   --more-dark: #3a3a3a;
   --bg-color: #e4e4e4;
   --bg-reverse-color: var(--more-dark);
-  --scroll-bar: var(--dark);
-  --scroll-bg: var(--white);
+  --scroll-bar: var(--white);
+  --scroll-bg: var(--dark);
   --text-color: var(--more-dark);
   --form-color: var(--bg-color);
   --form-bg: var(--bg-reverse-color);
@@ -37,8 +37,8 @@
   --more-dark: #3a3a3a;
   --bg-color: var(--more-dark);
   --bg-reverse-color: #eeeeee;
-  --scroll-bar: var(--dark);
-  --scroll-bg: rgb(136, 136, 136);
+  --scroll-bar: rgb(136, 136, 136);
+  --scroll-bg: var(--dark);
   --text-color: var(--white);
   --form-color: var(--bg-color);
   --form-bg: #e4e4e4;
