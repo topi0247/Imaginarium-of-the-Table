@@ -303,7 +303,9 @@ dl.inline dt:last-of-type,dl.inline dd:last-of-type{
 }
 
 /* ヘッダー */
-header {}
+header {
+    margin-bottom: 50px;
+}
 
 #toggleMenu{
     display: none;
@@ -641,20 +643,18 @@ hr {}
 }
 
 /* === サムネイル === */
-.ill-thumbnail,.novel-thumbnail{
+.sess-thumbnail,.ill-thumbnail,.novel-thumbnail{
     display: flex;
     width: 100%;
     flex-wrap: wrap;
 }
 
-.ill-thumbnail > * {
-    width: calc(100% / 5 - 10px);
+.sess-thumbnail > div,.ill-thumbnail > div,.novel-thumbnail > div{
     margin: 5px;
 }
 
-.novel-thumbnail > div{
+.sess-thumbnail > div,.novel-thumbnail > div{
     width: calc(100% / 2 - 10px);
-    margin: 5px;
     display: flex;
 }
 
@@ -668,6 +668,142 @@ hr {}
     width: 100%;
     object-fit: cover;
     object-position: top;
+}
+
+/* 卓予定サムネイル */
+.sess-date{
+    display: block;
+    width: 30%;
+    margin-right: 10px;
+    color: var(--more-dark);
+    background: linear-gradient(-45deg, var(--gray) 0%, var(--gray) 60%, var(--white) 60%, var(--white) 100%);
+    border-radius: 10px;
+    position: relative;
+}
+
+.sess-date.saturday{
+    background: linear-gradient(-45deg, #94bbe9 0%, #94bbe9 60%, var(--white) 60%, var(--white) 100%);
+}
+
+.sess-date.holiday{
+    background: linear-gradient(-45deg, #f79c9c 0%, #f79c9c 60%, var(--white) 60%, var(--white) 100%);
+}
+
+.sess-date .month,.sess-date .date,.sess-date .week,.sess-time{
+    position: absolute;
+}
+
+.sess-date .month,.sess-date .date{
+    font-family: 'Caveat', serif;
+    font-size: 8rem;
+}
+
+.sess-date .month{
+    top: 1.6rem;
+    left: 0;
+}
+
+.sess-date .date{
+    bottom: calc(2rem * 2.5);
+    right: calc(2rem * 1);
+}
+
+.sess-date .week{
+    font-size: 10rem;
+    opacity: 0.2;
+    bottom: 30%;
+    right: 0;
+}
+
+.sess-time{
+    bottom: 0;
+    right: 0.5rem;
+}
+
+.sess-time .start{
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.sess-time .start::after{
+    content:'～';
+    font-size: 1.6rem;
+}
+
+.sess-time .end{}
+
+.sess-data{
+    width: 70%;
+}
+
+.sess-data h4{
+    margin: 0;
+}
+
+.sess-thumbnail ul.member{
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    width: 100%;
+}
+
+.sess-thumbnail ul.member li{
+    position: relative;
+}
+
+.sess-thumbnail ul.member li::after{
+    content: '/';
+    padding: 0 0.5rem;
+}
+
+.sess-thumbnail ul.member li:last-child::after{
+    content: '';
+}
+
+ul.member li.gm::before,ul.member li.kp::before,ul.member li.sgm::before,ul.member li.skp::before{
+    padding: 0 0.5rem;
+}
+
+ul.member li.gm::before,ul.member li.kp::before{
+    color: var(--white);
+    background: var(--dark);
+}
+
+ul.member li.gm::before{
+    content: 'GM';
+}
+
+ul.member li.kp::before{
+    content: 'KP';
+}
+
+ul.member li.sgm::before,ul.member li.skp::before{
+    color: var(--more-dark);
+    background: var(--gray);
+}
+
+ul.member li.sgm::before{
+    content: 'SGM';
+}
+
+ul.member li.skp::before{
+    content: 'SKP';
+}
+
+.sess-thumbnail p.caption{
+    font-size: 1.4rem;
+    line-height: calc(1.4rem + 0.5rem);
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden; 
+    text-overflow: ellipsis;
+}
+
+/* イラストサムネイル */
+.ill-thumbnail > div {
+    width: calc(100% / 5 - 10px);
 }
 
 .ill-thumbnail a img{
@@ -688,6 +824,7 @@ hr {}
     text-overflow: ellipsis;
 }
 
+/* 小説サムネイル */
 .novel-cover a span{
     top: 50%;
     transform: translateY(-50%);
@@ -854,6 +991,40 @@ a.hashtag{
         width: calc(100% / 4 - 10px);
     }
 
+    .sess-thumbnail,.novel-thumbnail{
+        display: block;
+    }
+
+    .sess-thumbnail > div,.novel-thumbnail > div{
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .sess-date .week{
+        font-size: 7rem;
+        bottom: 15%;
+    }
+
+    .sess-time{
+        display: flex;
+    }
+
+    .sess-time .start{
+        font-size: 1.6rem;
+    }
+
+    .sess-time .end{
+        display: none;
+    }
+
+    .sess-thumbnail ul.member li{
+        width: calc(100% / 2);
+    }
+
+    .sess-thumbnail ul.member li::after{
+        content: '';
+    }
+
     .ill-thumbnail > * {
         width: calc(100% / 3 - 2px);
         margin: 1px;
@@ -861,15 +1032,6 @@ a.hashtag{
 
     .ill-thumbnail a.user{
         display: none;
-    }
-
-    .novel-thumbnail{
-        display: block;
-    }
-
-    .novel-thumbnail > div{
-        width: 100%;
-        margin: 10px 0;
     }
 
     .novel-cover a span{
