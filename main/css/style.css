@@ -11,19 +11,22 @@
   --gray: #b3b3b3;
   --dark: #b4b4b4;
   --more-dark: #3a3a3a;
-  --bg-color: #eeeeee;
+  --bg-color: #e4e4e4;
   --bg-reverse-color: var(--more-dark);
   --scroll-bar: var(--dark);
   --scroll-bg: var(--white);
   --text-color: var(--more-dark);
+  --form-color: var(--bg-color);
+  --form-bg: var(--bg-reverse-color);
   --form-hover-color: var(--text-color);
   --form-hover-bg: var(--bg-color);
   --form-hover-border: var(--theme-color1);
+  --bg-opacity: #00000080;
   --mode: '\e518';
 }
 
 :root[theme="dark"] {
-  --theme-color1: #917FB3;
+  --theme-color1: #b7abcf;
   --theme-color1-light: #E5BEEC;
   --theme-color1-op: #917fb3c9;
   --theme-color1-dark: #665a7c;
@@ -37,9 +40,12 @@
   --scroll-bar: var(--dark);
   --scroll-bg: rgb(136, 136, 136);
   --text-color: var(--white);
+  --form-color: var(--bg-color);
+  --form-bg: #e4e4e4;
   --form-hover-color: var(--text-color);
   --form-hover-bg: var(--bg-color);
   --form-hover-border: var(--theme-color1);
+  --bg-opacity: #ffffff80;
   --mode: '\e51c';
 }
 
@@ -49,8 +55,8 @@
     font-weight: 500;
 
     h2~h4
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 500;
+    font-family: 'Zen Old Mincho', serif;
+    font-weight: 400;
     font-weight: 700;
 
     本文
@@ -116,8 +122,8 @@ input[type="text"],textarea{
   cursor: auto;
 }
 
-p, dl, ul, form {
-  margin: 25px 0;
+p, dl, ul,ol, form {
+    margin: 0;
   word-break: break-all;
 }
 
@@ -199,8 +205,8 @@ input:not([type="button"]):not([type="submit"]),textarea{
 
 button,input[type="button"],input[type="submit"],
 label:has(input):hover,label:has(input:checked),a.btn{
-    color: var(--bg-color);
-    background: var(--text-color);
+    color: var(--form-color);
+    background: var(--form-bg);
     border: 1px solid var(--bg-color);
 }
 
@@ -242,8 +248,7 @@ a[target="_blank"]::before{
 
 /* リスト */
 ul,ol {
-    margin: 0;
-    padding-left: calc(1.6rem * 2);
+    padding-left: calc(1.6rem*2);
 }
 
 ul.inline{
@@ -254,22 +259,21 @@ ul.inline{
 
 ul.inline li::after{
     content: '/';
-    margin: 0 0.4rem;
-}
-
-ul.inline li:first-child:after{
-    margin: 0;
+    padding: 0 0.4rem;
 }
 
 ul.inline li:last-child::after{
     content: '';
-    margin: 0;
 }
 
 dl dd {
     border-bottom: 1px solid var(--dark);
     margin: 0 0 0.8rem;
     padding: 0 0 0.8rem calc(1.6rem * 3);
+}
+
+dl dd:last-of-type{
+    border: none;
 }
 
 dl.inline{
@@ -350,10 +354,6 @@ article {
     margin: 0 0 100px;
 }
 
-body:not(#INDEX) main article{
-
-}
-
 /* フッター */
 footer {
     display: flex;
@@ -418,16 +418,13 @@ footer p{
         border: none;
     }
 
-    /* header{
-        width: 100%;
-    } */
-
     .menu{
         transition: 0.3s;
         position: fixed;
         top: 0;
         left: 0;
         transition: 0.3s;
+        z-index: 9999;
     }
 
     .menu a{
@@ -451,7 +448,7 @@ footer p{
     .menu.open{
         width: 100%;
         height: 100%;
-        background: rgba(0, 0, 0, .5);
+        background: var(--bg-opacity);
     }
 
     .menu.open ul{
@@ -469,7 +466,7 @@ footer p{
         transition: 0.3s;
         background: none;
         border: none;
-        z-index: 1;
+        z-index: 10000;
     }
 
     #toggleMenu::after{
@@ -515,8 +512,8 @@ html[theme="dark"] h1 a:hover{
     filter: drop-shadow(0 0 10px var(--theme-color1-light));
 }
 
-h2,h3,h4,h5 {
-    font-family: 'Cormorant Garamond', 'Shippori Mincho', serif;
+h2,h3,h4,h5,h6 {
+    font-family: 'Zen Old Mincho', serif;
     color: var(--theme-color1);
     display: block;
 }
@@ -524,6 +521,7 @@ h2,h3,h4,h5 {
 h2 {
     font-size: 3rem;
     text-align: center;
+    margin: 50px auto;    
 }
 
 h2 span{
@@ -540,20 +538,21 @@ h2 span::before,h2 span::after {
     width: 5rem;
     height: 1px;
     border-radius: 3px;
-    background-color: var(--bg-reverse-color);
+    background: var(--gray);
 }
 
 h2 span::before{
-    left: 0;
+    left: -1.6rem;
 }
 
 h2 span::after {
-    right: 0;
+    right: -1.6rem;
 }
 
 h3 {
     font-size: 2rem;
     margin-bottom: 1em;
+    margin: 50px 0;
 }
 
 h3 span{
@@ -572,21 +571,25 @@ h3 span::before{
     left: 50%;
     -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
-    background-color: var(--bg-reverse-color);
+    background: var(--gray);
     border-radius: 2px;
 }
 
-h4,h5{
+h4,h5,h6{
     font-weight: bold;
-    margin-bottom: 0;
 }
 
 h4{
-    font-size: 1.6rem;
+    font-size: 2rem;
+    margin: 1.6rem 0;
 }
 
-h5{
+h5,h6{
     font-size: 1.6rem;
+    margin: 0;
+}
+
+h6 {
     color: var(--text-color);
 }
 
@@ -601,12 +604,139 @@ strong {}
 
 hr {}
 
+
+/* === 配置 === */
 .block{
     width: 100%;
     display: block;
     text-align: center;
 }
 
+.column{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.column img{
+    width: 100%;
+    object-fit: cover;
+    object-position: top;
+    aspect-ratio: 1 / 1;
+}
+
+.column > *{
+    margin: 5px;
+}
+
+.column-2 > *{
+    width: calc(100% / 2 - 10px);
+}
+
+.column-3 > *{
+    width: calc(100% / 3 - 10px);
+}
+
+.column-4 > *{
+    width: calc(100% / 4 - 10px);
+}
+
+/* === サムネイル === */
+.ill-thumbnail,.novel-thumbnail{
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.ill-thumbnail > * {
+    width: calc(100% / 5 - 10px);
+    margin: 5px;
+}
+
+.novel-thumbnail > div{
+    width: calc(100% / 2 - 10px);
+    margin: 5px;
+    display: flex;
+}
+
+.ill-thumbnail a,.novel-cover a{
+    display: block;
+    position: relative;
+}
+
+.ill-thumbnail a img,.novel-cover a img {
+    display: block;
+    width: 100%;
+    object-fit: cover;
+    object-position: top;
+}
+
+.ill-thumbnail a img{
+    aspect-ratio: 1 / 1;
+}
+
+.ill-thumbnail a span,.novel-cover a span{
+    width: 100%;
+    position: absolute;
+    background: var(--theme-color1-op);
+    color: var(--white);
+}
+
+.ill-thumbnail a span{
+    bottom: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.novel-cover a span{
+    top: 50%;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+}
+
+.novel-thumbnail .novel-cover{
+    width: 40%;
+}
+
+.novel-thumbnail .caption{
+    width: 60%;
+    margin-left: 5px;
+}
+
+.novel-thumbnail .caption h4{
+    display: none;
+}
+
+.novel-thumbnail .caption p{
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
+    overflow: hidden; 
+    text-overflow: ellipsis;
+}
+
+.length,.readtime{
+    color: var(--gray);
+    font-size: small;
+}
+
+a.user {
+    display: flex;
+}
+
+a.user img{
+    width: 20px;
+    height: 20px;
+    margin: 5px 5px 0 0;
+}
+
+a.hashtag{
+    display: inline-block;
+    margin: 0 5px;
+}
+
+/* === 汎用 === */
 .text-left { text-align: left; }
 .text-center { text-align: center; }
 .text-right { text-align: right; }
@@ -626,7 +756,7 @@ hr {}
 /* フォント種類 */
 .text-gothic { font-family: 'Zen Kaku Gothic New', sans-serif;}
 
-/* ログイン */
+/* === ログイン === */
 #loginResult{
     display: none;
     padding: 10px;
@@ -711,4 +841,64 @@ hr {}
 }
 
 /* ==== スマホ ==== */
-@media only screen and (max-width: 1024px) {}
+@media only screen and (max-width: 1024px) {
+    .column-sp-2 > *{
+        width: calc(100% / 2 - 10px);
+    }
+    
+    .column-sp-3 > *{
+        width: calc(100% / 3 - 10px);
+    }
+
+    .column-sp-4 > *{
+        width: calc(100% / 4 - 10px);
+    }
+
+    .ill-thumbnail > * {
+        width: calc(100% / 3 - 2px);
+        margin: 1px;
+    }
+
+    .ill-thumbnail a.user{
+        display: none;
+    }
+
+    .novel-thumbnail{
+        display: block;
+    }
+
+    .novel-thumbnail > div{
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .novel-cover a span{
+        display: none;
+    }
+
+    .novel-thumbnail .novel-cover{
+        width: 20%;
+    }
+
+    .novel-thumbnail .caption{
+        width: 80%;
+    }
+
+    .novel-thumbnail .caption h4{
+        display: block;
+        margin: 0;
+    }
+
+    .novel-thumbnail .caption h4 a{
+        margin: 0;
+        color: var(--theme-color1);
+    }
+
+    .novel-thumbnail .caption p{
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden; 
+        text-overflow: ellipsis;
+    }
+}
