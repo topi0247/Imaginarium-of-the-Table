@@ -184,6 +184,7 @@ a[target="_blank"]::before,
 
 img{
     width: 100%;
+    max-width: 35vw;
 }
 
 /* ==== ボタン・入力 ==== */
@@ -226,6 +227,11 @@ input[type="text"],textarea{
 
 textarea{
     height: calc(2.65rem*10);
+}
+
+.required::after{
+    content: '*';
+    color: var(--theme-color1);
 }
 
 a:hover {
@@ -299,6 +305,10 @@ dl.inline dd{
 }
 
 dl.inline dt:last-of-type,dl.inline dd:last-of-type{
+    border: none;
+}
+
+form dl.inline dt,form dl.inline dd,form dl dd{
     border: none;
 }
 
@@ -858,14 +868,15 @@ ul.member li.skp::before{
     font-size: small;
 }
 
-a.user {
+.user,.ill-thumbnail .user > a{
     display: flex;
 }
 
-a.user img{
+.user img,.ill-thumbnail .user img{
     width: 20px;
     height: 20px;
     margin: 5px 5px 0 0;
+    background: var(--white);
 }
 
 a.hashtag{
@@ -873,7 +884,36 @@ a.hashtag{
     margin: 0 5px;
 }
 
+/* カレンダー */
+table.calendar{
+    border-spacing: 0;
+}
+
+.calendar th{
+    background: var(--gray);
+}
+
+.calendar th,.calendar td{
+    padding: 0 0.5rem;
+}
+
+.calendar th:first-child , .calendar td:first-child{
+    background: #f79c9c88;
+}
+
+.calendar th:last-child , .calendar td:last-child{
+    background: #94bce98c;
+}
+
 /* === 汎用 === */
+.img-thumbnail img,img.img-thumbnail{
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    object-position: top;
+}
+
+.border{ border: 2px solid var(--theme-color1); }
 .text-left { text-align: left; }
 .text-center { text-align: center; }
 .text-right { text-align: right; }
