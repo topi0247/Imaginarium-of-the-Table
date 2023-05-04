@@ -1065,12 +1065,12 @@ table.calendar{
         content: '';
     }
 
-    .ill-thumbnail > * {
+    .ill-thumbnail > div {
         width: calc(100% / 3 - 2px);
         margin: 1px;
     }
 
-    .ill-thumbnail a.user{
+    .ill-thumbnail .user{
         display: none;
     }
 
