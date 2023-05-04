@@ -10,6 +10,7 @@ $(function () {
     mode();
     login();
 
+    // スクロール
     $(window).scroll(function () {
         if (window.matchMedia("(max-width: 1024px)").matches) return false;
 
@@ -31,11 +32,13 @@ $(function () {
         scrollPoint = $(this).scrollTop();
     });
 
+    // スマホ用メインメニュー
     $('#toggleMenu').click(function(){
         $(this).toggleClass('close');
         $('#mainMenu').toggleClass('open');
     })
 
+    // ダークモード切替
     $('#changeMode').click(function () {
         let currentMode = HTML_OBJ.attr('theme');
         if (currentMode === 'light') {
@@ -48,7 +51,9 @@ $(function () {
         }
     })
 
+    // リンクスクロールアニメーション
     $('a[href^="#"]').click(function () {
+        /* スマホ時メニューから飛んだら閉じるようにする */
         if($('#mainMenu').hasClass('open')){
             $('#toggleMenu').toggleClass('close');
             $('#mainMenu').toggleClass('open');
@@ -61,8 +66,46 @@ $(function () {
         scroll(position);
     });
 
+    // ページトップ
     $('#pageTop').click(function(){
         scroll(0);
+    })
+
+    // 小説ページ切り替え
+    $('.page-tab button').click(function(){
+        let currentPage = location.hash.slice(1);
+        let page = currentPage;
+
+        if($(this).hasClass('prev')){
+            page =  Number(currentPage) - 1;
+        }
+        else if($(this).hasClass('next')){
+            page = Number(currentPage) + 1;
+        }
+        else{
+            page = $(this).text();
+        }
+
+        let current = 'current';
+        let pageTab = $('.page-tab button');
+        pageTab.removeClass(current);
+        pageTab.each(function(){
+            if($(this).text() == page){
+                $(this).addClass(current);
+                return false;
+            }
+        })
+
+        let bodyDiv = $('#novel-body div');
+        bodyDiv.removeClass(current);
+        bodyDiv.each(function(){
+            if($(this).attr('id') == page){
+                $(this).addClass(current);
+                return false;
+            }
+        })
+
+        location.hash = page;
     })
 
     // スクロールアニメーション

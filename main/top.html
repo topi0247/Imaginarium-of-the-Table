@@ -24,6 +24,9 @@
         <nav id="mainMenu" class="menu">
             <ul>
                 <li><a href="index.html">index</a></li>
+                <li><a href="session.html">session-sample</a></li>
+                <li><a href="novel.html">novel-sample</a></li>
+                <li><a href="illust.html">illust-sample</a></li>
                 <li><a href="document.html">document</a></li>
             </ul>
         </nav>
@@ -37,10 +40,7 @@
                 <h3><span>準備中</span></h3>
                 <ul>
                     <li>カレンダー</li>
-                    <li>セッション予定ページ</li>
-                    <li>小説ページ</li>
                     <li>イラストページ</li>
-                    <li>イラストサムネイルの拡大表示</li>
                     <li>投稿画面</li>
                     <li>投稿用ログインフォーム</li>
                     <li>検索・ソートなど（てがろぐ周り）</li>
@@ -48,9 +48,14 @@
                 <h3><span>終了</span></h3>
                 <p>デザイン周りは<a href="document.html">ドキュメント</a>から確認可能</p>
                 <ul>
-                    <li>パスワード認証</li>
-                    <li>indexページ以外を閲覧時、ログインしてなければログインフォームを表示</li>
-                    <li>ページトップへ戻る</li>
+                    <li>ログイン認証
+                        <ul>
+                            <li>indexページ…ログイン済みなら自動入力</li>
+                            <li>index以外…未ログインなら認証表示</li>
+                            <li>index以外…ログイン済なら認証非表示</li>
+                        </ul>
+                    </li>
+                    <li>ページ上部へ戻る</li>
                     <li>ダークモード対応</li>
                     <li>メニュー</li>
                     <li>見出し</li>
@@ -59,9 +64,16 @@
                     <li>リスト</li>
                     <li>列</li>
                     <li>セッション予定サムネ</li>
-                    <li>イラストサムネ</li>
-                    <li>小説サムネ</li>
-                    <li>画像表示（大・サムネ）</li>
+                    <li>イラストサムネ郡</li>
+                    <li>小説サムネ郡</li>
+                    <li>画像表示
+                        <ul class="inline">
+                            <li>大</li>
+                            <li>サムネ</li>
+                        </ul></li>
+                    <li>画像サムネの拡大表示</li>
+                    <li>セッションページ</li>
+                    <li>小説ページ</li>
                     <li>上記のレスポンシブ（スマホ・タブレット）対応</li>
                 </ul>
                 <h3><span>検討</span></h3>
@@ -75,14 +87,13 @@
                                     <li>ダークモード</li>
                                 </ul>
                             </li>
-                            <li>フォント
+                            <li>フォント（<a href="https://espace.monbalcon.net/parts/3188/" target="_blank">novel-viewer</a>）
                                 <ul class="inline">
                                     <li>明朝系</li>
                                     <li>ゴシック系</li>
                                 </ul>
                             </li>
-                            </li>
-                            <li>小説表示
+                            <li>小説表示（<a href="https://espace.monbalcon.net/parts/3188/" target="_blank">novel-viewer</a>）
                                 <ul class="inline">
                                     <li>横書き</li>
                                     <li>縦書き</li>
@@ -90,6 +101,21 @@
                             </li>
                         </ul>
                     </li>
+                    <li>いいねボタン（<a href="https://do.gt-gt.org/product/newiine/" target="_blank">いいねボタン改</a>）
+                        <ul class="inline">
+                            <li>連打対応</li>
+                            <li>ボタン種類</li>
+                            <li>投稿者のみ数字が見れる（数字は見れなくてもいい？）</li>
+                        </ul>
+                    </li>
+                    <li>しおり
+                        <ul class="inline">
+                            <li>追加</li>
+                            <li>削除</li>
+                            <li>しおりのページが存在しないときの表示</li>
+                        </ul>
+                    </li>
+                    <li>設定ページとしおりをCookie保存にしない</li>
                 </ul>
             </div>
         </article>
