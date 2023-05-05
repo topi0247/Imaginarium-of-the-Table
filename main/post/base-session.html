@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="robots" content="noindex,noarchive,noimageindex">
+    <title>base-session</title>
+    <!-- css -->
+    <link rel="stylesheet" href="../css/style.css" type="text/css" id="style">
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Klee+One:wght@400;600&family=Shippori+Mincho:wght@400;700&family=Zen+Kaku+Gothic+New:wght@400;700&family=Zen+Old+Mincho:wght@400;700&display=swap" rel="stylesheet">
+    <!-- icon -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <!-- fabicon -->
+    <link rel="apple-touch-icon" type="image/png" href="../img/icon.png">
+    <link rel="icon" type="image/png" href="../img/icon.png">
+    <!-- darkmode -->
+    <script src="../js/darkmode.js"></script>
+</head>
+<body id="session">
+    <header class="passcheck">
+        <h1><a href="../top.html">Imaginarium of the Table</a></h1>
+        <nav id="mainMenu" class="menu">
+            <ul>
+                <li><a href="../top.html">top</a></li>
+                <li><a href="#scenario">シナリオ</a></li>
+                <li><a href="#session-info">セッション</a></li>
+                <li><a href="#record">記録</a></li>
+                <li><a href="#illust">イラスト</a></li>
+                <li><a href="#novel">小説</a></li>
+            </ul>
+        </nav>
+    </header>
+    <button type="button" id="toggleMenu"></button>
+
+    <main class="passcheck">
+        <h2><span>[[scenario-title]]</span></h2>
+        <article id="scenario" class="scenario">
+            <ul class="author">
+                [[scenario-author]]
+            </ul>
+            <p class="center left-sp">[[scenario-caption]]</p>
+            <h3><span>概要</span></h3>
+            <dl class="inline">
+                <dt>システム</dt>
+                <dd>[[system]]</dd>
+                <dt>人数</dt>
+                <dd>[[scenario-num]]人（[[gm-type]][[gm-num]]：PL[[pl-num]]）</dd>
+                <dt>時間</dt>
+                <dd>[[time]]</dd>
+            </dl>
+            [[add-overview]]
+            <div>
+                <a class="btn block margin-3" href="[[scenario-url]]" target="_blank">頒布ページ</a>
+            </div>
+        </article>
+        <article id="session-info" class="session">
+            <h2><span>セッション情報</span></h2>
+            <h4>日程</h4>
+            <p class="large">[[month]]/[[date]]（[[week]]）　[[start-time]]～[[end-time]]</p>
+            <h4>member</h4>
+            [[member]]
+        </article>
+
+        <!-- <article id="record" class="finished">
+            <h2><span>記録</span></h2>
+            <section>
+            </section>
+        </article>
+
+        <article id="illust">
+            <h2><span>イラスト</span></h2>
+            <div class="ill-thumbnail">
+            </div>
+        </article>
+
+        <article id="novel">
+            <h2><span>小説</span></h2>
+            <div class="novel-thumbnail">
+            </div>
+        </article> -->
+    </main>
+    
+    <article class="overlay">
+        <div class="popup-window">
+            <h3><span>Login</span></h3>
+            <div class="center">
+                <div id="loginResult"></div>
+                <form>
+                    <input type="text" placeholder="password" id="loginPass">
+                    <input type="button" value="send" id="login">
+                </form>
+                <a href="../index.html">indexへ</a>
+            </div>
+        </div>
+    </article>
+
+    <footer class="passcheck">
+        <p class="small">© 2023 Imaginarium of the Table - by TRPG部</p>
+        <nav id="pageBottonNav" class="fixed-menu">
+            <ul>
+                <li id="pageTop" class="pagetop"><button></button></li>
+                <li id="changeMode" class="mode"><button></button></li>
+            </ul>
+        </nav>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+    <!-- 3rd -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+    <script src="../js/3rd/sha256.js"></script>
+    <!-- script -->
+    <script src="../js/script.js"></script>
+</body>
+</html>

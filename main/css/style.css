@@ -131,25 +131,26 @@ input[type="text"],textarea{
   cursor: auto;
 }
 
-p, dl, ul,ol, form {
+dl, ul,ol, form {
     margin: 0;
     word-break: break-all;
 }
 
 p{
     margin: 25px 0;
+    word-break: break-all;
 }
 
-p:first-child, dl:first-child, ul:first-child,form:first-child {
+p:first-child {
   margin-top: 0;
 }
 
-p:last-child, dl:last-child, ul:last-child, form:last-child {
+p:last-child {
   margin-bottom: 0;
 }
 
 @media only screen and (max-width: 1024px) {
-  p:last-child, form:last-child {
+  p:last-child{
     margin-bottom: 0;
   }
 }
@@ -169,6 +170,32 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    position: relative;
+}
+
+body::before,body::after{
+    mask-image: url('../img/magic_circle.png');
+    mask-size: contain;
+    -webkit-mask-image: url('../img/magic_circle.png');
+    -webkit-mask-size: contain;
+    background-blend-mode: multiply;
+    background-color: var(--theme-color1);
+    opacity: 0.2;
+    content: '';
+    width: 700px;
+    aspect-ratio: 1 / 1;
+    position: fixed;
+    z-index: -1;
+}
+
+body::before{
+    top: calc(700px * -0.5);
+    left: calc(700px * -0.5);
+}
+
+body::after{
+    bottom: calc(700px * -0.5);
+    right: calc(700px * -0.5);
 }
 
 a {
@@ -180,17 +207,17 @@ img{
     max-width: 35vw;
 }
 
-/*スクロールバー*/
+/* スクロールバー */
 ::-webkit-scrollbar {
 	width: 1rem;
 }
 
-/*スクロールバーの軌道*/
+/* スクロールバーの軌道 */
 ::-webkit-scrollbar-track {
 	background: var(--scroll-bg);
 }
 
-/*スクロールバーの動く部分*/
+/* スクロールバーの動く部分 */
 ::-webkit-scrollbar-thumb {
 	background: var(--scroll-bar);
 }
@@ -201,7 +228,8 @@ a[target="_blank"]::before,
 button.prev::after,button.next::after,
 .fixed-menu a::before,
 .fixed-menu button::before,
-.fixed-menu span::before {
+.fixed-menu span::before,
+.user::before {
   font-family: 'Material Icons';
 }
 
@@ -213,21 +241,38 @@ button.next::after{
     content: '\e5e1';
 }
 
-/* ==== ボタン・入力 ==== */
-input[type="checkbox"], input[type="radio"] {
-    display: none;
+.user::before{
+    content: '\e7fd';
 }
 
+/* ==== ボタン・入力 ==== */
 input,textarea,a.btn,label:has(input){
     border: 1px solid var(--dark);
+}
+
+a.btn,label:has(input){
+    padding: 0 0.8rem;
 }
 
 label:has(input){
     color: var(--gray);
 }
 
-input:not([type="button"]):not([type="submit"]),textarea{
+input,textarea{
     cursor: auto;
+    border-color: var(--gray);
+}
+
+textarea{
+    height: calc(calc(var(--font-size) + 1.05rem) * 10);
+}
+
+input[type="checkbox"], input[type="radio"] {
+    display: none;
+}
+
+input[type="text"],textarea{
+    width: 100%;
 }
 
 button,input[type="button"],input[type="submit"],
@@ -247,14 +292,7 @@ textarea:hover,textarea:focus {
     border-color:var(--form-hover-border);
 }
 
-input[type="text"],textarea{
-    width: 100%;
-}
-
-textarea{
-    height: calc(2.65rem*10);
-}
-
+/* 必須 */
 .required::after{
     content: '*';
     color: var(--theme-color1);
@@ -262,10 +300,6 @@ textarea{
 
 a:hover {
     opacity: 0.5;
-}
-
-a.btn,label:has(input){
-    padding: 0 0.8rem;
 }
 
 a[target="_blank"]{
@@ -487,7 +521,7 @@ dl.inline dd{
 
 /* ヘッダー */
 header {
-    margin-bottom: 50px;
+    margin: 50px auto;
     z-index: 5;
 }
 
@@ -530,21 +564,30 @@ header {
 main {
     width: 90%;
     max-width: 900px;
-    margin: 0 auto calc(var(--font-size)*10);
+    margin: 0 auto auto;
 }
 
 body#INDEX main{
     margin: auto;
 }
 
-article {
-    margin: 0 0 100px;
+article{
+    margin: 100px auto;
+}
+
+article:first-child{
+    margin-top: 0;
+}
+
+section{
+    margin: 60px auto;
 }
 
 /* フッター */
 footer {
     display: flex;
     justify-content: right;
+    margin-top: calc(var(--font-size) * 3);
 }
 
 footer p{
@@ -675,6 +718,23 @@ footer p{
     }
 }
 
+@media only screen and (max-width: 800px) {
+    body::before,body::after{
+        width: 350px;
+    }
+
+    body::before{
+        top: calc(350px * -0.5);
+        left: calc(350px * -0.5);
+    }
+    
+    body::after{
+        bottom: calc(350px * -0.5);
+        right: calc(350px * -0.5);
+    }
+
+}
+
 /* === ログイン === */
 #loginResult{
     display: none;
@@ -759,13 +819,7 @@ footer p{
     color: #8890ff;
 }
 
-/* === 配置 === */
-.block{
-    width: 100%;
-    display: block;
-    text-align: center;
-}
-
+/* === 列配置 === */
 .column{
     display: flex;
     flex-wrap: wrap;
@@ -820,6 +874,30 @@ footer p{
     width: 100%;
     object-fit: cover;
     object-position: top;
+}
+
+.user{
+    display: flex;
+}
+
+.user::before{
+    font-size: 2rem;
+    margin-right: 0.5rem;
+}
+
+ul.hashtag{
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+}
+
+ul.hashtag li{
+    margin-right: var(--font-size);
+}
+
+ul.hashtag li:not(:has(a))::before,ul.hashtag li a::before{
+    content: '#';
 }
 
 /* 卓予定サムネイル */
@@ -882,7 +960,7 @@ footer p{
     font-size: var(--font-size);
 }
 
-.sess-time .end{}
+/* .sess-time .end{} */
 
 .sess-data{
     width: 70%;
@@ -1012,22 +1090,6 @@ ul.member li.skp::before{
     font-size: small;
 }
 
-.user,.ill-thumbnail .user > a{
-    display: flex;
-}
-
-.user img,.ill-thumbnail .user img{
-    width: 20px;
-    height: 20px;
-    margin: 5px 5px 0 0;
-    background: var(--white);
-}
-
-a.hashtag{
-    display: inline-block;
-    margin: 0 5px;
-}
-
 /* === セッションページ === */
 .scenario ul.author{
     display: flex;
@@ -1040,7 +1102,6 @@ a.hashtag{
 }
 
 .scenario ul.author::before{
-    background-image: url('../img/icon.png');
     mask-image: url('../img/icon.png');
     mask-size: contain;
     -webkit-mask-image: url('../img/icon.png');
@@ -1049,7 +1110,6 @@ a.hashtag{
     content: '';
     width: calc(var(--font-size) * 2);
     height: calc(var(--font-size) * 2);
-    background-blend-mode: multiply;
 }
 
 .scenario ul.author li:not(:last-child)::after{
@@ -1057,12 +1117,27 @@ a.hashtag{
     padding: 0 0.8rem;
 }
 
+div:has(.youtube){
+    display: flex;
+}
+
+.youtube{
+    width: calc(100% / 2 - 4px);
+    flex-wrap: wrap;
+    margin: 2px;
+    aspect-ratio: 16 / 9;
+}
+
 /* === 小説ページ === */
+body#NOVEL header h1{
+    margin: 0 auto;
+}
+
 #novel-header{
     margin: calc(var(--font-size) * 3) 0;
 }
 
-.novel-caption,.postscript {
+.novel-caption,.afterword {
     width: 100%;
     flex-wrap: wrap;
     background: var(--dark);
@@ -1076,10 +1151,8 @@ a.hashtag{
     width: 15%;
 }
 
-.novel-caption .novel-cover a{
-    pointer-events: none;
+.novel-caption .novel-cover{
     display: block;
-    position: relative;
 }
 
 .novel-caption .novel-cover a img{
@@ -1102,7 +1175,7 @@ a.hashtag{
     display: none;
 }
 
-.novel-caption .caption .length,.novel-caption .caption .readtime,.postscript .caption .length,.postscript .caption .readtime{
+.novel-caption .caption .length,.novel-caption .caption .readtime,.afterword .caption .length,.afterword .caption .readtime{
     color: var(--text-color);
 }
 
@@ -1142,11 +1215,11 @@ a.hashtag{
     background: var(--form-bg);
 }
 
-.postscript{
+.afterword{
     margin: 3.2rem 0;
 }
 
-.postscript .caption{
+.afterword .caption{
     padding: var(--font-size);
 }
 
@@ -1174,6 +1247,7 @@ table.calendar{
 /* === 汎用 === */
 br.br-sp{ display: none; }
 
+/* 画像サムネイル表示 */
 .img-thumbnail img,img.img-thumbnail{
     width: 100px;
     height: 100px;
@@ -1181,14 +1255,20 @@ br.br-sp{ display: none; }
     object-position: top;
 }
 
-.border{ border: 2px solid var(--theme-color1); }
-.text-left { text-align: left; }
-.text-center { text-align: center; }
-.text-right { text-align: right; }
-.text-bold { font-weight: bold; }
-.text-small { font-size: smaller; }
-.text-large{ font-size: larger; }
-.text-block { display: block; }
+.block{
+    width: 100%;
+    display: block;
+    text-align: center;
+}
+
+.border{ border: 1px solid var(--theme-color1); }
+.left { text-align: left; }
+.center { text-align: center; }
+.right { text-align: right; }
+.bold { font-weight: bold; }
+.small { font-size: smaller; }
+.large{ font-size: larger; }
+
 .margin-3{ 
     margin-top: calc(var(--font-size) * 3);
     margin-bottom: calc(var(--font-size) * 3);
@@ -1211,20 +1291,16 @@ br.br-sp{ display: none; }
 .blur { filter: blur(10px); }
 
 /* サイト名 */
-.text-sitename-before::before,.text-sitename-after::after{ 
-    font-family: 'Caveat', serif; 
+.sitename-before::before,.sitename-after::after{
     content:'Imaginarium of the Table'; 
 }
 
 /* フォント種類 */
-.text-gothic { font-family: 'Zen Kaku Gothic New', sans-serif;}
+.sitename-font{ font-family: 'Caveat', serif; }
+.gothic { font-family: 'Zen Kaku Gothic New', sans-serif;}
 
 /* ==== スマホ ==== */
 @media only screen and (max-width: 1024px) {
-    br.br-sp{
-        display: block;
-    }
-
     .column-sp-2 > *{
         width: calc(100% / 2 - 10px);
     }
@@ -1312,12 +1388,19 @@ br.br-sp{ display: none; }
     }
 
     /* === 各ページ === */
-    body#session header h1,body#novel header h1{
+    body#SESSION header h1,body#novel header h1{
         display: none;
     }
 
     /* === セッションページ === */
+    div:has(.youtube){
+        display: block;
+    }
     
+    .youtube{
+        width: 100%;
+        aspect-ratio: 16 / 9;
+    }
 
     /* === 小説ページ === */
     .novel-caption .novel-cover{
@@ -1332,7 +1415,12 @@ br.br-sp{ display: none; }
         margin: 0.5rem;
     }
 
-    .text-left-sp { text-align: left; }
-    .text-center-sp { text-align: center; }
-    .text-right-sp { text-align: right; }
+    /* === 汎用 === */
+    br.br-sp{
+        display: block;
+    }
+
+    .left-sp { text-align: left; }
+    .center-sp { text-align: center; }
+    .right-sp { text-align: right; }
 }

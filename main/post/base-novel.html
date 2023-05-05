@@ -4,9 +4,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="robots" content="noindex,noarchive,noimageindex">
-    <title>Illust - Imaginarium of the Table</title>
+    <title>[[TITLE]] - Imaginarium of the Table</title>
     <!-- css -->
-    <link rel="stylesheet" href="css/style.css" type="text/css" id="style">
+    <link rel="stylesheet" href="../css/style.css" type="text/css" id="style">
     <!-- font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,28 +15,64 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
     <!-- fabicon -->
-    <link rel="apple-touch-icon" type="image/png" href="img/icon.png">
-    <link rel="icon" type="image/png" href="img/icon.png">
+    <link rel="apple-touch-icon" type="image/png" href="../img/icon.png">
+    <link rel="icon" type="image/png" href="../img/icon.png">
     <!-- darkmode -->
-    <script src="js/darkmode.js"></script>
+    <script src="../js/darkmode.js"></script>
 </head>
-<body id="ILLUST">
+<body id="NOVEL">
     <header class="passcheck">
-        <h1><a href="top.html">Imaginarium of the Table</a></h1>
+        <h1><a href="../top.html">Imaginarium of the Table</a></h1>
         <nav id="mainMenu" class="menu">
             <ul>
-                <li><a href="top.html">top</a></li>
-                <li><a href="session.html">session</a></li>
-                <li><a href="novel.html">novel</a></li>
-                <li><a href="document.html">document</a></li>
+                <li><a href="../top.html">top</a></li>
             </ul>
         </nav>
     </header>
     <button type="button" id="toggleMenu"></button>
 
     <main class="passcheck">
-        <article>
-            <h2><span>準備中</span></h2>
+        <article id="novel-header">
+            <h2><span>[[TITLE]]</span></h2>
+            <div class="novel-caption">
+                <div class="novel-cover">
+                    <img src="../img/hyoushi.jpg">
+                </div>
+                <div class="caption">
+                    <h4>[[TITLE]]</h4>
+                    <div class="user">[[USERNAME]]</div>
+                        [[HASHTAG]]
+                    <p>[[CAPTION]]</p>
+                    <span class="length">[[LENGTH]]文字</span>
+                    <span class="readtime">[[READTIME]]</span>
+                </div>
+            </div>
+        </article>
+        
+        <article id="novel-body">
+            [[NOVEL-BODY]]
+        </article>
+
+        <article id="novel-footer">
+            <section class="page-tab">
+                <div class="page-tab">
+                    <nav>
+                        <button type="button" class="prev"></button>
+                        [[PAGE-TAB]]
+                        <button type="button" class="next"></button>
+                    </nav>
+                </div>
+            </section>
+            <section class="afterword">
+                <div class="caption">
+                    <h4>[[TITLE]]</h4>
+                    <div class="user"><a>[[USERNAME]]</a></div>
+                    [[HASHTAG]]
+                    <p>[[AFTERWORD]]</p>
+                    <span class="length">[[LENGTH]]文字</span>
+                    <span class="readtime">[[READTIME]]</span>
+                </div>
+            </section>
         </article>
     </main>
     
@@ -49,7 +85,7 @@
                     <input type="text" placeholder="password" id="loginPass">
                     <input type="button" value="send" id="login">
                 </form>
-                <a href="index.html">indexへ</a>
+                <a href="../index.html">indexへ</a>
             </div>
         </div>
     </article>
@@ -68,9 +104,8 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
     <!-- 3rd -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
-    <script src="js/3rd/spotlight.bundle.js"></script>
-    <script src="js/3rd/sha256.js"></script>
+    <script src="../js/3rd/sha256.js"></script>
     <!-- script -->
-    <script src="js/script.js"></script>
+    <script src="../js/script.js"></script>
 </body>
 </html>

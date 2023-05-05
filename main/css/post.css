@@ -1,0 +1,34 @@
+body#POST header h1{
+    display: none;
+}
+
+#preview button::before{
+    font-family: 'Material Icons';
+    content: '\f1c5';
+}
+
+#post-session,#post-novel,#post-illust{
+    display: none;
+}
+
+#post-type:has(#type-session:checked) ~ #post-session,
+#post-type:has(#type-novel:checked) ~ #post-novel,
+#post-type:has(#type-illust:checked) ~ #post-illust
+{
+    display: block;
+}
+
+/* === セッション投稿 === */
+input[type='url']{
+    width: 100%;
+    cursor: auto;
+}
+
+/* === 小説投稿 === */
+textarea#caption,textarea#afterword{
+    height: calc(calc(var(--font-size) + 1.05rem) * 5);
+}
+
+#novel-body:has(textarea:only-of-type) #remove-page{
+    display: none;
+}

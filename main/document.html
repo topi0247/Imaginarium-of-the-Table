@@ -17,6 +17,8 @@
     <!-- fabicon -->
     <link rel="apple-touch-icon" type="image/png" href="img/icon.png">
     <link rel="icon" type="image/png" href="img/icon.png">
+    <!-- darkmode -->
+    <script src="js/darkmode.js"></script>
 </head>
 <body>
     <header class="passcheck">
@@ -28,9 +30,7 @@
                 <li><a href="#form">フォーム</a></li>
                 <li><a href="#list">リスト</a></li>
                 <li><a href="#column">列表示</a></li>
-                <li><a href="#sess-thumbnail">セッション-サムネ</a></li>
-                <li><a href="#ill-thumbnail">イラスト-サムネ</a></li>
-                <li><a href="#novel-thumbnail">小説-サムネ</a></li>
+                <li><a href="#thumbnail">目次サムネ</a></li>
                 <li><a href="#other">その他</a></li>
             </ul>
         </nav>
@@ -39,511 +39,500 @@
 
     <main class="passcheck">
         <article>
-            <p>他サンプルページ</p>
+            <h2><span>サンプルページ</span></h2>
             <ul>
                 <li><a href="session.html">セッションサンプルページ</a></li>
                 <li><a href="novel.html">小説サンプルページ</a></li>
                 <li>（準備中）<a href="illust.html">イラストサンプルページ</a></li>
             </ul>
+            <p>投稿画面およびプレビュー画面は誠意制作中<br>
+                小説投稿画面はほぼできたので<a href="post/post.php">こちら</a>から確認できます。
+            </p>
         </article>
 
         <article id="design">
-            <h2><span>見出し２</span></h2>
-            <h3><span>見出し３</span></h3>
-            <h4>見出し４</h4>
-            <h5>見出し５</h5>
-            <h6>見出し６</h6>
+            <section>
+                <h2><span>見出し２</span></h2>
+                <h3><span>見出し３</span></h3>
+                <h4>見出し４</h4>
+                <h5>見出し５</h5>
+                <h6>見出し６</h6>
+            </section>
+            
+            <section>
+                <h3><span>装飾</span></h3>
+                <p>太字：<b>太字</b><br>
+                    強調：<em>強調</em><br>
+                    重要：<strong>重要</strong><br>
+                    水平線↓</p>
+                <hr>
+            </section>
+            
+            <section>
+                <h3><span>リンク</span></h3>
+                <a>リンク</a><br>
+                <a class="btn">リンク（ボタン）</a><br>
+                <a class="btn block">リンク（ブロックボタン）</a>
+                <a target="_blank">新規タブで開くリンク</a><br>
+                <a class="btn" target="_blank">新規タブで開くリンク（ボタン）</a><br>
+                <a class="btn block" target="_blank">新規タブで開くリンク（ブロックボタン）</a>    
+            </section>
 
-            <h3><span>装飾</span></h3>
-            <p>太字：<b>太字</b><br>
-                強調：<em>強調</em><br>
-                重要：<strong>重要</strong><br>
-                水平線↓</p>
-            <hr>
-            <h3><span>リンク</span></h3>
-            <a>リンク</a><br>
-            <a class="btn">リンク（ボタン）</a><br>
-            <a class="btn block">リンク（ブロックボタン）</a>
-            <a target="_blank">新規タブで開くリンク</a><br>
-            <a class="btn" target="_blank">新規タブで開くリンク（ボタン）</a><br>
-            <a class="btn block" target="_blank">新規タブで開くリンク（ブロックボタン）</a>
-
-            <h3><span>配置</span></h3>
-            <div>
-                <p>通常表示</p>
-                <img class="img-thumbnail" src="img/hyoushi.jpg">
-            </div>
-            <div class="text-center text-center-sp">
-                <p>中央表示</p>
-                <img class="img-thumbnail" src="img/hyoushi.jpg">
-            </div>
-            <div class="text-right text-center-sp">
-                <p>右端表示</p>
-                <img class="img-thumbnail" src="img/hyoushi.jpg">
-            </div>
-            <div class="column column-4 column-sp-3">
+            <section>
+                <h3><span>配置</span></h3>
                 <div>
-                    <h4>通常間隔</h4>
-                    <img class="img-thumbnail block" src="img/hyoushi.jpg">
-                    <img class="img-thumbnail block" src="img/hyoushi.jpg">
-                    <img class="img-thumbnail block" src="img/hyoushi.jpg">
+                    <p>通常表示</p>
+                    <img class="img-thumbnail" src="img/hyoushi.jpg">
                 </div>
-                <div>
-                    <h4>調整用１</h4>
-                    <img class="img-thumbnail block" src="img/hyoushi.jpg">
-                    <img class="img-thumbnail block margin-3" src="img/hyoushi.jpg">
-                    <img class="img-thumbnail block" src="img/hyoushi.jpg">
+                <div class="center center-sp">
+                    <p>中央表示</p>
+                    <img class="img-thumbnail" src="img/hyoushi.jpg">
                 </div>
-                <div>
-                    <h4>調整用２</h4>
-                    <img class="img-thumbnail block" src="img/hyoushi.jpg">
-                    <img class="img-thumbnail block margin-5" src="img/hyoushi.jpg">
-                    <img class="img-thumbnail block" src="img/hyoushi.jpg">
+                <div class="right center-sp">
+                    <p>右端表示</p>
+                    <img class="img-thumbnail" src="img/hyoushi.jpg">
                 </div>
-                <div>
-                    <h4>調整用３</h4>
-                    <img class="img-thumbnail block" src="img/hyoushi.jpg">
-                    <img class="img-thumbnail block margin-7" src="img/hyoushi.jpg">
-                    <img class="img-thumbnail block" src="img/hyoushi.jpg">
-                </div>
-                <div>
-                    <h4>調整用４</h4>
-                    <img class="img-thumbnail block" src="img/hyoushi.jpg">
-                    <img class="img-thumbnail block margin-top-3" src="img/hyoushi.jpg">
-                    <img class="img-thumbnail block" src="img/hyoushi.jpg">
-                </div>
-                <div>
-                    <h4>調整用５</h4>
-                    <img class="img-thumbnail block" src="img/hyoushi.jpg">
-                    <img class="img-thumbnail block margin-top-5" src="img/hyoushi.jpg">
-                    <img class="img-thumbnail block" src="img/hyoushi.jpg">
-                </div>
-                <div>
-                    <h4>調整用６</h4>
-                    <img class="img-thumbnail block" src="img/hyoushi.jpg">
-                    <img class="img-thumbnail block margin-top-7" src="img/hyoushi.jpg">
-                    <img class="img-thumbnail block" src="img/hyoushi.jpg">
-                </div>
-                <div>
-                    <h4>調整用７</h4>
-                    <img class="img-thumbnail block" src="img/hyoushi.jpg">
-                    <img class="img-thumbnail block margin-bottom-3" src="img/hyoushi.jpg">
-                    <img class="img-thumbnail block" src="img/hyoushi.jpg">
-                </div>
-                <div>
-                    <h4>調整用８</h4>
-                    <img class="img-thumbnail block" src="img/hyoushi.jpg">
-                    <img class="img-thumbnail block margin-bottom-5" src="img/hyoushi.jpg">
-                    <img class="img-thumbnail block" src="img/hyoushi.jpg">
-                </div>
-                <div>
-                    <h4>調整用９</h4>
-                    <img class="img-thumbnail block" src="img/hyoushi.jpg">
-                    <img class="img-thumbnail block margin-bottom-7" src="img/hyoushi.jpg">
-                    <img class="img-thumbnail block" src="img/hyoushi.jpg">
-                </div>
-            </div>
+            </section>
         </article>
 
         <article id="form">
             <h2><span>フォーム</span></h2>
-            <h3><span>１列</span></h3>
-            <p><span class="required"></span>必須マークも付けられます</p>
-            <form>
-                <dl class="inline">
-                    <dt class="required">ボタン</dt>
-                    <dd><button type="button">ボタン</button>
-                        <input type="button" value="ボタン">
-                        <input type="submit" value="送信ボタン">
-                    </dd>
+            <section>
+                <h3><span>１列</span></h3>
+                <p><span class="required"></span>必須マークも付けられます</p>
+                <form>
+                    <dl class="inline">
+                        <dt class="required">ボタン</dt>
+                        <dd><button type="button">ボタン</button>
+                            <input type="button" value="ボタン">
+                            <input type="submit" value="送信ボタン">
+                        </dd>
+            
+                        <dt>ブロックボタン</dt>
+                        <dd>
+                            <button type="button" class="block">ボタン</button>
+                            <input type="button" class="block" value="ボタン">
+                            <input type="submit" class="block" value="送信ボタン">
+                        </dd>
+            
+                        <dt>チェックボックス</dt>
+                        <dd>
+                            <label><input type="checkbox">項目１</label>
+                            <label><input type="checkbox">項目２</label>
+                            <label><input type="checkbox">項目３</label>
+                        </dd>
+            
+                        <dt>ラジオボタン</dt>
+                        <dd>
+                            <label><input type="radio" name="a">項目１</label>
+                            <label><input type="radio" name="a">項目２</label>
+                            <label><input type="radio" name="a">項目３</label>
+                        </dd>
+            
+                        <dt>一行テキスト</dt>
+                        <dd><input type="text" placeholder="テキスト"></dd>
+            
+                        <dt>複数行テキスト</dt>
+                        <dd><textarea placeholder="テキストエリア"></textarea></dd>
+                    </dl>
+                </form>
+            </section>
+            
+            <section>
+                <h3><span>通常</span></h3>
+                <form>
+                    <dl>
+                        <dt class="required">ボタン</dt>
+                        <dd>
+                            <button type="button">ボタン</button>
+                            <input type="button" value="ボタン">
+                            <input type="submit" value="送信ボタン">
+                            <button type="button">ボタン</button>
+                            <input type="button" value="ボタン">
+                            <input type="submit" value="送信ボタン">
+                        </dd>
 
-                    <dt>ブロックボタン</dt>
-                    <dd>
-                        <button type="button" class="block">ボタン</button>
-                        <input type="button" class="block" value="ボタン">
-                        <input type="submit" class="block" value="送信ボタン">
-                    </dd>
+                        <dt>ブロックボタン</dt>
+                        <dd>
+                            <button type="button" class="block">ボタン</button>
+                            <input type="button" class="block" value="ボタン">
+                            <input type="submit" class="block" value="送信ボタン">
+                        </dd>
 
-                    <dt>チェックボックス</dt>
-                    <dd>
-                        <label><input type="checkbox">項目１</label>
-                        <label><input type="checkbox">項目２</label>
-                        <label><input type="checkbox">項目３</label>
-                    </dd>
+                        <dt>チェックボックス</dt>
+                        <dd>
+                            <label><input type="checkbox">項目１</label>
+                            <label><input type="checkbox">項目２</label>
+                            <label><input type="checkbox">項目３</label>
+                        </dd>
 
-                    <dt>ラジオボタン</dt>
-                    <dd>
-                        <label><input type="radio" name="a">項目１</label>
-                        <label><input type="radio" name="a">項目２</label>
-                        <label><input type="radio" name="a">項目３</label>
-                    </dd>
+                        <dt>ラジオボタン</dt>
+                        <dd>
+                            <label><input type="radio" name="a">項目１</label>
+                            <label><input type="radio" name="a">項目２</label>
+                            <label><input type="radio" name="a">項目３</label>
+                        </dd>
 
-                    <dt>一行テキスト</dt>
-                    <dd><input type="text" placeholder="テキスト"></dd>
+                        <dt>一行テキスト</dt>
+                        <dd><input type="text" placeholder="テキスト"></dd>
 
-                    <dt>複数行テキスト</dt>
-                    <dd><textarea placeholder="テキストエリア"></textarea></dd>
-                </dl>
-            </form>
-            <h3><span>通常</span></h3>
-            <form>
-                <dl>
-                    <dt class="required">ボタン</dt>
-                    <dd>
-                        <button type="button">ボタン</button>
-                        <input type="button" value="ボタン">
-                        <input type="submit" value="送信ボタン">
-                        <button type="button">ボタン</button>
-                        <input type="button" value="ボタン">
-                        <input type="submit" value="送信ボタン">
-                    </dd>
-
-                    <dt>ブロックボタン</dt>
-                    <dd>
-                        <button type="button" class="block">ボタン</button>
-                        <input type="button" class="block" value="ボタン">
-                        <input type="submit" class="block" value="送信ボタン">
-                    </dd>
-
-                    <dt>チェックボックス</dt>
-                    <dd>
-                        <label><input type="checkbox">項目１</label>
-                        <label><input type="checkbox">項目２</label>
-                        <label><input type="checkbox">項目３</label>
-                    </dd>
-
-                    <dt>ラジオボタン</dt>
-                    <dd>
-                        <label><input type="radio" name="a">項目１</label>
-                        <label><input type="radio" name="a">項目２</label>
-                        <label><input type="radio" name="a">項目３</label>
-                    </dd>
-
-                    <dt>一行テキスト</dt>
-                    <dd><input type="text" placeholder="テキスト"></dd>
-
-                    <dt>複数行テキスト</dt>
-                    <dd><textarea placeholder="テキストエリア"></textarea></dd>
-                </dl>
-            </form>
+                        <dt>複数行テキスト</dt>
+                        <dd><textarea placeholder="テキストエリア"></textarea></dd>
+                    </dl>
+                </form>
+            </section>
         </article>
 
         <article id="list">
             <h2><span>リスト</span></h2>
-            <h4>通常</h4>
-            <ul>
-                <li>リスト</li>
-                <li>リスト</li>
-                <li>リスト</li>
-            </ul>
-            <h4>１列</h4>
-            <ul class="inline">
-                <li>リスト</li>
-                <li>リスト</li>
-                <li>リスト</li>
-            </ul>
-            <h4>ナンバーリスト</h4>
-            <ol>
-                <li>リスト</li>
-                <li>リスト</li>
-                <li>リスト</li>
-            </ol>
-            <h4>通常定義リスト</h4>
-            <dl>
-                <dt>リスト</dt>
-                <dd>テキスト</dd>
-                <dt>リスト</dt>
-                <dd>テキスト</dd>
-                <dt>リスト</dt>
-                <dd>テキスト</dd>
-            </dl>
-            <h4>１列定義リスト</h4>
-            <dl class="inline">
-                <dt>リスト</dt>
-                <dd>テキスト</dd>
-                <dt>リスト</dt>
-                <dd>テキスト</dd>
-                <dt>リスト</dt>
-                <dd>テキスト</dd>
-            </dl>
+            <section>
+                <h4>通常</h4>
+                <ul>
+                    <li>リスト</li>
+                    <li>リスト</li>
+                    <li>リスト</li>
+                </ul>
+                <h4>１列</h4>
+                <ul class="inline">
+                    <li>リスト</li>
+                    <li>リスト</li>
+                    <li>リスト</li>
+                </ul>
+            </section>
+
+            <section>
+                <h4>ナンバーリスト</h4>
+                <ol>
+                    <li>リスト</li>
+                    <li>リスト</li>
+                    <li>リスト</li>
+                </ol>
+            </section>
+            
+            <section>
+                <h4>通常定義リスト</h4>
+                <dl>
+                    <dt>リスト</dt>
+                    <dd>テキスト</dd>
+                    <dt>リスト</dt>
+                    <dd>テキスト</dd>
+                    <dt>リスト</dt>
+                    <dd>テキスト</dd>
+                </dl>
+                <h4>１列定義リスト</h4>
+                <dl class="inline">
+                    <dt>リスト</dt>
+                    <dd>テキスト</dd>
+                    <dt>リスト</dt>
+                    <dd>テキスト</dd>
+                    <dt>リスト</dt>
+                    <dd>テキスト</dd>
+                </dl>
+            </section>
         </article>
 
         <article id="column">
             <h2><span>列</span></h2>
-            <h3><span>２列</span></h3>
-            <h5>テキスト</h5>
-            <div class="column column-2 column-sp-2">
-                <div>
-                    <p>テキストテキストテキスト</p>
-                    <button type="button" class="block">テキスト</button>
+            <section>
+                <h3><span>２列</span></h3>
+                <h5>テキスト</h5>
+                <div class="column column-2 column-sp-2">
+                    <div>
+                        <p>テキストテキストテキスト</p>
+                        <button type="button" class="block">テキスト</button>
+                    </div>
+                    <div>
+                        <p>テキストテキストテキスト</p>
+                        <button type="button" class="block">テキスト</button>
+                    </div>
                 </div>
-                <div>
-                    <p>テキストテキストテキスト</p>
-                    <button type="button" class="block">テキスト</button>
+                <h5>画像</h5>
+                <div class="column column-2 column-sp-2">
+                    <div>
+                        <img src="img/hyoushi.jpg">
+                    </div>
+                    <div>
+                        <img src="img/hyoushi.jpg">
+                    </div>
                 </div>
-            </div>
-            <h5>画像</h5>
-            <div class="column column-2 column-sp-2">
-                <div>
-                    <img src="img/hyoushi.jpg">
+            </section>
+            
+            <section>
+                <h3><span>３列</span></h3>
+                <h5>テキスト</h5>
+                <div class="column column-3 column-sp-3">
+                    <div>
+                        <p>テキストテキストテキスト</p>
+                        <button type="button" class="block">テキスト</button>
+                    </div>
+                    <div>
+                        <p>テキストテキストテキスト</p>
+                        <button type="button" class="block">テキスト</button>
+                    </div>
+                    <div>
+                        <p>テキストテキストテキスト</p>
+                        <button type="button" class="block">テキスト</button>
+                    </div>
                 </div>
-                <div>
-                    <img src="img/hyoushi.jpg">
+                <h5>画像</h5>
+                <div class="column column-3 column-sp-3">
+                    <div>
+                        <img src="img/hyoushi.jpg">
+                    </div>
+                    <div>
+                        <img src="img/hyoushi.jpg">
+                    </div>
+                    <div>
+                        <img src="img/hyoushi.jpg">
+                    </div>
                 </div>
-            </div>
-        
-            <h3><span>３列</span></h3>
-            <h5>テキスト</h5>
-            <div class="column column-3 column-sp-3">
-                <div>
-                    <p>テキストテキストテキスト</p>
-                    <button type="button" class="block">テキスト</button>
+            </section>
+            
+            <section>
+                <h3><span>４列</span></h3>
+                <h5>テキスト</h5>
+                <div class="column column-4 column-sp-4">
+                    <div>
+                        <p>テキストテキストテキスト</p>
+                        <button type="button" class="block">ボタン</button>
+                    </div>
+                    <div>
+                        <p>テキストテキストテキスト</p>
+                        <button type="button" class="block">ボタン</button>
+                    </div>
+                    <div>
+                        <p>テキストテキストテキスト</p>
+                        <button type="button" class="block">ボタン</button>
+                    </div>
+                    <div>
+                        <p>テキストテキストテキスト</p>
+                        <button type="button" class="block">ボタン</button>
+                    </div>
                 </div>
-                <div>
-                    <p>テキストテキストテキスト</p>
-                    <button type="button" class="block">テキスト</button>
+                <h5>画像</h5>
+                <div class="column column-4 column-sp-4">
+                    <div>
+                        <img src="img/hyoushi.jpg">
+                    </div>
+                    <div>
+                        <img src="img/hyoushi.jpg">
+                    </div>
+                    <div>
+                        <img src="img/hyoushi.jpg">
+                    </div>
+                    <div>
+                        <img src="img/hyoushi.jpg">
+                    </div>
                 </div>
-                <div>
-                    <p>テキストテキストテキスト</p>
-                    <button type="button" class="block">テキスト</button>
-                </div>
-            </div>
-            <h5>画像</h5>
-            <div class="column column-3 column-sp-3">
-                <div>
-                    <img src="img/hyoushi.jpg">
-                </div>
-                <div>
-                    <img src="img/hyoushi.jpg">
-                </div>
-                <div>
-                    <img src="img/hyoushi.jpg">
-                </div>
-            </div>
-        
-            <h3><span>４列</span></h3>
-            <h5>テキスト</h5>
-            <div class="column column-4 column-sp-4">
-                <div>
-                    <p>テキストテキストテキスト</p>
-                    <button type="button" class="block">ボタン</button>
-                </div>
-                <div>
-                    <p>テキストテキストテキスト</p>
-                    <button type="button" class="block">ボタン</button>
-                </div>
-                <div>
-                    <p>テキストテキストテキスト</p>
-                    <button type="button" class="block">ボタン</button>
-                </div>
-                <div>
-                    <p>テキストテキストテキスト</p>
-                    <button type="button" class="block">ボタン</button>
-                </div>
-            </div>
-            <h5>画像</h5>
-            <div class="column column-4 column-sp-4">
-                <div>
-                    <img src="img/hyoushi.jpg">
-                </div>
-                <div>
-                    <img src="img/hyoushi.jpg">
-                </div>
-                <div>
-                    <img src="img/hyoushi.jpg">
-                </div>
-                <div>
-                    <img src="img/hyoushi.jpg">
-                </div>
-            </div>
+            </section>
         </article>
 
-        <article id="sess-thumbnail">
-            <h2><span>セッション予定サムネ</span></h2>
-            <div class="sess-thumbnail">
-                <div>
-                    <div class="sess-date">
-                        <span class="month">2</span>
-                        <span class="date">17</span>
-                        <span class="week">金</span>
-                        <div class="sess-time">
-                            <span class="start">21:00</span>
+        <article id="thumbnail">
+            <section>
+                <h2><span>セッション予定サムネ</span></h2>
+                <div class="sess-thumbnail">
+                    <div>
+                        <div class="sess-date">
+                            <span class="month">2</span>
+                            <span class="date">17</span>
+                            <span class="week">金</span>
+                            <div class="sess-time">
+                                <span class="start">21:00</span>
+                            </div>
+                        </div>
+                        <div class="sess-data">
+                            <h4><a href="https://booth.pm/ja/items/3472076" target="_blank"></a>ループ橋で何かが自分を待っているんです。</h4>
+                            <ul class="member">
+                                <li class="kp">quen</li>
+                                <li>カフェイン</li>
+                            </ul>
+                            <p class="caption">導入：友人と遊んだ帰り道、探索者は近所にあるループ橋を渡ることになる。</p>
+                            <a class="btn block" href="session.html">詳細</a>
                         </div>
                     </div>
-                    <div class="sess-data">
-                        <h4><a href="https://booth.pm/ja/items/3472076" target="_blank"></a>ループ橋で何かが自分を待っているんです。</h4>
-                        <ul class="member">
-                            <li class="kp">quen</li>
-                            <li>カフェイン</li>
-                        </ul>
-                        <p class="caption">導入：友人と遊んだ帰り道、探索者は近所にあるループ橋を渡ることになる。</p>
-                        <a class="btn block" href="session.html">詳細</a>
-                    </div>
-                </div>
-                <div>
-                    <div class="sess-date holiday">
-                        <span class="month">3</span>
-                        <span class="date">12</span>
-                        <span class="week">日</span>
-                        <div class="sess-time">
-                            <span class="start">13:00</span>
-                            <span class="end">18:00</span>
+                    <div>
+                        <div class="sess-date holiday">
+                            <span class="month">3</span>
+                            <span class="date">12</span>
+                            <span class="week">日</span>
+                            <div class="sess-time">
+                                <span class="start">13:00</span>
+                                <span class="end">18:00</span>
+                            </div>
+                        </div>
+                        <div class="sess-data">
+                            <h4><a href="https://booth.pm/ja/items/2276640" target="_blank"></a>狂気山脈　星ふる天辺</h4>
+                            <ul class="inline member">
+                                <li class="gm">quen</li>
+                                <li class="sgm">あるす</li>
+                                <li>カフェイン</li>
+                                <li>吉澤</li>
+                                <li>はたはた</li>
+                                <li>ぺろりん</li>
+                                <li>ケポン</li>
+                            </ul>
+                            <p class="caption">
+                                概要：南極最奥地に発見された新たなる世界最高峰「狂気山脈」　そこで発見された異常な死体……そして、その死体の調査のために狂気山脈に乗り込んだ調査登山隊の中で起きた殺人事件。ブリザードのせいで山脈に閉じ込められた登山隊は、疑念と陰謀、そして狂気をはらんだまま調査を開始する。
+                            </p>
+                            <a class="btn block" href="session.html">詳細</a>
                         </div>
                     </div>
-                    <div class="sess-data">
-                        <h4><a href="https://booth.pm/ja/items/2276640" target="_blank"></a>狂気山脈　星ふる天辺</h4>
-                        <ul class="inline member">
-                            <li class="gm">quen</li>
-                            <li class="sgm">あるす</li>
-                            <li>カフェイン</li>
-                            <li>吉澤</li>
-                            <li>はたはた</li>
-                            <li>ぺろりん</li>
-                            <li>ケポン</li>
-                        </ul>
-                        <p class="caption">概要：南極最奥地に発見された新たなる世界最高峰「狂気山脈」　そこで発見された異常な死体……そして、その死体の調査のために狂気山脈に乗り込んだ調査登山隊の中で起きた殺人事件。ブリザードのせいで山脈に閉じ込められた登山隊は、疑念と陰謀、そして狂気をはらんだまま調査を開始する。</p>
-                        <a class="btn block" href="session.html">詳細</a>
-                    </div>
-                </div>
-                <div>
-                    <div class="sess-date holiday">
-                        <span class="month">4</span>
-                        <span class="date">23</span>
-                        <span class="week">日</span>
-                        <div class="sess-time">
-                            <span class="start">13:00</span>
-                            <span class="end">17:00</span>
+                    <div>
+                        <div class="sess-date holiday">
+                            <span class="month">4</span>
+                            <span class="date">23</span>
+                            <span class="week">日</span>
+                            <div class="sess-time">
+                                <span class="start">13:00</span>
+                                <span class="end">17:00</span>
+                            </div>
+                        </div>
+                        <div class="sess-data">
+                            <h4><a href="https://dappleox.booth.pm/items/2877835" target="_blank"></a>狂気山脈　薄明三角点</h4>
+                            <ul class="inline member">
+                                <li class="gm">quen</li>
+                                <li class="sgm">あるす</li>
+                                <li>カフェイン</li>
+                                <li>吉澤</li>
+                                <li>はたはた</li>
+                                <li>ぺろりん</li>
+                                <li>ケポン</li>
+                            </ul>
+                            <p class="caption">
+                                概要：南極最奥地に発見された新たなる世界最高峰「狂気山脈」　そこで発見された異常な死体……そして、その死体の調査のために狂気山脈に乗り込んだ調査登山隊の中で起きた殺人事件。ブリザードのせいで山脈に閉じ込められた登山隊は、疑念と陰謀、そして狂気をはらんだまま調査を開始する。
+                            </p>
+                            <a class="btn block" href="session.html">詳細</a>
                         </div>
                     </div>
-                    <div class="sess-data">
-                        <h4><a href="https://dappleox.booth.pm/items/2877835" target="_blank"></a>狂気山脈　薄明三角点</h4>
-                        <ul class="inline member">
-                            <li class="gm">quen</li>
-                            <li class="sgm">あるす</li>
-                            <li>カフェイン</li>
-                            <li>吉澤</li>
-                            <li>はたはた</li>
-                            <li>ぺろりん</li>
-                            <li>ケポン</li>
-                        </ul>
-                        <p class="caption">概要：南極最奥地に発見された新たなる世界最高峰「狂気山脈」　そこで発見された異常な死体……そして、その死体の調査のために狂気山脈に乗り込んだ調査登山隊の中で起きた殺人事件。ブリザードのせいで山脈に閉じ込められた登山隊は、疑念と陰謀、そして狂気をはらんだまま調査を開始する。</p>
-                        <a class="btn block" href="session.html">詳細</a>
-                    </div>
-                </div>
-                <div>
-                    <div class="sess-date saturday">
-                        <span class="month">5</span>
-                        <span class="date">13</span>
-                        <span class="week">土</span>
-                        <div class="sess-time">
-                            <span class="start">13:00</span>
+                    <div>
+                        <div class="sess-date saturday">
+                            <span class="month">5</span>
+                            <span class="date">13</span>
+                            <span class="week">土</span>
+                            <div class="sess-time">
+                                <span class="start">13:00</span>
+                            </div>
+                        </div>
+                        <div class="sess-data">
+                            <h4><a href="https://booth.pm/ja/items/2491434" target="_blank"></a>灼熱さえあればいい</h4>
+                            <ul class="inline member">
+                                <li class="kp">quen</li>
+                                <li>はたはた</li>
+                                <li>ゆいづき</li>
+                            </ul>
+                            <p class="caption">
+                                「まいっちゃうよね。この後どうしよっか」　あなたたちは大学の電気もついていない教室で暇を持て余していた。八月も終わったというのに教室に差し込む夏の日差しは未だ強い。低く、くぐもったメロディ。炎天に、稚拙なステップ。それが、あなたになにを刻むのか知る由もなく。
+                            </p>
+                            <a class="btn block" href="session.html">詳細</a>
                         </div>
                     </div>
-                    <div class="sess-data">
-                        <h4><a href="https://booth.pm/ja/items/2491434" target="_blank"></a>灼熱さえあればいい</h4>
-                        <ul class="inline member">
-                            <li class="kp">quen</li>
-                            <li>はたはた</li>
-                            <li>ゆいづき</li>
-                        </ul>
-                        <p class="caption">「まいっちゃうよね。この後どうしよっか」　あなたたちは大学の電気もついていない教室で暇を持て余していた。八月も終わったというのに教室に差し込む夏の日差しは未だ強い。低く、くぐもったメロディ。炎天に、稚拙なステップ。それが、あなたになにを刻むのか知る由もなく。</p>
-                        <a class="btn block" href="session.html">詳細</a>
+                </div>
+            </section>
+            
+            <section>
+                <h2><span>イラストサムネ</span></h2>
+                <div class="ill-thumbnail">
+                    <div>
+                        <a href="illust.html"><img src="img/hyoushi.jpg">
+                            <span>タイトルタイトルタイトルタイトル</span></a>
+                        <div class="user"><a>ユーザー名</a></div>
+                    </div>
+                    <div>
+                        <a href="illust.html"><img src="img/hyoushi.jpg">
+                            <span>タイトルタイトルタイトルタイトル</span></a>
+                            <div class="user"><a>ユーザー名</a></div>
+                    </div>
+                    <div>
+                        <a href="illust.html"><img src="img/hyoushi.jpg">
+                            <span>タイトルタイトルタイトルタイトル</span></a>
+                            <div class="user"><a>ユーザー名</a></div>
+                    </div>
+                    <div>
+                        <a href="illust.html"><img src="img/hyoushi.jpg">
+                            <span>タイトルタイトルタイトルタイトル</span></a>
+                            <div class="user"><a>ユーザー名</a></div>
+                    </div>
+                    <div>
+                        <a href="illust.html"><img src="img/hyoushi.jpg">
+                            <span>タイトルタイトルタイトルタイトル</span></a>
+                            <div class="user"><a>ユーザー名</a></div>
                     </div>
                 </div>
-            </div>
-        </article>
+            </section>
 
-        <article id="ill-thumbnail">
-            <h2><span>イラストサムネ</span></h2>
-            <div class="ill-thumbnail">
-                <div>
-                    <a href="illust.html"><img src="img/hyoushi.jpg">
-                        <span>タイトルタイトルタイトルタイトル</span></a>
-                    <div class="user"><a><img src="img/usericon.png">ユーザー名</a></div>
-                </div>
-                <div>
-                    <a href="illust.html"><img src="img/hyoushi.jpg">
-                        <span>タイトルタイトルタイトルタイトル</span></a>
-                        <div class="user"><a><img src="img/usericon.png">ユーザー名</a></div>
-                </div>
-                <div>
-                    <a href="illust.html"><img src="img/hyoushi.jpg">
-                        <span>タイトルタイトルタイトルタイトル</span></a>
-                        <div class="user"><a><img src="img/usericon.png">ユーザー名</a></div>
-                </div>
-                <div>
-                    <a href="illust.html"><img src="img/hyoushi.jpg">
-                        <span>タイトルタイトルタイトルタイトル</span></a>
-                        <div class="user"><a><img src="img/usericon.png">ユーザー名</a></div>
-                </div>
-                <div>
-                    <a href="illust.html"><img src="img/hyoushi.jpg">
-                        <span>タイトルタイトルタイトルタイトル</span></a>
-                        <div class="user"><a><img src="img/usericon.png">ユーザー名</a></div>
-                </div>
-            </div>
-        </article>
-
-        <article id="novel-thumbnail">
-            <h2><span>小説サムネ</span></h2>
-            <div class="novel-thumbnail">
-                <div>
-                    <div class="novel-cover">
-                        <a href="novel.html"><img src="img/hyoushi.jpg">
-                            <span>鹿島出版は今日も平和</span></a>
+            <section>
+                <h2><span>小説サムネ</span></h2>
+                <div class="novel-thumbnail">
+                    <div>
+                        <div class="novel-cover">
+                            <a href="novel.html"><img src="img/hyoushi.jpg">
+                                <span>鹿島出版は今日も平和</span></a>
+                        </div>
+                        <div class="caption">
+                            <h4><a href="novel.html">鹿島出版は今日も平和</a></h4>
+                            <div class="user"><a>quen</a></div>
+                            <ul class="hashtag">
+                                <li><a>マダミス狂気山脈</a></li>
+                                <li><a>鈴木臨子</a></li>
+                            </ul>
+                            <p>マダミス狂気山脈完結後、記者：鈴木臨子の後日談。</p>
+                            <span class="length">2897文字</span>
+                            <span class="readtime">5分</span>
+                        </div>
                     </div>
-                    <div class="caption">
-                        <h4><a href="novel.html">鹿島出版は今日も平和</a></h4>
-                        <div class="user"><a><img src="img/quen.png">quen</a></div>
-                        <a class="hashtag">#マダミス狂気山脈</a><a class="hashtag">#鈴木臨子</a>
-                        <p>マダミス狂気山脈完結後、記者：鈴木臨子の後日談。</p>
-                        <span class="length">2897文字</span>
-                        <span class="readtime">5分</span>
+                    <div>
+                        <div class="novel-cover">
+                            <a href="novel.html"><img src="img/hyoushi.jpg">
+                                <span>タイトルタイトルタイトルタイトルタイトル</span></a>
+                        </div>
+                        <div class="caption">
+                            <h4><a href="novel.html">タイトルタイトルタイトルタイトルタイトル</a></h4>
+                            <div class="user"><a>ユーザー名</a></div>
+                            <ul class="hashtag">
+                                <li><a>タグ</a></li>
+                                <li><a>タグ</a></li>
+                            </ul>
+                            <p>キャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプション</p>
+                            <span class="length">10000文字</span>
+                            <span class="readtime">1時間10分</span>
+                        </div>
                     </div>
-                </div>
-                <div>
-                    <div class="novel-cover">
-                        <a href="novel.html"><img src="img/hyoushi.jpg">
-                            <span>タイトルタイトルタイトルタイトルタイトル</span></a>
+                    <div>
+                        <div class="novel-cover">
+                            <a href="novel.html"><img src="img/hyoushi.jpg">
+                                <span>タイトルタイトルタイトルタイトルタイトル</span></a>
+                        </div>
+                        <div class="caption">
+                            <h4><a href="novel.html">タイトルタイトルタイトルタイトルタイトル</a></h4>
+                            <div class="user"><a>ユーザー名</a></div>
+                            <ul class="hashtag">
+                                <li><a>タグ</a></li>
+                                <li><a>タグ</a></li>
+                            </ul>
+                            <p>キャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプション</p>
+                            <span class="length">10000文字</span>
+                            <span class="readtime">1時間10分</span>
+                        </div>
                     </div>
-                    <div class="caption">
-                        <h4><a href="novel.html">タイトルタイトルタイトルタイトルタイトル</a></h4>
-                        <div class="user"><a><img src="img/usericon.png">ユーザー名</a></div>
-                        <a class="hashtag">#タグ</a><a class="hashtag">#タグ</a><a class="hashtag">#タグ</a>
-                        <p>キャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプション</p>
-                        <span class="length">10000文字</span>
-                        <span class="readtime">1時間10分</span>
-                    </div>
-                </div>
-                <div>
-                    <div class="novel-cover">
-                        <a href="novel.html"><img src="img/hyoushi.jpg">
-                            <span>タイトルタイトルタイトルタイトルタイトル</span></a>
-                    </div>
-                    <div class="caption">
-                        <h4><a href="novel.html">タイトルタイトルタイトルタイトルタイトル</a></h4>
-                        <div class="user"><a><img src="img/usericon.png">ユーザー名</a></div>
-                        <a class="hashtag">#タグ</a><a class="hashtag">#タグ</a><a class="hashtag">#タグ</a>
-                        <p>キャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプション</p>
-                        <span class="length">10000文字</span>
-                        <span class="readtime">1時間10分</span>
+                    <div>
+                        <div class="novel-cover">
+                            <a href="novel.html"><img src="img/hyoushi.jpg">
+                                <span>タイトルタイトルタイトルタイトルタイトル</span></a>
+                        </div>
+                        <div class="caption">
+                            <h4><a href="novel.html">タイトルタイトルタイトルタイトルタイトル</a></h4>
+                            <div class="user"><a>ユーザー名</a></div>
+                            <ul class="hashtag">
+                                <li><a>タグ</a></li>
+                                <li><a>タグ</a></li>
+                            </ul>
+                            <p>キャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプション</p>
+                            <span class="length">10000文字</span>
+                            <span class="readtime">1時間10分</span>
+                        </div>
                     </div>
                 </div>
-                <div>
-                    <div class="novel-cover">
-                        <a href="novel.html"><img src="img/hyoushi.jpg">
-                            <span>タイトルタイトルタイトルタイトルタイトル</span></a>
-                    </div>
-                    <div class="caption">
-                        <h4><a href="novel.html">タイトルタイトルタイトルタイトルタイトル</a></h4>
-                        <div class="user"><a><img src="img/usericon.png">ユーザー名</a></div>
-                        <a class="hashtag">#タグ</a><a class="hashtag">#タグ</a><a class="hashtag">#タグ</a>
-                        <p>キャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプションキャプション</p>
-                        <span class="length">10000文字</span>
-                        <span class="readtime">1時間10分</span>
-                    </div>
-                </div>
-            </div>
+            </section>
         </article>
 
         <article id="other">
@@ -639,7 +628,7 @@
     <article class="overlay">
         <div class="popup-window">
             <h3><span>Login</span></h3>
-            <div class="text-center">
+            <div class="center">
                 <div id="loginResult"></div>
                 <form>
                     <input type="text" placeholder="password" id="loginPass">
@@ -651,7 +640,7 @@
     </article>
 
     <footer class="passcheck">
-        <p class="text-small">© 2023 Imaginarium of the Table - by TRPG部</p>
+        <p class="small">© 2023 Imaginarium of the Table - by TRPG部</p>
         <nav id="pageBottonNav" class="fixed-menu">
             <ul>
                 <li id="pageTop" class="pagetop"><button></button></li>

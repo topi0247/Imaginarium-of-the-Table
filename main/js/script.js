@@ -5,31 +5,33 @@ $(function () {
     const HEADER_POINT = 300;
     const ANIM_TIME = 300;
     const HTML_OBJ = $('html');
-    var scrollPoint = 0;
+    var scrollPoint = $(window).scrollTop();
 
-    mode();
     login();
 
     // スクロール
     $(window).scroll(function () {
         if (window.matchMedia("(max-width: 1024px)").matches) return false;
 
-        if ($(this).scrollTop() > scrollPoint) {
+        let current = $(this).scrollTop();
+        if (current >= scrollPoint) {
             /* 下スクロール */
-            if ($(this).scrollTop() > SCROLL_VIEW_TOP) {
-                $('#mainMenu').addClass('view');
-            } else if($(this).scrollTop() > HEADER_POINT){
+            if(current >= HEADER_POINT){
                 $('#mainMenu').addClass('scroll');
+            }
+            if (current >= SCROLL_VIEW_TOP) {
+                $('#mainMenu').addClass('view');
             }
         } else {
             /* 上スクロール */
-            if ($(this).scrollTop() < HEADER_POINT) {
-                $('#mainMenu').removeClass('scroll');
-            } else if($(this).scrollTop() < SCROLL_VIEW_TOP){
+            if(current < SCROLL_VIEW_TOP){
                 $('#mainMenu').removeClass('view');
             }
+            if(current < HEADER_POINT){
+                $('#mainMenu').removeClass('scroll');
+            }
         }
-        scrollPoint = $(this).scrollTop();
+        scrollPoint = current;
     });
 
     // スマホ用メインメニュー
@@ -111,24 +113,6 @@ $(function () {
     // スクロールアニメーション
     function scroll(pos){
         $("body,html").animate({ scrollTop: pos }, ANIM_TIME, "swing");
-    }
-
-    // ダークモード切り替え
-    function mode() {
-        let userMod = window.matchMedia("(prefers-color-scheme: dark)").matches;
-        let sMode = window.sessionStorage.getItem("user");
-        let el = HTML_OBJ;
-
-        if (sMode) {
-            el.attr("theme", sMode);
-        } 
-        else {
-            if (userMod == true) {
-                el.attr("theme", "dark");
-            } else {
-                el.attr("theme", "light");
-            }
-        }
     }
 
     /* ログイン */

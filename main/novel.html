@@ -17,8 +17,10 @@
     <!-- fabicon -->
     <link rel="apple-touch-icon" type="image/png" href="img/icon.png">
     <link rel="icon" type="image/png" href="img/icon.png">
+    <!-- darkmode -->
+    <script src="js/darkmode.js"></script>
 </head>
-<body id="novel">
+<body id="NOVEL">
     <header class="passcheck">
         <h1><a href="top.html">Imaginarium of the Table</a></h1>
         <nav id="mainMenu" class="menu">
@@ -37,13 +39,15 @@
             <h2><span>鹿島出版は今日も平和</span></h2>
             <div class="novel-caption">
                 <div class="novel-cover">
-                    <a href="novel.html"><img src="img/hyoushi.jpg">
-                        <span>鹿島出版は今日も平和</span></a>
+                    <img src="img/hyoushi.jpg">
                 </div>
                 <div class="caption">
                     <h4><a href="novel.html">鹿島出版は今日も平和</a></h4>
-                    <div class="user"><a><img src="img/quen.png">quen</a></div>
-                    <a class="hashtag">#マダミス狂気山脈</a><a class="hashtag">#鈴木臨子</a>
+                    <div class="user"><a>quen</a></div>
+                    <ul class="hashtag">
+                        <li><a>マダミス狂気山脈</a></li>
+                        <li><a>鈴木臨子</a></li>
+                    </ul>
                     <p>マダミス狂気山脈完結後、記者：鈴木臨子の後日談。<br>
                         ２ページ目は兼好法師「徒然草」抜粋、３ページ目は太宰治「駈込み訴え」
                     </p>
@@ -189,7 +193,7 @@
             </div>
         </article>
         <article id="novel-footer">
-            <div class="page-tab">
+            <section class="page-tab">
                 <nav>
                     <button type="button" class="prev"></button>
                     <button type="button" class="current">1</button>
@@ -197,26 +201,29 @@
                     <button type="button">3</button>
                     <button type="button" class="next"></button>
                 </nav>
-            </div>
-            <div class="postscript">
+            </section>
+            <section class="afterword">
                 <div class="caption">
                     <h4>鹿島出版は今日も平和</h4>
-                    <div class="user"><a><img src="img/quen.png">quen</a></div>
-                    <a class="hashtag">#マダミス狂気山脈</a><a class="hashtag">#鈴木臨子</a>
+                    <div class="user"><a>quen</a></div>
+                    <ul class="hashtag">
+                        <li><a>タグ</a></li>
+                        <li><a>タグ</a></li>
+                    </ul>
                     <p>後書きがあれば書けるよって感じ<br>
                         サンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキスト
                     </p>
                     <span class="length">2897文字</span>
                     <span class="readtime">5分</span>
                 </div>
-            </div>
+            </section>
         </article>
     </main>
     
     <article class="overlay">
         <div class="popup-window">
             <h3><span>Login</span></h3>
-            <div class="text-center">
+            <div class="center">
                 <div id="loginResult"></div>
                 <form>
                     <input type="text" placeholder="password" id="loginPass">
@@ -228,7 +235,7 @@
     </article>
 
     <footer class="passcheck">
-        <p class="text-small">© 2023 Imaginarium of the Table - by TRPG部</p>
+        <p class="small">© 2023 Imaginarium of the Table - by TRPG部</p>
         <nav id="pageBottonNav" class="fixed-menu">
             <ul>
                 <li id="pageTop" class="pagetop"><button></button></li>
@@ -240,8 +247,8 @@
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
     <!-- 3rd -->
-    <script src="js/3rd/sha256.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+    <script src="js/3rd/sha256.js"></script>
     <!-- script -->
     <script src="js/script.js"></script>
 </body>
