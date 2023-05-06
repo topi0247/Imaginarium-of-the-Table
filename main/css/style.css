@@ -34,6 +34,7 @@
     --bg-color: var(--white);
     --bg-reverse-color: var(--more-dark);
     --bg-reverse-color-op: var(--more-dark-op);
+    --caption-bg: rgb(190, 190, 190);
     --scroll-bar: rgb(200, 200, 200);
     --scroll-bg: rgb(170, 170, 170);
     --form-color: var(--white);
@@ -49,6 +50,7 @@
     --bg-color: var(--more-dark);
     --bg-reverse-color: var(--white);
     --bg-reverse-color-op: var(--white-op);
+    --caption-bg: var(--dark);
     --scroll-bar: var(--gray);
     --scroll-bg: var(--dark);
     --form-color: var(--dark);
@@ -1140,7 +1142,7 @@ body#NOVEL header h1{
 .novel-caption,.afterword {
     width: 100%;
     flex-wrap: wrap;
-    background: var(--dark);
+    background: var(--caption-bg);
 }
 
 .novel-caption {

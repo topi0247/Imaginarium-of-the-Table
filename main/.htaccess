@@ -1,9 +1,6 @@
 RewriteEngine on
 RewriteBase /
 
-RewriteCond %{REQUEST_FILENAME}\.cgi -f
-RewriteRule ^(.+)$ $1\.cgi
-
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME}\.html -f
