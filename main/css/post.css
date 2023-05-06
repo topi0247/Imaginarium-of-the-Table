@@ -18,6 +18,43 @@ body#POST header h1{
     display: block;
 }
 
+#postResult{
+    display: none;
+    text-align: center;
+    padding: 20px 0;
+}
+
+#postResult.post-success,#postResult.draft-success{
+    border: 1px solid #9ac5de;
+    background: rgba(154, 209, 222, 0.25);
+}
+
+#postResult.post-error,#postResult.draft-error{
+    border-color: #de9a9a;
+    background: rgba(222, 154, 154, 0.25);
+}
+
+#postResult.post-success,#postResult.post-success::before,#postResult.post-error,
+#postResult.draft-success,#postResult.draft-error{
+    display: block;
+}
+
+#postResult.post-success::before{
+    content: '投稿しました';
+}
+
+#postResult.post-error::after{
+    content: '投稿に失敗しました';
+}
+
+#postResult.draft-success::after{
+    content: '下書き保存しました';
+}
+
+#postResult.draft-error::after{
+    content: '下書き保存に失敗しました';
+}
+
 /* === セッション投稿 === */
 input[type='url']{
     width: 100%;

@@ -4,8 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="robots" content="noindex,noarchive,noimageindex">
-    <meta name="title" content="[[TITLE]]">
-    <title>[[TITLE]] - Imaginarium of the Table</title>
+    <title>novel top - Imaginarium of the Table</title>
     <!-- css -->
     <link rel="stylesheet" href="../css/style.css" type="text/css" id="style">
     <!-- font -->
@@ -21,57 +20,40 @@
     <!-- darkmode -->
     <script src="../js/darkmode.js"></script>
 </head>
-<body id="NOVEL">
+<body>
     <header class="passcheck">
-        <h1><a href="../top.html">Imaginarium of the Table</a></h1>
+        <h1><a href="top.html">Imaginarium of the Table</a></h1>
         <nav id="mainMenu" class="menu">
             <ul>
                 <li><a href="../top.html">top</a></li>
-                <li><a href="index.php">目次</a></li>
+                <li><a href="../post/postform.php">投稿画面</a></li>
+                <li><a href="../session.html">セッションサンプル</a></li>
+                <li><a href="../document.html">ドキュメント</a></li>
             </ul>
         </nav>
     </header>
     <button type="button" id="toggleMenu"></button>
 
     <main class="passcheck">
-        <article id="novel-header">
-            <h2><span>[[TITLE]]</span></h2>
-            <div class="novel-caption">
-                <div class="novel-cover">
-                    <img src="../img/hyoushi.jpg">
-                </div>
-                <div class="caption">
-                    <h4>[[TITLE]]</h4>
-                    <div class="user">[[USERNAME]]</div>
-                        [[HASHTAG]]
-                    <p>[[CAPTION]]</p>
-                    <span class="length">[[LENGTH]]文字</span>
-                    <span class="readtime">[[READTIME]]</span>
-                </div>
-            </div>
-        </article>
-        
-        <article id="novel-body">
-            [[NOVEL-BODY]]
-        </article>
-
-        <article id="novel-footer">
-            <section class="page-tab">
-                <nav>
-                    <button type="button" class="prev"></button>
-                    [[PAGE-TAB]]
-                    <button type="button" class="next"></button>
-                </nav>
+        <article>
+            <h2><span>投稿された小説</span></h2>
+            <section>
+                <p>サムネイルデザインはできてるけど実装はまだです。<br>
+                現在はとりあえず投稿された作品だけを列挙してます。</p>
             </section>
-            <section class="afterword">
-                <div class="caption">
-                    <h4>[[TITLE]]</h4>
-                    <div class="user"><a>[[USERNAME]]</a></div>
-                    [[HASHTAG]]
-                    <p>[[AFTERWORD]]</p>
-                    <span class="length">[[LENGTH]]文字</span>
-                    <span class="readtime">[[READTIME]]</span>
-                </div>
+            <section>
+                <h3><span>小説</span></h3>
+                <ul style="list-style: none; padding : 0;">
+                    <?php 
+                        //$path = 'index.php';
+                        // $result = glob(dirname($path));
+                        $novels = glob('./*.html');
+                        foreach($novels as $value){
+                            $metatags =  get_meta_tags($value);
+                            echo '<li><a href="'. $value . '"</a>' . $metatags['title'] . '</li>';
+                        }
+                    ?>
+                </ul>
             </section>
         </article>
     </main>
@@ -85,7 +67,7 @@
                     <input type="text" placeholder="password" id="loginPass">
                     <input type="button" value="send" id="login">
                 </form>
-                <a href="../index.html">indexへ</a>
+                <a href="index.html">indexへ</a>
             </div>
         </div>
     </article>

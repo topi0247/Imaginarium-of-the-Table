@@ -1,13 +1,3 @@
-<h4>セッション</h4>
-<form id="form-session" method="post" action="preview-session.php" target="_blank">
-    <dl class="inline">
-        <dt class="required">シナリオ名</dt>
-        <dd><input type="text" id="scenario-name" placeholder="シナリオ名"></dd>
-        
-        <dt>シナリオURL</dt>
-        <dd><input type="url" id="scenario-url" placeholder="https://"></dd>
+<?php
 
-        <dt class="required">作者・頒布元</dt>
-        <dd><input type="text" id="scenario-name" placeholder="シナリオ名"></dd>
-    </dl>
-</form>
+include('base-session.html');

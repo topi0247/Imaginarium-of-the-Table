@@ -27,7 +27,6 @@
         <h1><a href="../top.html">Imaginarium of the Table</a></h1>
         <nav id="mainMenu" class="menu">
             <ul>
-                <li><a href="../index.html">index</a></li>
                 <li><a href="../top.html">top</a></li>
                 <li><a href="../document.html">document</a></li>
             </ul>
@@ -38,6 +37,9 @@
     <main class="passcheck">
         <article>
             <h2><span>投稿画面</span></h2>
+            <div id="postResult">
+            </div>
+
             <section id="post-type">
                 <h4>投稿設定</h4>
                 <label>セッション<input type="radio" id="type-session" name="type"></label>
@@ -46,15 +48,24 @@
             </section>
 
             <section id="post-session">
-                <?php include('post-session.php'); ?>
+                <h4>セッション</h4>
+                <form id="form-session" method="post" action="post-session.php" target="_blank">
+                    <?php include('parts/form-session.php'); ?>
+                </form>
             </section>
 
             <section id="post-novel">
-                <?php include('post-novel.php'); ?>
+                <h4>小説</h4>
+                <form id="form-novel" method="post" action="post-novel.php">
+                    <?php include('parts/form-novel.php'); ?>
+                </form>
             </section>
 
             <section id="post-illust">
-                <?php include('post-illust.php'); ?>
+                <h4>イラスト</h4>
+                <form id="form-illust" method="post" action="post-illust.php" target="_blank">
+                    <?php include('parts/form-illust.php'); ?>
+                </form>
             </section>
         </article>
     </main>
