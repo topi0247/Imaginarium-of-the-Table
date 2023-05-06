@@ -8,7 +8,7 @@ RewriteCond %{REQUEST_FILENAME}\.php -f
 RewriteRule ^(.*)$ $1.php
 
 RewriteCond %{THE_REQUEST} \.(php|html)\ HTTP
-RewriteRule ^(.*)\.(php|html)$ /lp/$1 [R=301,L]
+RewriteRule ^(.*)\.(php|html)$ /$1 [R=301,L]
 
 RewriteRule ^index.php$ https://imaginarium-of-the-table.wew.jp [L,R=301]
 
