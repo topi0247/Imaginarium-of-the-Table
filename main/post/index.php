@@ -52,7 +52,7 @@
 
             <section id="post-session">
                 <h4>セッション</h4>
-                <form id="form-session" method="post" action="post-session.php" target="_blank">
+                <form id="form-session" method="post" action="post-session" target="_blank">
                     <?php include('parts/form-session.php'); ?>
                 </form>
             </section>
@@ -66,7 +66,7 @@
 
             <section id="post-illust">
                 <h4>イラスト</h4>
-                <form id="form-illust" method="post" action="post-illust.php" target="_blank">
+                <form id="form-illust" method="post" action="post-illust" target="_blank">
                     <?php include('parts/form-illust.php'); ?>
                 </form>
             </section>
