@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache">
     <meta name="robots" content="noindex,noarchive,noimageindex">
-    <title>投稿画面 - Imaginarium of the Table</title>
+    <meta name="title" content="投稿画面">
+    <title>投稿画面 | Imaginarium of the Table</title>
     <!-- css -->
     <link rel="stylesheet" href="../css/style.css" type="text/css" id="style">
     <link rel="stylesheet" href="../css/post.css" type="text/css" id="style">
@@ -14,25 +16,26 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Klee+One:wght@400;600&family=Shippori+Mincho:wght@400;700&family=Zen+Kaku+Gothic+New:wght@400;700&family=Zen+Old+Mincho:wght@400;700&display=swap" rel="stylesheet">
     <!-- icon -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
     <!-- fabicon -->
     <link rel="apple-touch-icon" type="image/png" href="../img/icon.png">
     <link rel="icon" type="image/png" href="../img/icon.png">
     <!-- darkmode -->
     <script src="../js/darkmode.js"></script>
 </head>
-
 <body id="POST">
-    <header class="passcheck">
-        <h1><a href="../top.html">Imaginarium of the Table</a></h1>
-        <nav id="mainMenu" class="menu">
-            <ul>
-                <li><a href="../top.html">top</a></li>
-                <li><a href="../document.html">document</a></li>
-            </ul>
-        </nav>
-    </header>
-    <button type="button" id="toggleMenu"></button>
+    <?php 
+    $header_about = false;
+    $header_top = true;
+    $header_session = true;
+    $header_novel = true;
+    $header_illust = true;
+    $header_post = false;
+    $header_setting = true;
+    $dir = '../';
+    include($dir . 'module/header.php');
+    ?>
 
     <main class="passcheck">
         <article>
@@ -79,7 +82,7 @@
                     <input type="text" placeholder="password" id="loginPass">
                     <input type="button" value="send" id="login">
                 </form>
-                <a href="../index.html">indexへ</a>
+                <a href="../index.php">indexへ</a>
             </div>
         </div>
     </article>

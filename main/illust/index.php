@@ -1,6 +1,6 @@
 <?php 
-$title = 'novel top | Imaginarium of the Table';
-$meta_title = 'novel top';
+$title = 'illust top | Imaginarium of the Table';
+$meta_title = 'illust top';
 $dir = '../';
 include($dir . 'module/head.php');
 ?>
@@ -9,25 +9,24 @@ include($dir . 'module/head.php');
     $header_about = false;
     $header_top = true;
     $header_session = true;
-    $header_novel = false;
-    $header_illust = true;
+    $header_novel = true;
+    $header_illust = false;
     $header_post = true;
     $header_setting = true;
     include($dir . 'module/header.php');
     ?>
+
     <main class="passcheck">
         <article>
-            <!-- <h2><span>新着</span></h2> -->
             <section>
                 <p>サムネイルデザインはできてるけど実装はまだです。<br>
                 現在はとりあえず投稿された作品だけを列挙してます。</p>
             </section>
-            
             <section>
-                <h3><span>小説</span></h3>
+                <h3><span>イラスト</span></h3>
                 <ul style="list-style: none; padding : 0;">
                 <?php
-                //$toc_novel = true;
+                //$toc_illust = true;
                 $data_path = './';
                 include($dir .'module/toc.php');
                 ?>

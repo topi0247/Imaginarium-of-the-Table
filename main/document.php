@@ -1,31 +1,15 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="robots" content="noindex,noarchive,noimageindex">
-    <title>document - Imaginarium of the Table</title>
-    <!-- css -->
-    <link rel="stylesheet" href="css/style.css" type="text/css" id="style">
-    <!-- font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Klee+One:wght@400;600&family=Shippori+Mincho:wght@400;700&family=Zen+Kaku+Gothic+New:wght@400;700&family=Zen+Old+Mincho:wght@400;700&display=swap" rel="stylesheet">
-    <!-- icon -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
-    <!-- fabicon -->
-    <link rel="apple-touch-icon" type="image/png" href="img/icon.png">
-    <link rel="icon" type="image/png" href="img/icon.png">
-    <!-- darkmode -->
-    <script src="js/darkmode.js"></script>
-</head>
+<?php 
+$title = 'document | Imaginarium of the Table';
+$meta_title = 'document';
+$dir = './';
+include($dir . 'module/head.php');
+?>
 <body>
     <header class="passcheck">
-        <h1><a href="top.html">Imaginarium of the Table</a></h1>
+        <h1><a href="top.php">Imaginarium of the Table</a></h1>
         <nav id="mainMenu" class="menu">
             <ul>
-                <li><a href="top.html">トップ</a></li>
+                <li><a href="top.php">トップ</a></li>
                 <li><a href="#design">基本</a></li>
                 <li><a href="#form">フォーム</a></li>
                 <li><a href="#list">リスト</a></li>
@@ -39,15 +23,30 @@
 
     <main class="passcheck">
         <article>
-            <h2><span>サンプルページ</span></h2>
+            <h2><span>各ページ</span></h2>
             <ul>
-                <li><a href="session.html">セッションサンプルページ</a></li>
-                <li><a href="novel.html">小説サンプルページ</a></li>
-                <li>（準備中）イラストサンプルページ</li>
+                <li><a href="log.php">過去ログ</a></li>
+                <li><a href="develop.php">開発状況</a></li>
+                <li>セッション
+                    <ul class="inline">
+                        <li><a href="session/index.php">目次</a></li>
+                        <li><a href="session/session.html">セッション</a></li>
+                    </ul>
+                </li>
+                <li>小説
+                    <ul class="inline">
+                        <li><a href="novel/index.php">目次</a></li>
+                        <li><a href="novel/index.php">小説</a></li>
+                    </ul>
+                </li>
+                <li>イラスト
+                    <ul class="inline">
+                        <li><a href="illust/index.php">目次</a></li>
+                        <li><a href="illust/illust.html">イラスト</a></li>
+                    </ul>
+                </li>
+                <li><a href="post/index.php">投稿画面</a></li>
             </ul>
-            <p>投稿画面およびプレビュー画面は誠意制作中<br>
-                小説投稿画面はほぼできたので<a href="post/postform.php">こちら</a>から確認できます。
-            </p>
         </article>
 
         <article id="design">
@@ -633,7 +632,7 @@
                     <input type="text" placeholder="password" id="loginPass">
                     <input type="button" value="send" id="login">
                 </form>
-                <a href="index.html">indexへ</a>
+                <a href="index.php">indexへ</a>
             </div>
         </div>
     </article>

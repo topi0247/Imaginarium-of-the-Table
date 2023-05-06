@@ -231,7 +231,8 @@ button.prev::after,button.next::after,
 .fixed-menu a::before,
 .fixed-menu button::before,
 .fixed-menu span::before,
-.user::before {
+.user::before,
+.log::before {
   font-family: 'Material Icons';
 }
 
@@ -245,6 +246,11 @@ button.next::after{
 
 .user::before{
     content: '\e7fd';
+}
+
+.log::before{
+    content: '\e889';
+    padding-right: 0.2rem;
 }
 
 /* ==== ボタン・入力 ==== */
@@ -504,6 +510,8 @@ dl dd:last-of-type,
 dl.inline dt:last-of-type,dl.inline dd:last-of-type,
 form dl dd,form dl.inline dt,form dl.inline dd{
     border: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
 }
 
 dl.inline{
@@ -1263,7 +1271,10 @@ br.br-sp{ display: none; }
     text-align: center;
 }
 
-.border{ border: 1px solid var(--theme-color1); }
+.border{
+    border: 1px solid var(--theme-color1); 
+    padding: var(--font-size);
+}
 .left { text-align: left; }
 .center { text-align: center; }
 .right { text-align: right; }

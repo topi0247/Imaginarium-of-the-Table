@@ -1,15 +1,16 @@
 RewriteEngine on
-RewriteBase /
-
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME}\.html -f
-RewriteRule ^(.*)$ $1.html [L]
+RewriteRule ^(.*)$ $1.html 
+ 
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.*)$ $1.php
 
-RewriteCond %{THE_REQUEST} ^.*\.html
-RewriteRule ^(.*)\.html$ https://imaginarium-of-the-table.wew.jp/$1 [L,R=301]
+RewriteCond %{THE_REQUEST} \.(php|html)\ HTTP
+RewriteRule ^(.*)\.(php|html)$ /lp/$1 [R=301,L]
 
-RewriteRule ^index.html$ https://imaginarium-of-the-table.wew.jp [L,R=301]
+RewriteRule ^index.php$ https://imaginarium-of-the-table.wew.jp [L,R=301]
 
-ErrorDocument 404 /error.html
-ErrorDocument 500 /error.html
+# ErrorDocument 404 /error.html
+# ErrorDocument 500 /error.html

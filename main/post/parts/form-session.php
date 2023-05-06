@@ -9,3 +9,4 @@
     <dt class="required">作者・頒布元</dt>
     <dd><input type="text" id="scenario-name" placeholder="シナリオ名"></dd>
 </dl> -->
+<?php //include('parts/common-footer.php'); ?>

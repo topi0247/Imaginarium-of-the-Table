@@ -1,58 +1,43 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="robots" content="noindex,noarchive,noimageindex">
-    <title>top - Imaginarium of the Table</title>
-    <!-- css -->
-    <link rel="stylesheet" href="css/style.css" type="text/css" id="style">
-    <!-- font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Klee+One:wght@400;600&family=Shippori+Mincho:wght@400;700&family=Zen+Kaku+Gothic+New:wght@400;700&family=Zen+Old+Mincho:wght@400;700&display=swap" rel="stylesheet">
-    <!-- icon -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
-    <!-- fabicon -->
-    <link rel="apple-touch-icon" type="image/png" href="img/icon.png">
-    <link rel="icon" type="image/png" href="img/icon.png">
-    <!-- darkmode -->
-    <script src="js/darkmode.js"></script>
-</head>
+<?php
+$title = 'develop | Imaginarium of the Table';
+$meta_title = 'develop';
+$dir = './';
+include($dir . 'module/head.php');
+?>
 <body>
-    <header class="passcheck">
-        <h1><a href="top.html">Imaginarium of the Table</a></h1>
-        <nav id="mainMenu" class="menu">
-            <ul>
-                <li><a href="index.html">index</a></li>
-                <li><a href="novel/index.php">小説</a></li>
-                <li><a href="session.html">セッションサンプル</a></li>
-                <li><a href="post/postform.php">投稿画面</a></li>
-                <li><a href="document.html">ドキュメント</a></li>
-            </ul>
-        </nav>
-    </header>
-    <button type="button" id="toggleMenu"></button>
+    <?php 
+    $header_about = false;
+    $header_top = true;
+    $header_session = true;
+    $header_novel = true;
+    $header_illust = true;
+    $header_post = true;
+    $header_setting = true;
+    include($dir . 'module/header.php');
+    ?>
 
     <main class="passcheck">
         <article>
-            <h2><span>comming soon...</span></h2>
             <section>
-                <h3><span>準備中</span></h3>
+                <h3><span>作業中</span></h3>
                 <ul>
-                    <li><a href="post/postform.php">投稿画面</a> 投稿してみていいよっ</li>
-                    <li><a href="novel/index.php">小説目次</a> 投稿された小説はここから見れます</li>
+                    <li>phpへ移行し管理の簡易化</li>
                     <li>イラストページ</li>
-                    <li>作品の編集・削除</li>
+                    <li>投稿した作品の削除</li>
+                    <li>投稿した作品の編集</li>
+                    <li>投稿作品のサムネイル表示</li>
+                    <li>各目次ページ</li>
+                    <li>投稿処理-セッション</li>
+                    <li>投稿処理-イラスト</li>
                     <li>下書き保存</li>
-                    <li>投稿作品の一覧表示</li>
+                    <li>投稿用ドキュメントページ</li>
+                    <li>バックアップ用データ作成</li>
+                    <li>バックアップ用データのダウンロード</li>
                 </ul>
             </section>
-    
+
             <section>
                 <h3><span>終了</span></h3>
-                <p>デザイン周りは<a href="document.html">ドキュメント</a>から確認可能</p>
                 <ul>
                     <li>ログイン認証
                         <ul>
@@ -63,17 +48,26 @@
                     </li>
                     <li>ページ上部へ戻る</li>
                     <li>ダークモード対応</li>
-                    <li>メニュー</li>
-                    <li>見出し</li>
-                    <li>リンク</li>
-                    <li>フォーム</li>
-                    <li>リスト</li>
-                    <li>列</li>
-                    <li>目次-セッション</li>
-                    <li>目次-イラスト</li>
-                    <li>目次-小説</li>
-                    <li><a href="session.html">セッションページ</a></li>
-                    <li><a href="novel.html">小説ページ</a></li>
+                    <li>メインメニュー</li>
+                    <li>基本デザイン
+                        <ul class="inline">
+                            <li>見出し</li>
+                            <li>リンク</li>
+                            <li>フォーム</li>
+                            <li>配置</li>
+                            <li>装飾</li>
+                        </ul>
+                    </li>
+                    <li>目次デザイン
+                        <ul class="inline">
+                            <li>セッション</li>
+                            <li>小説</li>
+                            <li>イラスト</li>
+                        </ul>
+                    <li>セッションページ</li>
+                    <li>小説ページ</li>
+                    <li>過去ログページ</li>
+                    <li>開発状況ページ</li>
                     <li>画像表示
                         <ul class="inline">
                             <li>大</li>
@@ -86,7 +80,7 @@
             </section>
     
             <section>
-                <h3><span>検討</span></h3>
+                <h3><span>検討中</span></h3>
                 <ul>
                     <li>設定ページ
                         <ul>
@@ -133,16 +127,10 @@
                 <h3><span>後回し</span></h3>
                 <ul>
                     <li>カレンダー</li>
-                    <li>バックアップデータのダウンロード</li>
                     <li>ユーザー名・ユーザーIDの変更</li>
                     <li>検索・ソート</li>
                 </ul>
             </section>
-        </article>
-
-        <article>
-            <h2><span>Thanks!</span></h2>
-            <a href="https://ayaemo.skr.jp/" target="_blank">あやえも研究所</a>
         </article>
     </main>
     
@@ -155,7 +143,7 @@
                     <input type="text" placeholder="password" id="loginPass">
                     <input type="button" value="send" id="login">
                 </form>
-                <a href="index.html">indexへ</a>
+                <a href="index.php">indexへ</a>
             </div>
         </div>
     </article>
