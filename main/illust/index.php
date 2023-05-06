@@ -44,7 +44,7 @@ include($dir . 'module/head.php');
                     <input type="text" placeholder="password" id="loginPass">
                     <input type="button" value="send" id="login">
                 </form>
-                <a href="index.php">indexへ</a>
+                <a href="../index.php">indexへ</a>
             </div>
         </div>
     </article>

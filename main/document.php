@@ -36,7 +36,7 @@ include($dir . 'module/head.php');
                 <li>小説
                     <ul class="inline">
                         <li><a href="novel/index.php">目次</a></li>
-                        <li><a href="novel/index.php">小説</a></li>
+                        <li><a href="novel/novel.html">小説</a></li>
                     </ul>
                 </li>
                 <li>イラスト
@@ -400,7 +400,7 @@ include($dir . 'module/head.php');
                             <p class="caption">
                                 概要：南極最奥地に発見された新たなる世界最高峰「狂気山脈」　そこで発見された異常な死体……そして、その死体の調査のために狂気山脈に乗り込んだ調査登山隊の中で起きた殺人事件。ブリザードのせいで山脈に閉じ込められた登山隊は、疑念と陰謀、そして狂気をはらんだまま調査を開始する。
                             </p>
-                            <a class="btn block" href="session.html">詳細</a>
+                            <a class="btn block" href="session/session.html">詳細</a>
                         </div>
                     </div>
                     <div>
@@ -463,7 +463,7 @@ include($dir . 'module/head.php');
                 <div class="novel-thumbnail">
                     <div>
                         <div class="novel-cover">
-                            <a href="novel.html"><img src="img/hyoushi.jpg">
+                            <a href="novel/novel.html"><img src="img/hyoushi.jpg">
                                 <span>鹿島出版は今日も平和</span></a>
                         </div>
                         <div class="caption">
