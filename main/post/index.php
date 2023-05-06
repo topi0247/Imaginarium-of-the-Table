@@ -59,7 +59,7 @@
 
             <section id="post-novel">
                 <h4>小説</h4>
-                <form id="form-novel" method="post" action="post-novel.php">
+                <form id="form-novel" method="post" action="post-novel">
                     <?php include('parts/form-novel.php'); ?>
                 </form>
             </section>
