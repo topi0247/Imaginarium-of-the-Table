@@ -94,7 +94,7 @@ include('_module/head.php');
                 <p>TRPG部 活動記録</p>
                 <h4>メンテナンス中</h4>
                 <div id="loginResult" <?php echo $login_error ? 'class="error"' : ''; ?>></div>
-                <!--<form action="" method="post">
+                <form action="" method="post">
                     <select name="username" required>
                         <option hidden value="">ユーザー選択</option>
                         <?php
@@ -111,7 +111,7 @@ include('_module/head.php');
                         <input type="text" name="password" placeholder="password" id="loginPass" <?php echo 'value="'.$loginpass.'"';?> required>
                         <input type="submit" name="login" id="login"><br>
                         <button name="loguindel" class="margin-top-3">ログアウト</button>
-                </form>-->
+                </form>
             </div>
         </article>
     </main>
