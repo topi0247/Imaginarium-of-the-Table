@@ -7,9 +7,9 @@ if (isset($_POST['passsubmit'])) {
     $passhash = hash('sha256', $pass);
     setcookie('loginpass', $pass);
     setcookie('loginhash', $passhash);
-    $config = parse_ini_file('data/config.cgi');
+    $config = parse_ini_file('../data/config.cgi');
     $config[$userid] = $passhash;
-    $fp = fopen('data/config.cgi', 'w');
+    $fp = fopen('../data/config.cgi', 'w');
     foreach ($config as $k => $i) fputs($fp, "$k=$i\n");
     fclose($fp);
     $url = $_SERVER['PHP_SELF'];
