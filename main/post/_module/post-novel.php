@@ -121,12 +121,27 @@ for ($i = 1; $i < $pages + 1; $i++) {
 $userid = isset($_COOKIE['develop']) ? '0000' : $_COOKIE['loginuserid'];
 
 // データ格納場所
-$dir = '../../data/'. $userid .'\/novel\/';
-if(!file_exists($dir.'0000.xml')){
-    $postid = '0000';
-}else{
+$dir = '../../data/'. $userid;
+$mkdir_result = true;
+if(!file_exists($dir)) {
+    $mkdir_result = mkdir($dir);
+}
+$dir .= '/novel';
+if(!file_exists($dir)) {
+    $mkdir_result = mkdir($dir);
+}
+if(!$mkdir_result){
+    $url = $_SERVER['HTTP_REFERER'];
+    $url = strtok($url, '?');
+    header("Location:" . $url . "?post=error");
+    exit;
+}
+$dir .='/';
+if(file_exists($dir.'0000.xml')){
     $novels = glob($dir.'[0-9]'.'.xml');
     $postid = basename(end($novels), '.xml') + 1;
+}else{
+    $postid = '0000';
 }
 $postid = sprintf('%04d',$postid);
 $file_name = $postid . '.xml';
@@ -166,7 +181,6 @@ $dom->preserveWhiteSpace = true;
 $dom->formatOutput = true;
 $dom->loadXML( $list_xml->asXML() );
 $dom->save($list_path);
-
 
 // 公開用リストに登録
 $op_list_path = '../../data/novel_lists.xml';

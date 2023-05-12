@@ -109,7 +109,7 @@ include('_module/head.php');
                         ?>
                         <input type="text" name="password" placeholder="password" id="loginPass" <?php echo 'value="'.$loginpass.'"';?> required>
                         <input type="submit" name="login" id="login"><br>
-                        <button name="loguindel" class="margin-top-3">ログイン情報削除</button>
+                        <button name="loguindel" class="margin-top-3">ログアウト</button>
                 </form>
             </div>
         </article>

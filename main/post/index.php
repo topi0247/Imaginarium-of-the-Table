@@ -32,6 +32,7 @@ include_once('../_module/script.php');
                 <label>セッション<input type="radio" value="type-session" name="type"></label>
                 <label>小説<input type="radio" value="type-novel" name="type" checked></label>
                 <label>イラスト<input type="radio" value="type-illust" name="type"></label>
+                <p>ページ下部にある目のアイコンを押すとプレビューが見れます</p>
             </section>
 
             <section id="post-session">

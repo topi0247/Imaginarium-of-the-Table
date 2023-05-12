@@ -32,7 +32,7 @@
     </dd>
 
     <dt>ハッシュタグ</dt>
-    <dd>
+    <dd><label>#記号不要　空白区切り</label><br>
         <input type="text" name="hash-tag" placeholder="タグ　タグ">
     </dd>
 

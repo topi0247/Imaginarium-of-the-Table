@@ -107,9 +107,9 @@ $updateday = '';
             for ($i = 0; $i < $pages; $i++) {
                 if (!empty($novel_body[$i])) {
                     if ($i === 0) {
-                        echo '<div id = "' . $i+1 . '" class = "current">';
+                        echo '<div id = "' . (string)($i+1) . '" class = "current">';
                     } else {
-                        echo '<div id = "' . $i+1 . '">';
+                        echo '<div id = "' . (string)($i+1) . '">';
                     }
                     echo '<p>' . $novel_body[$i] ?: '' . '</p></div>';
                 }
