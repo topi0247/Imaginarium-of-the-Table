@@ -25,9 +25,12 @@ $novel_xml = simplexml_load_file('../data/novel_lists.xml');
 
 // 小説個人リスト
 $path = !$develop_mode ? '../data/' . $userid . '/novel/lists.xml' : '../data/0000/novel/lists.xml';
-$is_create = file_exists($path);
-if ($is_create) {
+$is_create = false;
+if(file_exists($path)){
     $novel_lists = simplexml_load_file($path);
+    $is_create = $novel_lists->count() > 0;
+}
+if ($is_create) {
     $novels = $novel_lists->novel;
 }
 if (isset($_POST['toggle'])) {
@@ -83,17 +86,47 @@ if (isset($_POST['toggle'])) {
     }
 }
 
-// if(isset($_POST['novel-remove'])){
-//     $rm = explode('-', $_POST['post-info']);
-//     $index = 0;
-//     foreach ($novel_xml->novel as $n) {
-//         if ($userid == $n->userid && $rm[1] == $n->postid) {
-//             break;
-//         }
-//         $index++;
-//     }
-//     unset($novel_xml->novel[$index]);
-// }
+if(isset($_POST['novel-remove'])){
+    $rm = explode('-', $_POST['post-info']);
+    // 公開用リストから削除
+    $index = 0;
+    foreach ($novel_xml->novel as $n) {
+        if ($userid == $n->userid && $rm[1] == $n->postid) {
+            break;
+        }
+        $index++;
+    }
+    unset($novel_xml->novel[$index]);
+    $dom = new DOMDocument('1.0', 'utf-8');
+    $dom->preserveWhiteSpace = true;
+    $dom->formatOutput = true;
+    $dom->loadXML($novel_xml->asXML());
+    $dom->save('../data/novel_lists.xml');
+    
+    // 個人リストから削除
+    $index = 0;
+    foreach ($novel_lists->novel as $n) {
+        if ($rm[1] == $n->postid) {
+            break;
+        }
+        $index++;
+    }
+    unset($novel_lists->novel[$index]);
+    $dom = new DOMDocument('1.0', 'utf-8');
+    $dom->preserveWhiteSpace = true;
+    $dom->formatOutput = true;
+    $dom->loadXML($novel_lists->asXML());
+    $dom->save($path);
+
+    // 作品ファイル削除
+    $file_name = $rm[1].'.xml';
+    unlink('../data/'.$userid.'/novel/'.$file_name);
+    $url = $_SERVER['PHP_SELF'];
+    $start = mb_strrpos($url, '.');
+    $url =  substr_replace($url, '', $start);
+    header('location:' . $url);
+    exit;
+}
 
 $member = parse_ini_file('../data/member.ini', true);
 $username = $member[$userid]['name'];
@@ -193,7 +226,7 @@ foreach ($novel_xml->novel as $i) {
                             <form action="" method="post">
                             <button type="submit" name="toggle" value="' . $title . '">' . ($is_public ? '非公開' : '公開') . '</button>
                             <button type="submit" name="novel-edit" disabled>編集</button>
-                            <button type="submit" name="novel-remove" disabled>削除</button>
+                            <button type="submit" name="novel-remove" value="' . $title . '">削除</button>
                             <input type="hidden" name="post-info" value="novel-' . $novel->postid . '">
                             <input type="hidden" name="is_public" value="' . $is_public . '">
                         </form>';
@@ -209,7 +242,7 @@ foreach ($novel_xml->novel as $i) {
         </article>
     </main>
 
-    <?php include_once('_module/footer.php'); ?>
+    <?php include_once('../_module/footer.php'); ?>
 </body>
 
 </html>

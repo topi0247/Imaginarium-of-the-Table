@@ -1,16 +1,3 @@
 <?xml version="1.0" encoding="utf-8"?>
 <novels>
-  <novel anonymous="false">
-    <title>aaaa</title>
-    <img>photo-01.jpg</img>
-    <userid>0001</userid>
-    <postid>0000</postid>
-    <category>novel</category>
-    <tags/>
-    <caption/>
-    <length>11</length>
-    <readtime>1分</readtime>
-    <postday>2023/05/12 7:29</postday>
-    <updateday/>
-  </novel>
-<novel anonymous="false"><title>zzzzzzzz</title><img>photo-02.jpg</img><userid>0001</userid><postid>0001</postid><category>novel</category><tags/><caption/><length>10</length><readtime>1分</readtime><postday>2023/05/12 9:33</postday><updateday/></novel><novel anonymous="false"><title>vvvvvvvvvvvvvvvvv</title><img>illust-02.jpg</img><userid>0001</userid><postid>0002</postid><category>novel</category><tags/><caption/><length>13</length><readtime>1分</readtime><postday>2023/05/12 9:34</postday><updateday/></novel></novels>
+</novels>

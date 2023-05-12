@@ -62,11 +62,11 @@ $(function () {
         $('#pswdchange-submit').prop('disabled', is_disabled);
     })
 
-    // 公開非公開
+    // 作品操作
     $('form button').click(function(){
         let text = $(this).text();
         if(text=='編集') return false;
-        let result = window.confirm(''+$(this).val() + ' を'+text+'しますか？');
+        let result = window.confirm($(this).val() + ' を'+text+'しますか？');
         if(result){
             const is_public = $(this).nextAll('input[name="is_public"]')
             switch(text){

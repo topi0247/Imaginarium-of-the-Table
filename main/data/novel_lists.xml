@@ -34,17 +34,4 @@
     <postday>2023/05/10 7:08</postday>
     <updateday/>
   </novel>
-  <novel anonymous="false">
-    <title>aaaa</title>
-    <img>illust-02.jpg</img>
-    <userid>0000</userid>
-    <postid>0003</postid>
-    <category>novel</category>
-    <tags/>
-    <caption/>
-    <length>4</length>
-    <readtime>1分</readtime>
-    <postday>2023/05/12 9:26</postday>
-    <updateday/>
-  </novel>
-<novel anonymous="false"><title>zzzzzzzz</title><img>photo-02.jpg</img><userid>0001</userid><postid>0001</postid><category>novel</category><tags/><caption/><length>10</length><readtime>1分</readtime><postday>2023/05/12 9:33</postday><updateday/></novel><novel anonymous="false"><title>vvvvvvvvvvvvvvvvv</title><img>illust-02.jpg</img><userid>0001</userid><postid>0002</postid><category>novel</category><tags/><caption/><length>13</length><readtime>1分</readtime><postday>2023/05/12 9:34</postday><updateday/></novel></novels>
+</novels>

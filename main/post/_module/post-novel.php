@@ -137,7 +137,7 @@ if(!$mkdir_result){
     exit;
 }
 $dir .='/';
-if(file_exists($dir.'0000.xml')){
+if(file_exists($dir.'*.xml')){
     $novels = glob($dir.'*');
     $lastid = 0;
     foreach($novels as $file){
@@ -146,7 +146,7 @@ if(file_exists($dir.'0000.xml')){
             $lastid = $lastid < (int)$f ? (int)$f : $lastid;
         }
     }
-    $postid = $lastid + 1;
+    $postid = $lastid > 0 ?  $lastid + 1 : $lastid;
 }else{
     $postid = 0;
 }
@@ -190,33 +190,34 @@ $dom->loadXML( $list_xml->asXML() );
 $dom->save($list_path);
 
 // 公開用リストに登録
-$op_list_path = '../../data/novel_lists.xml';
-$op_list_xml = simplexml_load_file($op_list_path);
-$op_novel = $op_list_xml->addChild('novel');
-$op_novel['anonymous'] = $anonymous;
-$op_novel->addChild('title',$title);
-$op_novel->addChild('img',$img);
-$op_novel->addChild('userid',$userid);
-$op_novel->addChild('postid',$postid);
-$op_novel->addChild('category',$category);
-$op_tags = $op_novel->addChild('tags');
-if (!empty($taglist)) {
-    foreach($taglist as $tag){
-        $op_tags->addChild('tag', $tag);
+if(isset($_POST['post'])){
+    $op_list_path = '../../data/novel_lists.xml';
+    $op_list_xml = simplexml_load_file($op_list_path);
+    $op_novel = $op_list_xml->addChild('novel');
+    $op_novel['anonymous'] = $anonymous;
+    $op_novel->addChild('title',$title);
+    $op_novel->addChild('img',$img);
+    $op_novel->addChild('userid',$userid);
+    $op_novel->addChild('postid',$postid);
+    $op_novel->addChild('category',$category);
+    $op_tags = $op_novel->addChild('tags');
+    if (!empty($taglist)) {
+        foreach($taglist as $tag){
+            $op_tags->addChild('tag', $tag);
+        }
     }
+    $op_novel->addChild('caption',$caption);
+    $op_novel->addChild('length',$length);
+    $op_novel->addChild('readtime',$readtime);
+    $op_novel->addChild('postday',$postday);
+    $op_novel->addChild('updateday','');
+    // 保存
+    $op_dom = new DOMDocument('1.0','utf-8');
+    $op_dom->preserveWhiteSpace = true;
+    $op_dom->formatOutput = true;
+    $op_dom->loadXML($op_list_xml->asXML());
+    $op_dom->save($op_list_path);
 }
-$op_novel->addChild('caption',$caption);
-$op_novel->addChild('length',$length);
-$op_novel->addChild('readtime',$readtime);
-$op_novel->addChild('postday',$postday);
-$op_novel->addChild('updateday','');
-// 保存
-$op_dom = new DOMDocument('1.0','utf-8');
-$op_dom->preserveWhiteSpace = true;
-$op_dom->formatOutput = true;
-$op_dom->loadXML( $op_list_xml->asXML() );
-$op_dom->save($op_list_path);
-
 
 $url = $_SERVER['HTTP_REFERER'];
 $url = strtok($url, '?');
