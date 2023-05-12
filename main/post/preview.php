@@ -111,7 +111,7 @@ $updateday = '';
                     } else {
                         echo '<div id = "' . (string)($i+1) . '">';
                     }
-                    echo '<p>' . $novel_body[$i] ?: '' . '</p></div>';
+                    echo '<p>' . $novel_body[$i] . '</p></div>';
                 }
             }
             ?>

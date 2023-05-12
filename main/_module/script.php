@@ -6,6 +6,6 @@
 <script src="<?php echo $dir; ?>js/3rd/sha256.js"></script>
 <!-- script -->
 <script src="<?php echo $dir; ?>js/script.js"></script>
-<?php echo isset($is_novel) ? '<script src="' . $dir . 'js/novel.js"></script>' : ''; ?>
+<?php echo isset($is_novel) || isset($is_preview) ? '<script src="' . $dir . 'js/novel.js"></script>' : ''; ?>
 <?php echo isset($is_index_post) ? '<script src="' . $dir . 'js/post.js"></script>' : ''; ?>
 <?php echo isset($is_setting) ? '<script src="' . $dir . 'js/usersetting.js"></script>' : ''; ?>
