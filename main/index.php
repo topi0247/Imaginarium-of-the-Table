@@ -45,9 +45,9 @@ if (isset($_POST['login'])) {
         exit;
     }
 
-    if (!isset($_SESSION['HTTP_REFERER'])) {
-        $_SESSION['HTTP_REFERER'] = $_SERVER['HTTP_REFERER'];
-    }
+    // if (!isset($_SESSION['HTTP_REFERER'])) {
+    //     $_SESSION['HTTP_REFERER'] = $_SERVER['HTTP_REFERER'];
+    // }
     $url = $_SERVER['PHP_SELF'];
     $start = mb_strrpos($url, '.');
     $url =  substr_replace($url, '', $start);
@@ -58,11 +58,11 @@ if (isset($_POST['login'])) {
 function LoginSuccess()
 {
     $nextPage = 'top';
-    if ($_SERVER['HTTP_HOST'] === 'imaginarium-of-the-table.wew.jp') {
-        $nextPage = isset($_SESSION['HTTP_REFERER']) ? $_SESSION['HTTP_REFERER'] : $_SERVER['HTTP_REFERER'];
-    }
+    // if ($_SERVER['HTTP_HOST'] === 'imaginarium-of-the-table.wew.jp') {
+    //     $nextPage = isset($_SESSION['HTTP_REFERER']) ? $_SESSION['HTTP_REFERER'] : $_SERVER['HTTP_REFERER'];
+    // }
     header('Location:' . $nextPage);
-    if(isset($_SESSION['HTTP_REFERER'])) unset($_SESSION['HTTP_REFERER']);
+    //if(isset($_SESSION['HTTP_REFERER'])) unset($_SESSION['HTTP_REFERER']);
 }
 
 function int_overflow($v)
