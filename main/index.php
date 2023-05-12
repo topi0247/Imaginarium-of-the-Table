@@ -1,5 +1,16 @@
 <?php
 session_start();
+if (isset($_POST['loguindel'])) {
+    setcookie('loginuserid', '',time()-3600,'/');
+    unset($_COOKIE['loginuserid']);
+    setcookie('loginpass', '',time()-3600,'/');
+    unset($_COOKIE['loginpass']);
+    setcookie('loginhash', '',time()-3600,'/');
+    unset($_COOKIE['loginhash']);
+    setcookie('develop', '',time()-3600,'/');
+    unset($_COOKIE['develop']);
+}
+
 $login_error = isset($_GET['login']) ? $_GET['login'] : false;
 $login_user = isset($_COOKIE['loginuserid']) ? $_COOKIE['loginuserid'] : '';
 $loginpass = isset($_COOKIE['loginpass']) ? $_COOKIE['loginpass'] : '';
@@ -97,22 +108,19 @@ include('_module/head.php');
                         }
                         ?>
                         <input type="text" name="password" placeholder="password" id="loginPass" <?php echo 'value="'.$loginpass.'"';?> required>
-                        <input type="submit" name="login" id="login">
+                        <input type="submit" name="login" id="login"><br>
+                        <button name="loguindel" class="margin-top-3">ログイン情報削除</button>
                 </form>
-                <button id="loguindel" type="button" class="margin-top-3">ログイン情報削除</button>
             </div>
         </article>
     </main>
 
     <?php include_once('_module/footer.php'); ?>
     <script>
-        $('#loguindel').click(function(){
-            <?php
-            if(isset($_COOKIE['develop'])) unset($_COOKIE['develop']);
-            if(isset($_COOKIE['loginuserid'])) unset($_COOKIE['loginuserid']);
-            if(isset($_COOKIE['loginpass'])) unset($_COOKIE['loginpass']);
-            if(isset($_COOKIE['loginhash'])) unset($_COOKIE['loginhash']);
-            ?>
+        $('button[name="loguindel"]').click(function(){
+            $('select').prop('required',false);
+            $('#loginPass').prop('required',false);
+            $('form').submit();
         })
     </script>
 </body>
