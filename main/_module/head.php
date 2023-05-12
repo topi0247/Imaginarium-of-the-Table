@@ -18,7 +18,7 @@ if(!isset($is_index)){
 $develop_mode = isset($_COOKIE['develop']);
 
 // ゲストモード 
-$guest_mode = $_COOKIE['loginuserid'] === 'guest';
+$guest_mode = isset($_COOKIE['loginuserid']) ? $_COOKIE['loginuserid'] === 'guest':false;
 ?>
 <!DOCTYPE html>
 <html lang="ja">

@@ -112,11 +112,6 @@ include('_module/head.php');
             if(isset($_COOKIE['loginuserid'])) unset($_COOKIE['loginuserid']);
             if(isset($_COOKIE['loginpass'])) unset($_COOKIE['loginpass']);
             if(isset($_COOKIE['loginhash'])) unset($_COOKIE['loginhash']);
-            $url = $_SERVER['PHP_SELF'];
-            $start = mb_strrpos($url, '.');
-            $url =  substr_replace($url, '', $start);
-            header("Location: " . $url);
-            exit;
             ?>
         })
     </script>
