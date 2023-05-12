@@ -138,13 +138,20 @@ if(!$mkdir_result){
 }
 $dir .='/';
 if(file_exists($dir.'0000.xml')){
-    $novels = glob($dir.'[0-9]'.'.xml');
-    $postid = (int)basename(end($novels), '.xml') + 1;
+    $novels = glob($dir.'*');
+    $lastid = 0;
+    foreach($novels as $file){
+        $f = basename($file, '.xml');
+        if(is_numeric($f)){
+            $lastid = $lastid < (int)$f ? (int)$f : $lastid;
+        }
+    }
+    $postid = $lastid + 1;
 }else{
     $postid = 0;
 }
 $postid = sprintf('%04d',$postid);
-$file_name = (string)$postid . '.xml';
+$file_name = $postid . '.xml';
 
 // 別名で保存
 $novel_xml->asXml($dir.$file_name);

@@ -16,7 +16,7 @@
                     <li><a href="' . $dir . 'novel/index">小説</a></li>
                     <!--<li><a href="' . $dir . 'illust/index">イラスト</a></li>-->
                     <li><a href="' . $dir . 'post/index">投稿</a></li>
-                    <li><a href="' . $dir . 'users">設定</a></li>';
+                    <li><a href="' . $dir . 'user/index">設定</a></li>';
             }
 
             if(isset($is_setting)){
@@ -25,7 +25,7 @@
                     <li><a href="' . $dir . 'novel/index">小説</a></li>
                     <!--<li><a href="' . $dir . 'illust/index">イラスト</a></li>-->
                     <li><a href="' . $dir . 'post/index">投稿</a></li>
-                    <li><a href="' . $dir . 'users">設定</a></li>';
+                    <li><a href="' . $dir . 'user/index">設定</a></li>';
             }
 
             if(isset($is_log)){
@@ -34,7 +34,7 @@
                     <li><a href="' . $dir . 'novel/index">小説</a></li>
                     <!--<li><a href="' . $dir . 'illust/index">イラスト</a></li>-->
                     <li><a href="' . $dir . 'post/index">投稿</a></li>
-                    <li><a href="' . $dir . 'users">設定</a></li>';
+                    <li><a href="' . $dir . 'user/index">設定</a></li>';
             }
 
             if(isset($is_develop)){
@@ -43,7 +43,7 @@
                     <li><a href="' . $dir . 'novel/index">小説</a></li>
                     <!--<li><a href="' . $dir . 'illust/index">イラスト</a></li>-->
                     <li><a href="' . $dir . 'post/index">投稿</a></li>
-                    <li><a href="' . $dir . 'users">設定</a></li>';
+                    <li><a href="' . $dir . 'user/index">設定</a></li>';
             }
 
             if(isset($is_index_session)){
@@ -52,7 +52,7 @@
                     <li><a href="' . $dir . 'novel/index">小説</a></li>
                     <!--<li><a href="' . $dir . 'illust/index">イラスト</a></li>-->
                     <li><a href="' . $dir . 'post/index">投稿</a></li>
-                    <li><a href="' . $dir . 'users">設定</a></li>';
+                    <li><a href="' . $dir . 'user/index">設定</a></li>';
             }
 
             if(isset($is_index_novel)){
@@ -61,7 +61,7 @@
                     <li><a href="' . $dir . 'novel/index">小説</a></li>
                     <!--<li><a href="' . $dir . 'illust/index">イラスト</a></li>-->
                     <li><a href="' . $dir . 'post/index">投稿</a></li>
-                    <li><a href="' . $dir . 'users">設定</a></li>';
+                    <li><a href="' . $dir . 'user/index">設定</a></li>';
             }
 
             if(isset($is_index_illust)){
@@ -70,7 +70,7 @@
                     <li><a href="' . $dir . 'novel/index">小説</a></li>
                     <!--<li><a href="' . $dir . 'illust/index">イラスト</a></li>-->
                     <li><a href="' . $dir . 'post/index">投稿</a></li>
-                    <li><a href="' . $dir . 'users">設定</a></li>';
+                    <li><a href="' . $dir . 'user/index">設定</a></li>';
             }
 
             if(isset($is_index_post)){
@@ -79,7 +79,7 @@
                     <li><a href="' . $dir . 'novel/index">小説</a></li>
                     <!--<li><a href="' . $dir . 'illust/index">イラスト</a></li>-->
                     <li><a href="' . $dir . 'post/index">投稿</a></li>
-                    <li><a href="' . $dir . 'users">設定</a></li>';
+                    <li><a href="' . $dir . 'user/index">設定</a></li>';
             }
 
             if(isset($is_preview)){
@@ -101,7 +101,7 @@
                     <!--<li><a href="' . $dir . 'session/index">セッション</a></li>
                     <li><a href="' . $dir . 'illust/index">イラスト</a></li>-->
                     <li><a href="' . $dir . 'post/index">投稿</a></li>
-                    <li><a href="' . $dir . 'users">設定</a></li>';
+                    <li><a href="' . $dir . 'user/index">設定</a></li>';
             }
 
 

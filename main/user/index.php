@@ -21,10 +21,10 @@ if (isset($_POST['passsubmit'])) {
 
 
 // 小説公開リスト
-$novel_xml = simplexml_load_file('data/novel_lists.xml');
+$novel_xml = simplexml_load_file('../data/novel_lists.xml');
 
 // 小説個人リスト
-$path = !$develop_mode ? 'data/' . $userid . '/novel/lists.xml' : 'data/0000/novel/lists.xml';
+$path = !$develop_mode ? '../data/' . $userid . '/novel/lists.xml' : '../data/0000/novel/lists.xml';
 $is_create = file_exists($path);
 if ($is_create) {
     $novel_lists = simplexml_load_file($path);
@@ -74,7 +74,7 @@ if (isset($_POST['toggle'])) {
         $dom->preserveWhiteSpace = true;
         $dom->formatOutput = true;
         $dom->loadXML($novel_xml->asXML());
-        $dom->save('data/novel_lists.xml');
+        $dom->save('../data/novel_lists.xml');
         $url = $_SERVER['PHP_SELF'];
         $start = mb_strrpos($url, '.');
         $url =  substr_replace($url, '', $start);
@@ -83,10 +83,22 @@ if (isset($_POST['toggle'])) {
     }
 }
 
-$member = parse_ini_file('data/member.ini', true);
+if(isset($_POST['novel-remove'])){
+    $rm = explode('-', $_POST['post-info']);
+    $index = 0;
+    foreach ($novel_xml->novel as $n) {
+        if ($userid == $n->userid && $rm[1] == $n->postid) {
+            break;
+        }
+        $index++;
+    }
+    unset($novel_xml->novel[$index]);
+}
+
+$member = parse_ini_file('../data/member.ini', true);
 $username = $member[$userid]['name'];
 $title = $develop_mode ? '開発モード' : $username;
-include('_module/head.php');
+include('../_module/head.php');
 
 // 公開リストを先に取得
 foreach ($novel_xml->novel as $i) {
@@ -99,7 +111,7 @@ foreach ($novel_xml->novel as $i) {
 <body id="USER_SETTING">
     <?php
     $is_setting = true;
-    include('_module/header.php');
+    include('../_module/header.php');
     ?>
     <main>
         <article>
@@ -124,7 +136,7 @@ foreach ($novel_xml->novel as $i) {
                         ユーザーでログインし直す場合は<a href="index" class="btn">こちら</a></p>
                         
                         </main>';
-                        include_once('_module/footer.php');
+                        include_once('../_module/footer.php');
                         exit;
                     }
                     ?>
@@ -150,8 +162,8 @@ foreach ($novel_xml->novel as $i) {
                     for ($i = $count - 1; $i >= 0; $i--) {
                         $novel = $novels[$i];
                         $user = $novels[$i]['anonymous'] == 'false' ? $username : '匿名';
-                        $url = 'novel/novel?userid=' . $userid . '&postid=' . $novel->postid;
-                        $imgurl = $dir . 'img/novel-cover/';
+                        $url = '../novel/novel?userid=' . $userid . '&postid=' . $novel->postid;
+                        $imgurl = $dir . '../img/novel-cover/';
                         $title = (string)$novel->title;
                         $is_public = true;
                         if (isset($op_novel_list) && in_array((string)$novel->postid, $op_novel_list)) {
