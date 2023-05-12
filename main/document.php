@@ -42,7 +42,7 @@ include('_module/head.php');
                     <ul class="inline">
                         <li>目次</li>
                         <li><a href="illust/illust.html">イラスト全体表示</a></li>
-                        <li><a href="illust/illust.html">イラストサムネ表示</a></li>
+                        <li><a href="illust/illust-thumbnail.html">イラストサムネ表示</a></li>
                     </ul>
                 </li>
                 <li><a href="post/index">投稿画面</a></li>
