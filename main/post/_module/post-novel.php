@@ -139,12 +139,12 @@ if(!$mkdir_result){
 $dir .='/';
 if(file_exists($dir.'0000.xml')){
     $novels = glob($dir.'[0-9]'.'.xml');
-    $postid = basename(end($novels), '.xml') + 1;
+    $postid = (int)basename(end($novels), '.xml') + 1;
 }else{
-    $postid = '0000';
+    $postid = 0;
 }
 $postid = sprintf('%04d',$postid);
-$file_name = $postid . '.xml';
+$file_name = (string)$postid . '.xml';
 
 // 別名で保存
 $novel_xml->asXml($dir.$file_name);
