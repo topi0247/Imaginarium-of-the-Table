@@ -24,45 +24,46 @@
     <script src="../js/darkmode.js"></script>
 </head>
 <body id="ILLUST">
-    <header class="passcheck">
-        <h1><a href="../top.php">Imaginarium of the Table</a></h1>
+    <header>
+        <h1><a href="../top">Imaginarium of the Table</a></h1>
         <nav id="mainMenu" class="menu">
             <ul>
-                <li><a href="../top.php">トップ</a></li>
-                <li><a href="../session/index.php">セッション</a></li>
-                <li><a href="../novel/index.php">小説</a></li>
-                <li><a href="../document.php">document</a></li>
+                <li><a href="../top">トップ</a></li>
+                <!--<li><a href="index">目次</a></li>
+                <li><a href="../session/index">セッション</a></li>-->
+                <li><a href="../novel/index">小説</a></li>
             </ul>
         </nav>
     </header>
     <button type="button" id="toggleMenu"></button>
 
-    <main class="passcheck">
+    <main>
+        <p class="center">イラストサンプル２は<a href="illust-thumbnail.html" class="btn">こちら</a>から</p>
         <article>
-            <h2><span>準備中</span></h2>
+            <h2><span>イラストサンプル</span></h2>
+            <section class="illust-original-size">
+                <img src="../data/0000/illust/sample_400x400.png">
+                <img src="../data/0000/illust/sample_400x400.png">
+                <img src="../data/0000/illust/sample_1000x1000.png">
+                <img src="../data/0000/illust/sample_1600x900.png">
+                <img src="../data/0000/illust/sample_900x1600.png">
+            </section>
+            <section class="illust-caption">
+                <div class="user"><a>ユーザー</a></div>
+                <ul class="hashtag">
+                    <li><a>マダミス狂気山脈</a></li>
+                    <li><a>鈴木臨子</a></li>
+                </ul>
+                <p>キャプション</p>
+            </section>
         </article>
     </main>
     
-    <article class="overlay">
-        <div class="popup-window">
-            <h3><span>Login</span></h3>
-            <div class="center">
-                <div id="loginResult"></div>
-                <form>
-                    <input type="text" placeholder="password" id="loginPass">
-                    <input type="button" value="send" id="login">
-                </form>
-                <a href="../index.php">indexへ</a>
-            </div>
-        </div>
-    </article>
-
-    <footer class="passcheck">
+    <footer>
         <p class="small">© 2023 Imaginarium of the Table - by TRPG部</p>
         <nav id="pageBottonNav" class="fixed-menu">
             <ul>
                 <li id="pageTop" class="pagetop"><button></button></li>
-                <li id="changeMode" class="mode"><button></button></li>
             </ul>
         </nav>
     </footer>
@@ -72,7 +73,6 @@
     <!-- 3rd -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
     <script src="../js/3rd/spotlight.bundle.js"></script>
-    <script src="../js/3rd/sha256.js"></script>
     <!-- script -->
     <script src="../js/script.js"></script>
 </body>

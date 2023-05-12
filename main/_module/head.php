@@ -1,4 +1,25 @@
-<?php //error_reporting(0);?>
+<?php
+$current = $_SERVER["PHP_SELF"];
+$search = '/\/(.*?)\//';
+$dir = preg_replace($search, '/../', $current);
+$dir =  substr_replace($dir, './', 0, 1);
+$start = mb_strrpos($dir, '/') + 1;
+$dir =  substr_replace($dir, '', $start);
+
+// ログインチェック
+if(!isset($is_index)){
+  if(!isset($_COOKIE['loginuserid'])){
+    header('Location:'.$dir . 'index');
+    exit;
+  }
+}
+
+// 開発モード
+$develop_mode = isset($_COOKIE['develop']);
+
+// ゲストモード 
+$guest_mode = $_COOKIE['loginuserid'] === 'guest';
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -7,10 +28,11 @@
     <meta name="robots" content="noindex,noarchive,noimageindex">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Cache-Control" content="no-cache">
-    <meta name="title" content="<?php echo $meta_title; ?>">
-    <title><?php echo $title; ?></title>
+    <meta name="title" content="<?php echo $title; ?>">
+    <title><?php echo isset($is_index) ? $title : $title . ' | Imaginarium of the Table'; ?></title>
     <!-- css -->
     <link rel="stylesheet" href="<?php echo $dir; ?>css/style.css" type="text/css" id="style">
+    <?php echo isset($is_index_post) ? '<link rel="stylesheet" href="'. $dir .'css/post.css" type="text/css" id="style">' : '' ;?>
     <!-- font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,8 +46,3 @@
     <!-- darkmode -->
     <script src="<?php echo $dir; ?>js/darkmode.js"></script>
 </head>
-<!-- 
-  $title ページタイトル
-  $meta_title メタタイトル
-  $dir 読み込み元からの相対パス
- -->

@@ -1,65 +1,86 @@
-<?php
-$title = 'log | Imaginarium of the Table';
-$meta_title = 'log';
-$dir = './';
-include($dir . 'module/head.php');
+<?php 
+$title = 'log';
+include('_module/head.php');
 ?>
 
 <body>
     <?php
-    $header_about = false;
-    $header_top = true;
-    $header_session = true;
-    $header_novel = true;
-    $header_illust = true;
-    $header_post = true;
-    $header_setting = true;
-    include($dir . 'module/header.php');
+    $is_log = true;
+    include('_module/header.php');
     ?>
 
-    <main class="passcheck">
+    <main>
         <article>
             <h2><span>infomation</span></h2>
             <section>
                 <dl>
+                    <dt>2023/05/11</dt>
+                    <dd>アップデート！開発状況は<a href="develop">こちら</a><br>
+                        <h4>ログイン周りを大幅変更</h4>
+                        変更前
+                        <ul>
+                            <li>全員共通パスワード</li>
+                            <li>未ログインでindexページ以外を開くと、そのページ上で認証</li>
+                        </ul>
+                        変更後
+                        <ul>
+                            <li><em>ユーザーごとに別途パスワード認証</em></li>
+                            <li>未ログインでindexページ以外を開くと、<em>強制的にindexページへ移動</em>。認証した後に元のページへ飛ぶ（はず）</li>
+                        </li>
+                        </ul>
+                        追加
+                        <ul>
+                            <li>ログイン認証時に<em>ユーザー選択追加</em><br>
+                            これにより投稿ページなどでユーザー選択しなくていいように</li>
+                            <li><em>ゲストモード追加</em><br>
+                            これまでのパスワードでログインすると強制的にゲストモードになります<br>
+                            ゲストユーザーとしてログインも可能（パスワードはこれまでと同じ）
+                        </ul>
+                        <h4>ユーザーページ追加</h4>
+                        <ul>
+                            <li>パスワードの再設定</li>
+                            <li>ダークモード設定（端末依存・ライト・モードから選択可能）</li>
+                            <li>自分が投稿した作品一覧が見れるように！詳細は後述「投稿作品の管理」</li>
+                            <li>ゲストユーザーは現状ダークモード設定のみ設定可</li>
+                        </ul>
+                        ダークモード設定をユーザー設定から選択可能に伴い、ページ下部のモード切替を廃止しました
+                        <h4>小説投稿</h4>
+                        変更前：投稿ユーザーを選択<br>
+                        変更後：ログイン時のユーザーで投稿可能<br>
+                        追加
+                        <ul>
+                            <li>投稿者自動表示</li>
+                            <li><em>匿名設定追加</em><br>
+                                名前を隠して投稿したい人がいるかな？と思い追加してみました<br>
+                                匿名設定で投稿すると、投稿ユーザー名が「匿名」と表示されます
+                            </li>
+                            <li><em>表紙を追加。選択可能</em><br>
+                                イラスト表紙と写真表紙をそれぞれ５枚ずつ追加。<br>
+                                イラストは<a href="https://www.pixiv.net/users/12836474" target="_blank">きみヱ</a>様より、写真は<a href="https://unsplash.com/" target="_blank">Unsplash</a>よりお借りしています
+                            </li>
+                            <li><em>カテゴリー追加</em><br>
+                                小説・ひとコマの２つがあります。<br>
+                                「小説として載せるほどでもない短文」や「とあるワンシーン」などを気軽に投稿できるようにしています<br>
+                                現在はどちらも小説と同じ表示方法ですが、ひとコマは今後表示方法を変えます
+                            </li>
+                            <li><em>ページごとに文字数を表示</em></li>
+                        </ul>
+                        <h4>投稿作品の管理</h4>
+                        ユーザー画面から、自分が投稿した作品の一覧が表示されます（現在は小説のみ）<br>
+                        設定画面から「公開」「非公開」を切り替えられます<br>
+                        公開はトップページや小説目次ページで表示され、非公開はそれらのページで表示されません<br>
+                        非公開作品はユーザー画面上では分かりやすく「非公開」と表示コマがつくので、ひと目で公開・非公開の区別がつくようになってます<br>
+                        公開・非公開は自由に切替可能です
+                    </dd>
+
                     <dt>2023/05/06</dt>
-                    <dd>β版公開　開発状況は<a href="develop.php">こちら</a></dd>
+                    <dd>β版公開　開発状況は<a href="develop">こちら</a></dd>
                 </dl>
             </section>
         </article>
     </main>
 
-    <article class="overlay">
-        <div class="popup-window">
-            <h3><span>Login</span></h3>
-            <div class="center">
-                <div id="loginResult"></div>
-                <form>
-                    <input type="text" placeholder="password" id="loginPass">
-                    <input type="button" value="send" id="login">
-                </form>
-                <a href="index.php">indexへ</a>
-            </div>
-        </div>
-    </article>
-
-    <footer class="passcheck">
-        <p class="small">© 2023 Imaginarium of the Table - by TRPG部</p>
-        <nav id="pageBottonNav" class="fixed-menu">
-            <ul>
-                <li id="pageTop" class="pagetop"><button></button></li>
-                <li id="changeMode" class="mode"><button></button></li>
-            </ul>
-        </nav>
-    </footer>
-
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
-    <!-- 3rd -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
-    <script src="js/3rd/sha256.js"></script>
-    <!-- script -->
-    <script src="js/script.js"></script>
+    <?php include_once('_module/footer.php'); ?>
 </body>
 
 </html>

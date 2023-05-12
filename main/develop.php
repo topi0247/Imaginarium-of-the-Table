@@ -1,38 +1,33 @@
-<?php
-$title = 'develop | Imaginarium of the Table';
-$meta_title = 'develop';
-$dir = './';
-include($dir . 'module/head.php');
+<?php 
+$title = 'develop';
+include('_module/head.php');
 ?>
 <body>
     <?php 
-    $header_about = false;
-    $header_top = true;
-    $header_session = true;
-    $header_novel = true;
-    $header_illust = true;
-    $header_post = true;
-    $header_setting = true;
-    include($dir . 'module/header.php');
+    $is_develop = true;
+    include('_module/header.php');
     ?>
 
-    <main class="passcheck">
+    <main>
         <article>
+            <p><a href="document">各種デザイン</a></p>
             <section>
                 <h3><span>作業中</span></h3>
                 <ul>
-                    <li>phpへ移行し管理の簡易化</li>
-                    <li>イラストページ</li>
-                    <li>投稿した作品の削除</li>
-                    <li>投稿した作品の編集</li>
-                    <li>投稿作品のサムネイル表示</li>
-                    <li>各目次ページ</li>
+                    <li>投稿作品の編集</li>
                     <li>投稿処理-セッション</li>
                     <li>投稿処理-イラスト</li>
-                    <li>下書き保存</li>
+                    <li>目次・投稿作品のサムネイル表示
+                        <ul class="inline">
+                            <li>セッション</li>
+                            <li>イラスト</li>
+                        </ul>
+                    </li>
+                    <li>小説カテゴリ「ひとコマ」目次デザイン・実装</li>
+                    <li>セッションページ実装</li>
+                    <li>イラストページ実装</li>
                     <li>投稿用ドキュメントページ</li>
-                    <li>バックアップ用データ作成</li>
-                    <li>バックアップ用データのダウンロード</li>
+                    <li>バックアップ用データのダウンロードシステム</li>
                 </ul>
             </section>
 
@@ -41,9 +36,11 @@ include($dir . 'module/head.php');
                 <ul>
                     <li>ログイン認証
                         <ul>
-                            <li>indexページ…ログイン済みなら自動入力</li>
-                            <li>index以外…未ログインなら認証表示</li>
-                            <li>index以外…ログイン済なら認証非表示</li>
+                            <li>ユーザー選択追加</li>
+                            <li>indexページ…ログイン済みなら自動選択・自動入力</li>
+                            <li>index以外…未ログインならindexへ移動</li>
+                            <li>index以外…ログイン済ならそのまま</li>
+                            <li>indexからログインした場合、ログイン状態を１ヶ月継続。ただしパスワード変更した場合はブラウザを閉じるまで（環境差あり）</li>
                         </ul>
                     </li>
                     <li>ページ上部へ戻る</li>
@@ -64,8 +61,15 @@ include($dir . 'module/head.php');
                             <li>小説</li>
                             <li>イラスト</li>
                         </ul>
-                    <li>セッションページ</li>
-                    <li>小説ページ</li>
+                    </li>
+                    <li>目次実装
+                        <ul class="inline">
+                            <li>小説</li>
+                        </ul>
+                    </li>
+                    <li>セッションページデザイン</li>
+                    <li>小説ページデザイン・実装</li>
+                    <li>イラストページデザイン</li>
                     <li>過去ログページ</li>
                     <li>開発状況ページ</li>
                     <li>画像表示
@@ -76,20 +80,22 @@ include($dir . 'module/head.php');
                     </li>
                     <li>画像サムネの拡大表示</li>
                     <li>上記のレスポンシブ（スマホ・タブレット）対応</li>
+                    <li>phpへ移行し管理の簡易化</li>
+                    <li>ユーザー設定
+                        <ul class="inline">
+                            <li>パスワード変更</li>
+                            <li>ダークモード設定（端末依存・ライト・ダーク）</li>
+                            <li>小説作品の公開・非公開切り替え</li>
+                        </ul>
+                    </li>
                 </ul>
             </section>
     
             <section>
                 <h3><span>検討中</span></h3>
                 <ul>
-                    <li>設定ページ
+                    <li>ユーザー設定
                         <ul>
-                            <li>表示
-                                <ul class="inline">
-                                    <li>端末依存</li>
-                                    <li>ライトモード</li>
-                                    <li>ダークモード</li>
-                                </ul>
                             </li>
                             <li>フォント（<a href="https://espace.monbalcon.net/parts/3188/" target="_blank">novel-viewer</a>）
                                 <ul class="inline">
@@ -120,50 +126,21 @@ include($dir . 'module/head.php');
                             <li>しおりのページが存在しないときの表示</li>
                         </ul>
                     </li>
-                    <li>設定ページとしおりをCookie保存にしない</li>
+                    <li>ユーザー設定としおりをCookie保存にしない</li>
                 </ul>
             </section>
             <section>
                 <h3><span>後回し</span></h3>
                 <ul>
+                    <li>下書き保存</li>
                     <li>カレンダー</li>
-                    <li>ユーザー名・ユーザーIDの変更</li>
+                    <li>ユーザー名の変更</li>
                     <li>検索・ソート</li>
                 </ul>
             </section>
         </article>
     </main>
     
-    <article class="overlay">
-        <div class="popup-window">
-            <h3><span>Login</span></h3>
-            <div class="center">
-                <div id="loginResult"></div>
-                <form>
-                    <input type="text" placeholder="password" id="loginPass">
-                    <input type="button" value="send" id="login">
-                </form>
-                <a href="index.php">indexへ</a>
-            </div>
-        </div>
-    </article>
-
-    <footer class="passcheck">
-        <p class="small">© 2023 Imaginarium of the Table - by TRPG部</p>
-        <nav id="pageBottonNav" class="fixed-menu">
-            <ul>
-                <li id="pageTop" class="pagetop"><button></button></li>
-                <li id="changeMode" class="mode"><button></button></li>
-            </ul>
-        </nav>
-    </footer>
-
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
-    <!-- 3rd -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
-    <script src="js/3rd/sha256.js"></script>
-    <!-- script -->
-    <script src="js/script.js"></script>
+    <?php include_once('_module/footer.php'); ?>
 </body>
 </html>

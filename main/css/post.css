@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 body#POST header h1{
     display: none;
 }
@@ -11,9 +13,9 @@ body#POST header h1{
     display: none;
 }
 
-#post-type:has(#type-session:checked) ~ #post-session,
-#post-type:has(#type-novel:checked) ~ #post-novel,
-#post-type:has(#type-illust:checked) ~ #post-illust
+#post-type:has(input[value="type-session"]:checked) ~ #post-session,
+#post-type:has(input[value="type-novel"]:checked) ~ #post-novel,
+#post-type:has(input[value="type-illust"]:checked) ~ #post-illust
 {
     display: block;
 }
@@ -68,4 +70,81 @@ textarea#caption,textarea#afterword{
 
 #novel-body:has(textarea:only-of-type) #remove-page{
     display: none;
+}
+
+.length{
+    display: block;
+    text-align: end;
+    margin: 0;
+}
+
+#novel-cover{
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+#novel-cover > *{
+    margin: 0;
+    padding: 0;
+    line-height: 0;
+}
+
+#novel-cover label{
+    margin: 5px;
+    width: calc(100% / 5 - 10px);
+    height: auto;
+    position: relative;
+}
+
+#novel-cover label,#novel-cover label:hover,#novel-cover label:has(input:checked){
+    border: 2px solid transparent;
+    background: transparent;
+}
+
+#novel-cover label:hover,#novel-cover label:has(input:checked){
+    border: 2px solid var(--theme-color1);
+    background: black;
+}
+
+#novel-cover label img{
+    aspect-ratio: 74 / 105;
+    transition: 0.3s;
+    position: relative;
+}
+
+#novel-cover label:hover img,
+#novel-cover label:has(input:checked) img{
+    opacity: 0.3;
+}
+
+#novel-cover label:has(input:checked)::before,
+#novel-cover label:has(input:checked)::after{
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    width: 100%;
+    height: calc(1.6rem + 1.05rem);
+    line-height: calc(1.6rem + 1.05rem);
+}
+
+#novel-cover label:has(input:checked)::before{
+    content: '';
+    background: var(--theme-color1-op);
+}
+
+#novel-cover label:has(input:checked)::after{
+    content: 'select';
+    text-align: center;
+    color: white;
+}
+
+@media only screen and (max-width: 1024px) {
+    #novel-cover label{
+        width: calc(100% / 3 - 2px);
+        margin: 1px;
+    }
 }
