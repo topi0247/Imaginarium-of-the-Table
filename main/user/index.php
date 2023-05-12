@@ -83,17 +83,17 @@ if (isset($_POST['toggle'])) {
     }
 }
 
-if(isset($_POST['novel-remove'])){
-    $rm = explode('-', $_POST['post-info']);
-    $index = 0;
-    foreach ($novel_xml->novel as $n) {
-        if ($userid == $n->userid && $rm[1] == $n->postid) {
-            break;
-        }
-        $index++;
-    }
-    unset($novel_xml->novel[$index]);
-}
+// if(isset($_POST['novel-remove'])){
+//     $rm = explode('-', $_POST['post-info']);
+//     $index = 0;
+//     foreach ($novel_xml->novel as $n) {
+//         if ($userid == $n->userid && $rm[1] == $n->postid) {
+//             break;
+//         }
+//         $index++;
+//     }
+//     unset($novel_xml->novel[$index]);
+// }
 
 $member = parse_ini_file('../data/member.ini', true);
 $username = $member[$userid]['name'];
@@ -193,7 +193,7 @@ foreach ($novel_xml->novel as $i) {
                             <form action="" method="post">
                             <button type="submit" name="toggle" value="' . $title . '">' . ($is_public ? '非公開' : '公開') . '</button>
                             <button type="submit" name="novel-edit" disabled>編集</button>
-                            <button type="submit" name="novel-remove">削除</button>
+                            <button type="submit" name="novel-remove" disabled>削除</button>
                             <input type="hidden" name="post-info" value="novel-' . $novel->postid . '">
                             <input type="hidden" name="is_public" value="' . $is_public . '">
                         </form>';
