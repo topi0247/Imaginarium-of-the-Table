@@ -99,11 +99,27 @@ include('_module/head.php');
                         <input type="text" name="password" placeholder="password" id="loginPass" <?php echo 'value="'.$loginpass.'"';?> required>
                         <input type="submit" name="login" id="login">
                 </form>
+                <button id="loguindel" type="button" class="margin-top-3">ログイン情報削除</button>
             </div>
         </article>
     </main>
 
     <?php include_once('_module/footer.php'); ?>
+    <script>
+        $('#loguindel').click(function(){
+            <?php
+            if(isset($_COOKIE['develop'])) unset($_COOKIE['develop']);
+            if(isset($_COOKIE['loginuserid'])) unset($_COOKIE['loginuserid']);
+            if(isset($_COOKIE['loginpass'])) unset($_COOKIE['loginpass']);
+            if(isset($_COOKIE['loginhash'])) unset($_COOKIE['loginhash']);
+            $url = $_SERVER['PHP_SELF'];
+            $start = mb_strrpos($url, '.');
+            $url =  substr_replace($url, '', $start);
+            header("Location: " . $url);
+            exit;
+            ?>
+        })
+    </script>
 </body>
 
 </html>
