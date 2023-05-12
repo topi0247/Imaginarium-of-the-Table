@@ -1,37 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <novels>
-  <novel anonymous="false">
-    <title>断章 アザトース</title>
-    <img>photo-02.jpg</img>
-    <userid>0000</userid>
-    <postid>0001</postid>
-    <category>novel</category>
-    <tags/>
-    <caption>著：Ｈ・Ｐ・ラヴクラフト&lt;br /&gt;&#13;
-      訳：Morishous T.H.E creative&lt;br /&gt;&#13;
-      &lt;br /&gt;&#13;
-      ※この文章は作品となることなく、断章、いわば草案的な形式のまま残された原文を翻訳しております。&lt;br /&gt;&#13;
-    </caption>
-    <length>967</length>
-    <readtime>2分</readtime>
-    <postday>2023/05/09 18:32</postday>
-    <updateday/>
-  </novel>
-  <novel anonymous="false">
-    <title>ニャルラトホテプ</title>
-    <img>illust-04.jpg</img>
-    <userid>0000</userid>
-    <postid>0002</postid>
-    <category>novel</category>
-    <tags/>
-    <caption>著：Ｈ・Ｐ・ラヴクラフト&lt;br /&gt;&#13;
-      訳：大久保ゆうe&lt;br /&gt;&#13;
-      &lt;br /&gt;&#13;
-      青空文庫より引用
-    </caption>
-    <length>3447</length>
-    <readtime>6分</readtime>
-    <postday>2023/05/10 7:08</postday>
-    <updateday/>
-  </novel>
+  
+  
 </novels>

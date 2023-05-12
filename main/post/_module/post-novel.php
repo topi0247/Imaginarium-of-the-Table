@@ -38,8 +38,26 @@
 /*                      出力                      */
 /* ============================================== */
 
-// テンプレートを読み込み
-$novel_xml = simplexml_load_file('../../data/0000/novel/0000.xml');
+$novel_xml_body = <<<XML
+<novel anonymous="false">
+    <info>
+        <createday />
+        <postday />
+        <updateday />
+        <title />
+        <img />
+        <category></category>
+        <tags />
+        <caption />
+        <length></length>
+        <readtime></readtime>
+        <afterword />
+    </info>
+    <body />
+</novel>
+XML;
+
+$novel_xml = new SimpleXMLElement($novel_xml_body);
 
 // 匿名フラグ
 $anonymous = isset($_POST['anonymous']) ? 'true' :'false';
@@ -70,7 +88,6 @@ $info->category = $category;
 
 // ハッシュタグ
 $taglist = [];
-unset($info->tags->tag);
 if($_POST['hash-tag']){
     $tmp = preg_split('/[\s|\x{3000}]+/u', $_POST['hash-tag']);
     foreach($tmp as $t){
@@ -110,7 +127,6 @@ $info->afterword = str_replace('<br>', '&#60;br&#62;', $afterword);
 // 小説本文
 $body = $novel_xml->body;
 $pages = $_POST['pages'];
-unset($body ->page);
 for ($i = 1; $i < $pages + 1; $i++) {
     $tmp =  nl2br($_POST[$i]);
     $tmp = str_replace('<br>', '&#60;br&#62;', $tmp);
@@ -137,33 +153,34 @@ if(!$mkdir_result){
     exit;
 }
 $dir .='/';
-if(file_exists($dir.'*.xml')){
-    $novels = glob($dir.'*');
-    $lastid = 0;
-    foreach($novels as $file){
-        $f = basename($file, '.xml');
-        if(is_numeric($f)){
-            $lastid = $lastid < (int)$f ? (int)$f : $lastid;
-        }
-    }
-    $postid = $lastid > 0 ?  $lastid + 1 : $lastid;
-}else{
-    $postid = 0;
-}
-$postid = sprintf('%04d',$postid);
-$file_name = $postid . '.xml';
-
-// 別名で保存
-$novel_xml->asXml($dir.$file_name);
-
-// ユーザー執筆リストに登録
+// 執筆リストから投稿番号決定
 $list_path = '../../data/'. $userid .'/novel/lists.xml';
 if(file_exists($list_path)){
     $list_xml = simplexml_load_file($list_path);
+    if($list_xml->count() > 0){
+        $end = end($list_xml);
+        $postid = (int)$end->postid + 1;
+    }else{
+        $postid = 0;
+    }
 }
 else {
+    $postid = 0;
     $list_xml = new SimpleXMLElement('<?xml version="1.0" encoding="utf-8"?><novels></novels>');
 }
+
+$postid = sprintf('%04d',$postid);
+$file_name = $postid . '.xml';
+
+// 保存
+$novel_dom = new DOMDocument('1.0','utf-8');
+$novel_dom->preserveWhiteSpace = true;
+$novel_dom->formatOutput = true;
+$novel_dom->loadXML($novel_xml->asXML());
+$novel_dom->save($dir.$file_name);
+
+
+// ユーザー執筆リストに登録
 $novel = $list_xml->addChild('novel');
 $novel['anonymous'] = $anonymous;
 $novel->addChild('title',$title);

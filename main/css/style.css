@@ -1349,7 +1349,7 @@ body#USER_SETTING input[type='text']{
     text-align: center;
 }
 
-#pswd-status.init{
+#pswd-status.init,#novel-status.error{
     display: block;
     border-color: #de9a9a;
     background: rgba(222, 154, 154, 0.25);
@@ -1368,6 +1368,37 @@ body#USER_SETTING input[type='text']{
 
 #pswd-status.change::after{
     content: 'パスワードを変更しました';
+}
+
+#novel-status{
+    display: none;
+    padding: 10px;
+    margin: 10px 0;
+    width: 100%;
+    border: 1px solid transparent;
+    text-align: center;
+}
+
+#novel-status.error::after{
+    content: 'エラーが発生しました';
+}
+
+#novel-status.public,#novel-status.private,#novel-status.delete{
+    display: block;
+    border: 1px solid #9ac5de;
+    background: rgba(154, 209, 222, 0.25);
+}
+
+#novel-status.public::after{
+    content: '公開しました';
+}
+
+#novel-status.private::after{
+    content: '非公開に変更しました';
+}
+
+#novel-status.delete::after{
+    content: '削除しました';
 }
 
 /* === 汎用 === */

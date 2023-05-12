@@ -1,27 +1,8 @@
 <?php
-$develop_mode = isset($_COOKIE['develop']);
 $userid = $_COOKIE['loginuserid'];
-if (isset($_POST['passsubmit'])) {
-    $userid = $_COOKIE['loginuserid'];
-    $pass = $_POST['passchange'];
-    $passhash = hash('sha256', $pass);
-    setcookie('loginpass', $pass);
-    setcookie('loginhash', $passhash);
-    $config = parse_ini_file('../data/config.cgi');
-    $config[$userid] = $passhash;
-    $fp = fopen('../data/config.cgi', 'w');
-    foreach ($config as $k => $i) fputs($fp, "$k=$i\n");
-    fclose($fp);
-    $url = $_SERVER['PHP_SELF'];
-    $start = mb_strrpos($url, '.');
-    $url =  substr_replace($url, '', $start);
-    header('location:' . $url.'?pswd=success');
-    exit;
-}
-
-
-// 小説公開リスト
-$novel_xml = simplexml_load_file('../data/novel_lists.xml');
+$member = parse_ini_file('../data/member.ini', true);
+$title = $member[$userid]['name'];
+include('../_module/head.php');
 
 // 小説個人リスト
 $path = !$develop_mode ? '../data/' . $userid . '/novel/lists.xml' : '../data/0000/novel/lists.xml';
@@ -33,109 +14,12 @@ if(file_exists($path)){
 if ($is_create) {
     $novels = $novel_lists->novel;
 }
-if (isset($_POST['toggle'])) {
-    $rm = explode('-', $_POST['post-info']);
-    if ($rm[0] == 'novel') {
-        if ($_POST['is_public'] == 'true') {
-            $index = 0;
-            foreach ($novels as $n) {
-                if ($rm[1] == $n->postid) {
-                    break;
-                }
-                $index++;
-            }
-            $add = $novels[$index];
-            $node = $novel_xml->addChild('novel');
-            $node['anonymous'] = $add['anonymous'];
-            $node->addChild('title', $add->title);
-            $node->addChild('img', $add->img);
-            $node->addChild('userid', $userid);
-            $node->addChild('postid', $add->postid);
-            $node->addChild('category', $add->category);
-            $tags = $node->addChild('tags');
-            if (!empty($add->$taglist)) {
-                foreach ($add->$taglist as $tag) {
-                    $tags->addChild('tag', $tag);
-                }
-            }
-            $node->addChild('caption', $add->caption);
-            $node->addChild('length', $add->length);
-            $node->addChild('readtime', $add->readtime);
-            $node->addChild('postday', $add->postday);
-            $node->addChild('updateday', $add->updateday);
-        } else {
-            $index = 0;
-            foreach ($novel_xml->novel as $n) {
-                if ($userid == $n->userid && $rm[1] == $n->postid) {
-                    break;
-                }
-                $index++;
-            }
-            unset($novel_xml->novel[$index]);
-        }
-        $dom = new DOMDocument('1.0', 'utf-8');
-        $dom->preserveWhiteSpace = true;
-        $dom->formatOutput = true;
-        $dom->loadXML($novel_xml->asXML());
-        $dom->save('../data/novel_lists.xml');
-        $url = $_SERVER['PHP_SELF'];
-        $start = mb_strrpos($url, '.');
-        $url =  substr_replace($url, '', $start);
-        header('location:' . $url);
-        exit;
-    }
-}
 
-if(isset($_POST['novel-remove'])){
-    $rm = explode('-', $_POST['post-info']);
-    // 公開用リストから削除
-    $index = 0;
-    foreach ($novel_xml->novel as $n) {
-        if ($userid == $n->userid && $rm[1] == $n->postid) {
-            break;
-        }
-        $index++;
-    }
-    unset($novel_xml->novel[$index]);
-    $dom = new DOMDocument('1.0', 'utf-8');
-    $dom->preserveWhiteSpace = true;
-    $dom->formatOutput = true;
-    $dom->loadXML($novel_xml->asXML());
-    $dom->save('../data/novel_lists.xml');
-    
-    // 個人リストから削除
-    $index = 0;
-    foreach ($novel_lists->novel as $n) {
-        if ($rm[1] == $n->postid) {
-            break;
-        }
-        $index++;
-    }
-    unset($novel_lists->novel[$index]);
-    $dom = new DOMDocument('1.0', 'utf-8');
-    $dom->preserveWhiteSpace = true;
-    $dom->formatOutput = true;
-    $dom->loadXML($novel_lists->asXML());
-    $dom->save($path);
-
-    // 作品ファイル削除
-    $file_name = $rm[1].'.xml';
-    unlink('../data/'.$userid.'/novel/'.$file_name);
-    $url = $_SERVER['PHP_SELF'];
-    $start = mb_strrpos($url, '.');
-    $url =  substr_replace($url, '', $start);
-    header('location:' . $url);
-    exit;
-}
-
-$member = parse_ini_file('../data/member.ini', true);
-$username = $member[$userid]['name'];
-$title = $develop_mode ? '開発モード' : $username;
-include('../_module/head.php');
-
+// 小説公開リスト
+$novel_xml = simplexml_load_file('../data/novel_lists.xml');
 // 公開リストを先に取得
 foreach ($novel_xml->novel as $i) {
-    if ($i->userid == $userid) {
+    if ($i->userid == $userid || ($develop_mode && $i->userid=='0000')) {
         $op_novel_list[] = (string)$i->postid;
     }
 }
@@ -152,7 +36,7 @@ foreach ($novel_xml->novel as $i) {
             <section>
                 <dl class="inline">
                     <dt>ユーザー名</dt>
-                    <dd><?php echo $username; ?></dd>
+                    <dd><?php echo $member[$userid]['name'] ?></dd>
 
                     <dt>ダークモード設定</dt>
                     <dd>
@@ -175,9 +59,9 @@ foreach ($novel_xml->novel as $i) {
                     ?>
                     <dt>パスワード</dt>
                     <dd>
-                        <label>現在のパスワード：<?php echo $_COOKIE['loginpass'];?></label>
+                        <label>現在のパスワード：<?php echo $_COOKIE['loginpass']; ?></label>
                         <div id="pswd-status" <?php echo $_COOKIE['loginhash'] == 'd74ff0ee8da3b9806b18c877dbf29bbde50b5bd8e4dad7a3a725000feb82e8f1' ? 'class="init"':'';?>></div>
-                        <form action="" method="post">
+                        <form action="edit" method="post">
                             <input type="text" id="pswd-text" name="passchange"> <button id="pswdchange-submit" name="passsubmit" value="パスワード" disabled>変更</button>
                         </form>
                     </dd>
@@ -186,7 +70,20 @@ foreach ($novel_xml->novel as $i) {
         </article>
 
         <article>
-            <h2><span>小説</span></h2>
+            <h2 id="novel-list"><span>小説</span></h2>
+            <div id="novel-status" 
+            <?php 
+            $status = '';
+            if(isset($_GET['type']) && $_GET['type']=='novel'){
+                if($_GET['result'] != 'error'){
+                    $status = $_GET['result'];
+                }
+                else{
+                    $status = 'error';
+                }
+            }
+            echo 'class="' . $status . '"';
+            ?>></div>
             <section>
                 <?php
                 echo '<div class="novel-thumbnail">';
@@ -194,8 +91,8 @@ foreach ($novel_xml->novel as $i) {
                     $count = count($novels);
                     for ($i = $count - 1; $i >= 0; $i--) {
                         $novel = $novels[$i];
-                        $user = $novels[$i]['anonymous'] == 'false' ? $username : '匿名';
-                        $url = '../novel/novel?userid=' . $userid . '&postid=' . $novel->postid;
+                        $user = $novels[$i]['anonymous'] == 'false' ? $member[(string)$novels[$i]->userid]['name'] : '匿名';
+                        $url = '../novel/novel?userid=' . $novels[$i]->userid . '&postid=' . $novel->postid;
                         $imgurl = $dir . '../img/novel-cover/';
                         $title = (string)$novel->title;
                         $is_public = true;
@@ -223,7 +120,7 @@ foreach ($novel_xml->novel as $i) {
                                 <span class="length">' . $novel->length . '文字</span>
                                 <span class="readtime">' . $novel->readtime . '</span>
                             </div></div></div>
-                            <form action="" method="post">
+                            <form action="edit" method="post">
                             <button type="submit" name="toggle" value="' . $title . '">' . ($is_public ? '非公開' : '公開') . '</button>
                             <button type="submit" name="novel-edit" disabled>編集</button>
                             <button type="submit" name="novel-remove" value="' . $title . '">削除</button>
