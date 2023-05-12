@@ -10,7 +10,7 @@ if (isset($_GET['postid'])) {
     $postid = $_GET['postid'];
 }
 
-$novel_path = '../data/' . $userid . '\/novel\/' . $postid . '.xml';
+$novel_path = '../data/' . $userid . '/novel/' . $postid . '.xml';
 $xml = simplexml_load_file($novel_path);
 
 $novel_info = $xml->info;
