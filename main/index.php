@@ -39,12 +39,12 @@ $login_pass = $_COOKIE["loginpass"] ?? "";
     <script>
         $(function() {
             $("#loginPass").on("input", function() {
-                let is_disabled = $(this).val().length > 0 && $("select option:selected").val() !== "none"
+                let is_disabled = $(this).val().length == 0 && $("select option:selected").val() == "none"
                 $("#login").prop("disabled", is_disabled);
             })
 
             $("select").change(function() {
-                let is_disabled = $("#loginPass").val().length > 0;
+                let is_disabled = $("#loginPass").val().length == 0;
                 $("#login").prop("disabled", is_disabled);
             })
 
