@@ -20,7 +20,7 @@ $is_novel = true;
 include("../parts/head.php");
 
 $member = parse_ini_file("../data/member.cgi", true);
-$user = $xml["anonymous"] === "false" ? $member[$userid]["name"] : "匿名";
+$user = (string)$xml["anonymous"] === "false" ? $member[$userid]["name"] : "匿名";
 foreach ($novel_info->tags->tag as $t) {
     $tags[] = (string)$t;
 }
