@@ -18,6 +18,8 @@ $is_session = true; // session
 $is_novel = true; // novel
 $is_illust = true; // illust
 $is_setting = true; // user setting
+$is_edit = true; // edit
+$id_novel_edit = true; // edit novel 
 
 // その他フラグ
 $is_pagetop = true;

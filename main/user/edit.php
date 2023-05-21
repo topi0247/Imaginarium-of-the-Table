@@ -1,120 +1,149 @@
 <?php
-if (!isset($_POST['novel-edit'])) {
-    $develop_mode = isset($_COOKIE['develop']);
-    $userid = $_COOKIE['loginuserid'];
-    if (isset($_POST['passsubmit'])) {
-        $pass = $_POST['passchange'];
-        $passhash = hash('sha256', $pass);
-        setcookie('loginpass', $pass);
-        setcookie('loginhash', $passhash);
-        $config = parse_ini_file('../data/config.cgi');
-        $config[$userid] = $passhash;
-        $fp = fopen('../data/config.cgi', 'w');
-        foreach ($config as $k => $i) fputs($fp, "$k=$i\n");
-        fclose($fp);
-        header('location:index?pswd=success');
-        exit;
-    }
 
-    // 小説公開リスト
-    $novel_xml = simplexml_load_file('../data/novel_lists.xml');
-
-    // 小説個人リスト
-    $path = !$develop_mode ? '../data/' . $userid . '/novel/lists.xml' : '../data/0000/novel/lists.xml';
-    $novel_lists = simplexml_load_file($path);
-    $novels = $novel_lists->novel;
-    if (isset($_POST['toggle'])) {
-        $userid = $develop_mode ? '0000' : $userid;
-        $rm = explode('-', $_POST['post-info']);
-        if ($rm[0] == 'novel') {
-            $result = '';
-            if ($_POST['is_public'] == 'true') {
-                $index = 0;
-                foreach ($novels as $n) {
-                    if ($rm[1] == $n->postid) {
-                        break;
-                    }
-                    $index++;
-                }
-                $add = $novels[$index];
-                $node = $novel_xml->addChild('novel');
-                $node['anonymous'] = $add['anonymous'];
-                $node->addChild('title', $add->title);
-                $node->addChild('img', $add->img);
-                $node->addChild('userid', $userid);
-                $node->addChild('postid', $add->postid);
-                $node->addChild('category', $add->category);
-                $tags = $node->addChild('tags');
-                if (!empty($add->$taglist)) {
-                    foreach ($add->$taglist as $tag) {
-                        $tags->addChild('tag', $tag);
-                    }
-                }
-                $node->addChild('caption', $add->caption);
-                $node->addChild('length', $add->length);
-                $node->addChild('readtime', $add->readtime);
-                $node->addChild('postday', $add->postday);
-                $node->addChild('updateday', $add->updateday);
-                $result = 'public';
-            } else {
-                $index = 0;
-                foreach ($novel_xml->novel as $n) {
-                    if ($userid == $n->userid && $rm[1] == $n->postid) {
-                        break;
-                    }
-                    $index++;
-                }
-                unset($novel_xml->novel[$index]);
-                $result = 'private';
-            }
-            $dom = new DOMDocument('1.0', 'utf-8');
-            $dom->preserveWhiteSpace = true;
-            $dom->formatOutput = true;
-            $dom->loadXML($novel_xml->asXML());
-            $dom->save('../data/novel_lists.xml');
-            header('location:index?type=novel&result='.$result.'#novel-list');
-            exit;
-        }
-    }
-
-    if (isset($_POST['novel-remove'])) {
-        $rm = explode('-', $_POST['post-info']);
-        $userid = $develop_mode ? '0000' : $userid;
-        // 公開用リストから削除
-        $index = 0;
-        foreach ($novel_xml->novel as $n) {
-            if ($userid == $n->userid && $rm[1] == $n->postid) {
-                break;
-            }
-            $index++;
-        }
-        unset($novel_xml->novel[$index]);
-        $dom = new DOMDocument('1.0', 'utf-8');
-        $dom->preserveWhiteSpace = true;
-        $dom->formatOutput = true;
-        $dom->loadXML($novel_xml->asXML());
-        $dom->save('../data/novel_lists.xml');
-
-        // 個人リストから削除
-        $index = 0;
-        foreach ($novel_lists->novel as $n) {
-            if ($rm[1] == $n->postid) {
-                break;
-            }
-            $index++;
-        }
-        unset($novel_lists->novel[$index]);
-        $dom = new DOMDocument('1.0', 'utf-8');
-        $dom->preserveWhiteSpace = true;
-        $dom->formatOutput = true;
-        $dom->loadXML($novel_lists->asXML());
-        $dom->save($path);
-
-        // 作品ファイル削除
-        $file_name = $rm[1] . '.xml';
-        unlink('../data/' . $userid . '/novel/' . $file_name);
-        header('location:index?type=novel&result=delete#novel-list');
-        exit;
-    }
+/* ============================================================== */
+/*                 自サイト以外からの受け入れ拒否                 */
+/* ============================================================== */
+$referrer = $_SERVER["HTTP_REFERER"];
+$domain = parse_url($referrer);
+if (!stristr($domain["host"], "localhost-iott") && !stristr($domain["host"], "imaginarium-of-the-table.wew.jp")) {
+    $error_text = ["result" => "error"];
+    $text = "不正なアクセスを検知しました：" . $referrer;
+    $error_text = $error_text + array("error_text" => $text);
+    send_message_exit($error_text);
 }
 
+
+/* ============================================== */
+/*                 データ読み込み                 */
+/* ============================================== */
+$postid = $_POST["postid"];
+$type = $_POST["type"];
+
+
+/* ========================================== */
+/*                 データ読み込み                 */
+/* ========================================== */
+$userid = $_COOKIE["loginuserid"] !== "develop" ? $_COOKIE["loginuserid"]: "0000";
+$data_path = "../data/";
+$post_data = "{$data_path}{$userid}/{$type}/{$postid}.xml";
+
+if ($type === "novel") {
+    $is_novel_edit = true;
+    $novel_root = simplexml_load_file($post_data);
+    $anonymous = $novel_root["anonymous"];
+    $novel_info = $novel_root->info;
+    $title = $novel_info->title;
+    $img = $novel_info->img;
+    $category = $novel_info->category;
+    $tags = $novel_info->tags;
+    if ($tags->count() > 0) {
+        $taglist="";
+        foreach($tags->tag as $tag){
+            $taglist .= "{$tag}　";
+        }
+    }
+    $caption = preg_replace('/<br[[:space:]]*\/?[[:space:]]*>/i', "\n", $novel_info->caption);
+    $length = $novel_info->length;
+    $postday = $novel_info->postday;
+    $createday = $novel_info->createday;
+    $afterword = preg_replace('/<br[[:space:]]*\/?[[:space:]]*>/i', "\n", $novel_info->afterword);
+    foreach ($novel_root->body->page as $page) {
+        $pages[] = preg_replace('/<br[[:space:]]*\/?[[:space:]]*>/i', "\n", $page);
+    }
+} else {
+}
+$member = parse_ini_file("../data/member.cgi", true);
+$title = "編集 {$title}";
+$is_edit = true;
+include_once("../parts/head.php");
+?>
+
+<body>
+    <?php include_once("../parts/header.php"); ?>
+    <main>
+        <h2><span>編集</span></h2>
+        <article>
+            <h3><span>準備中です。編集してもデータが保存されないので気をつけてください。</span></h3>
+            <form>
+                <section>
+                <h4>本文</h4>
+                    <!--<div>
+                        <button type="button" class="add-page">ページを追加</button>
+                        <button type="button" class="remove-page">ページを削除</button>
+                    </div>-->
+
+                    <div id="novel-body">
+                        <?php 
+                        for($i = 0 ; $i < count($pages); $i++){
+                            $id = $i + 1;
+                        ?>
+                        <div id="page-<?php echo $id; ?>">
+                            <label><?php echo $id; ?>ページ目</label>
+                            <textarea name="<?php echo $id; ?>"><?php echo $pages[$i]; ?></textarea>
+                            <label class="length length-<?php echo $id; ?>">文字数</label>
+                        </div>
+                        <?php } // for ?>
+                    </div>
+
+                    <button type="button" class="add-page">ページを追加</button>
+                    <button type="button" class="remove-page">ページを削除</button>
+                    <input type="hidden" id="pages" name="pages" value="<?php echo count($pages)?>">
+                    <input type="hidden" id="length" name="length" value="<?php echo $length;?>">
+                </section>
+
+                <section>
+                    <h4>情報</h4>
+                    <dl>
+                        <dt>匿名投稿</dt>
+                        <dd>
+                            <label><input type="checkbox" name="anonymous" <?php echo  $anonymous === "true" ? "checked" :"";?>>匿名投稿</label>
+                            <label>名前を隠して投稿したい場合はこちらを選択してください</label>
+                        </dd>
+
+                        <dt>タイトル</dt>
+                        <dd><input type="text" name="title" value="<?php echo $title ?>"></dd>
+
+                        <dt>表紙</dt>
+                        <dd id="novel-cover">
+                            <?php
+                            $novel_cover = glob("../img/novel-cover/*");
+                            foreach ($novel_cover as $cover) {
+                                $cover_name = basename($cover); ?>
+                                <label>
+                                    <img src="<?php echo $cover; ?>">
+                                    <input type="radio" name="novel-cover" value="<?php echo $cover_name; ?>" <?php echo $cover_name === (string)$img ? "checked" :""; ?>>
+                                </label>
+                            <?php } ?>
+                        </dd>
+
+                        <dt>カテゴリ</dt>
+                        <dd>
+                            <label>小説<input type="radio" name="category" value="novel" <?php echo $category === "novel" ? "checked": ""; ?>></label>
+                            <label>ひとコマ<input type="radio" name="category" value="one-scene" <?php echo $category === "one-scene" ? "checked": ""; ?>></label>
+                        </dd>
+
+                        <dt>ハッシュタグ</dt>
+                        <dd><label>#記号不要　空白区切り</label><br>
+                            <input type="text" name="hash-tag" value="<?php echo $taglist; ?>">
+                        </dd>
+
+                        <dt>キャプション</dt>
+                        <dd><textarea id="caption" name="caption"><?php echo $caption ?></textarea></dd>
+
+                        <dt>後書き</dt>
+                        <dd><textarea id="afterword" name="afterword"><?php echo $afterword ?></textarea></dd>
+                    </dl>
+                </section>
+                <div class="center margin-3">
+                    <button type="button" class="send">保存</button>
+                </div>
+                <input type="hidden" name="postday" value="<?php echo $postday; ?>">
+                <input type="hidden" name="updateday" value="now">
+            </form>
+        </article>
+    </main>
+
+    <?php include_once("../parts/footer.php"); ?>
+    <script src="/js/edit.js"></script>
+</body>
+</html>

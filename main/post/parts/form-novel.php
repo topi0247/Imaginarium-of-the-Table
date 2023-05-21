@@ -1,28 +1,17 @@
 <dl>
-    <?php include('parts/header.php'); ?>
+    <?php include("parts/header.php"); ?>
 
     <dt class="required">タイトル</dt>
-    <dd><input type="text" name="title" placeholder="タイトル" required></dd>
+    <dd><input type="text" name="title" placeholder="タイトル"></dd>
 
     <dt class="required">表紙</dt>
     <dd id="novel-cover">
         <?php
-        $novel_cover = glob('../img/novel-cover/*');
-        $c = 0;
-        foreach ($novel_cover as $cover) {
-            $cover_name = basename($cover);
-            switch($cover_name){
-                case 'notnovelcover.jpg':
-                    break;
-                case $cover === end($novel_cover):
-                    echo '<label><img src="'.$cover.'"><input type="radio" name="novel-cover" value = "'.$cover_name.'" required></label>';
-                    break;
-                default:
-                echo '<label><img src="'.$cover.'"><input type="radio" name="novel-cover" value = "'.$cover_name.'"></label>';
-                break;
-            }
-        }
-        ?>
+        $novel_cover = glob("../img/novel-cover/*");
+        foreach ($novel_cover as $cover) { 
+            $cover_name = basename($cover);?>
+            <label><img src="<?php echo $cover; ?>"><input type="radio" name="novel-cover" value = "<?php echo $cover_name; ?>"></label>
+        <?php } ?>
     </dd>
 
     <dt>カテゴリ</dt>
@@ -58,4 +47,4 @@
     </dd>
 </dl>
 
-<?php include('parts/footer.php'); ?>
+<?php include("footer.php"); ?>

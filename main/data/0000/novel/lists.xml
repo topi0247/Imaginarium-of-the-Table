@@ -1,5 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
 <novels>
-    
-    
+  <novel anonymous="false">
+    <title>断章　アザトース</title>
+    <img>photo-02.jpg</img>
+    <category>novel</category>
+    <tags>
+      <tag>原作</tag>
+      <tag>ラヴクラフト</tag>
+    </tags>
+    <caption/>
+    <length>967</length>
+    <readtime>2分</readtime>
+    <postday>2023/05/14 15:39</postday>
+    <updateday/>
+    <userid>0000</userid>
+    <postid>0000</postid>
+  </novel>
+  <novel anonymous="false">
+    <title>ニャルラトホテプ</title>
+    <img>illust-04.jpg</img>
+    <category>novel</category>
+    <tags>
+      <tag>原作</tag>
+      <tag>ラヴクラフト</tag>
+    </tags>
+    <caption/>
+    <length>3447</length>
+    <readtime>6分</readtime>
+    <postday>2023/05/14 15:40</postday>
+    <updateday/>
+    <userid>0000</userid>
+    <postid>0001</postid>
+  </novel>
+  <novel anonymous="false">
+    <title>錬金術師</title>
+    <img>photo-05.jpg</img>
+    <category>novel</category>
+    <tags>
+      <tag>原作</tag>
+      <tag>ラヴクラフト</tag>
+    </tags>
+    <caption>THE ALCHEMIST&lt;br&gt;
+著：Ｈ・Ｐ・ラヴクラフト&lt;br&gt;
+訳：Morishous T.H.E creative</caption>
+    <length>8653</length>
+    <readtime>14分</readtime>
+    <postday>2023/05/15 22:01</postday>
+    <updateday/>
+    <userid>0000</userid>
+    <postid>0005</postid>
+  </novel>
+  <novel anonymous="false">
+    <title>錬金術師</title>
+    <img>photo-05.jpg</img>
+    <category>novel</category>
+    <tags>
+      <tag>原作</tag>
+      <tag>ラヴクラフト</tag>
+    </tags>
+    <caption>THE ALCHEMIST&lt;br&gt;
+著：Ｈ・Ｐ・ラヴクラフト&lt;br&gt;
+訳：Morishous T.H.E creative</caption>
+    <length>8653</length>
+    <readtime>14分</readtime>
+    <postday>2023/05/15 22:01</postday>
+    <updateday/>
+    <userid>0000</userid>
+    <postid>0006</postid>
+  </novel>
+  <novel anonymous="false">
+    <title>テストタイトル</title>
+    <img>illust-03.jpg</img>
+    <category>novel</category>
+    <tags>
+      <tag>タグ１</tag>
+      <tag>タグ２</tag>
+    </tags>
+    <caption>キャプション　キャプション&lt;br&gt;キャプション</caption>
+    <length>24</length>
+    <readtime>1分</readtime>
+    <postday>2023/05/16 0:19</postday>
+    <updateday/>
+    <userid>0000</userid>
+    <postid>0007</postid>
+  </novel>
 </novels>

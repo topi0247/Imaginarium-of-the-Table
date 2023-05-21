@@ -5,8 +5,8 @@ body#POST header h1{
 }
 
 #preview button::before{
-    font-family: 'Material Icons';
-    content: '\f1c5';
+    font-family: "Material Icons";
+    content: "\f1c5";
 }
 
 #post-session,#post-novel,#post-illust{
@@ -32,7 +32,7 @@ body#POST header h1{
 }
 
 #postResult.post-error,#postResult.draft-error{
-    border-color: #de9a9a;
+    border: 1px solid #de9a9a;
     background: rgba(222, 154, 154, 0.25);
 }
 
@@ -42,28 +42,32 @@ body#POST header h1{
 }
 
 #postResult.post-success::before{
-    content: '投稿しました';
+    content: "投稿しました";
 }
 
 #postResult.post-error::after{
-    content: '投稿に失敗しました';
+    content: "投稿に失敗しました";
 }
 
 #postResult.draft-success::after{
-    content: '下書き保存しました';
+    content: "下書き保存しました";
 }
 
 #postResult.draft-error::after{
-    content: '下書き保存に失敗しました';
+    content: "下書き保存に失敗しました";
 }
 
 /* === セッション投稿 === */
-input[type='url']{
+input[type="url"]{
     width: 100%;
     cursor: auto;
 }
 
 /* === 小説投稿 === */
+textarea{
+    height: calc(calc(var(--font-size) + 1.05rem) * 15);
+}
+
 textarea#caption,textarea#afterword{
     height: calc(calc(var(--font-size) + 1.05rem) * 5);
 }
@@ -132,12 +136,12 @@ textarea#caption,textarea#afterword{
 }
 
 #novel-cover label:has(input:checked)::before{
-    content: '';
+    content: "";
     background: var(--theme-color1-op);
 }
 
 #novel-cover label:has(input:checked)::after{
-    content: 'select';
+    content: "select";
     text-align: center;
     color: white;
 }

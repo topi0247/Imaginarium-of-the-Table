@@ -1,6 +1,6 @@
 <?php
-$title = 'document';
-include('_module/head.php');
+$title = "document";
+include("parts/head.php");
 ?>
 
 <body>
@@ -34,7 +34,7 @@ include('_module/head.php');
                 </li>
                 <li>小説
                     <ul class="inline">
-                        <li><a href="novel/index">目次</a></li>
+                        <li><a href="novel">目次</a></li>
                         <li><a href="novel/novel?userid=0000&postid=0001">小説</a></li>
                     </ul>
                 </li>
@@ -45,7 +45,7 @@ include('_module/head.php');
                         <li><a href="illust/illust-thumbnail.html">イラストサムネ表示</a></li>
                     </ul>
                 </li>
-                <li><a href="post/index">投稿画面</a></li>
+                <li><a href="post">投稿画面</a></li>
             </ul>
         </article>
 
@@ -694,7 +694,7 @@ include('_module/head.php');
         </article>
     </main>
 
-    <?php include_once('_module/footer.php'); ?>
+    <?php include_once("parts/footer.php"); ?>
 </body>
 
 </html>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<novel anonymous="false">
+  <info>
+    <title>テストタイトル</title>
+    <img>illust-03.jpg</img>
+    <category>novel</category>
+    <tags>
+      <tag>タグ１</tag>
+      <tag>タグ２</tag>
+    </tags>
+    <caption>キャプション　キャプション&lt;br&gt;キャプション</caption>
+    <length>24</length>
+    <readtime>1分</readtime>
+    <postday>2023/05/16 0:19</postday>
+    <updateday/>
+    <createday>2023/05/16 0:19</createday>
+    <afterword>後書き　後書き&lt;br&gt;後書き</afterword>
+  </info>
+  <body>
+    <page>サンプルテキスト&lt;br&gt;サンプルテキストサンプルテキスト</page>
+  </body>
+</novel>

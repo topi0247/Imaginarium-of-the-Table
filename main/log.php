@@ -1,19 +1,20 @@
 <?php 
 $title = 'log';
-include('_module/head.php');
+$is_log = true;
+include_once('parts/head.php');
 ?>
 
 <body>
-    <?php
-    $is_log = true;
-    include('_module/header.php');
-    ?>
+    <?php include_once('parts/header.php'); ?>
 
     <main>
         <article>
             <h2><span>infomation</span></h2>
             <section>
                 <dl>
+                    <dt>2023/05/21</dt>
+                    <dd>小説投稿の不具合を修正しました。<br>要望・不具合報告のフォームを用意しました。</dd>
+
                     <dt>2023/05/11</dt>
                     <dd>アップデート！開発状況は<a href="develop">こちら</a><br>
                         <h4>ログイン周りを大幅変更</h4>
@@ -81,7 +82,7 @@ include('_module/head.php');
         </article>
     </main>
 
-    <?php include_once('_module/footer.php'); ?>
+    <?php include_once('parts/footer.php'); ?>
 </body>
 
 </html>

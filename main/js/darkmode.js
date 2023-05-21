@@ -2,7 +2,7 @@
 let userMod = window.matchMedia("(prefers-color-scheme: dark)").matches;
 let sMode = window.sessionStorage.getItem("user");
 let el = document.documentElement;
-const THEME = 'theme';
+const THEME = "theme";
 
 if (sMode) {
     el.setAttribute(THEME, sMode);

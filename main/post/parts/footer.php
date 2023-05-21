@@ -1,4 +1,5 @@
 <div class="center margin-3">
-    <button type="submit" name="post-private">非公開投稿</button>
-    <button type="submit" name="post">公開投稿</button>
+    <button type="button" name="post-private" class="send">非公開投稿</button>
+    <button type="button" name="post" class="send">公開投稿</button>
+    <input type="hidden" name="is_private">
 </div>

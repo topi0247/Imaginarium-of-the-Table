@@ -1,26 +1,22 @@
 <?php
-$title = '小説目次';
-include('../_module/head.php');
-
-$member = parse_ini_file('../data/member.ini', true);
+$title = "小説目次";
+$is_index_novel = true;
+include("../parts/head.php");
 ?>
 
 <body>
-    <?php
-    $is_index_novel = true;
-    include('../_module/header.php');
-    ?>
+    <?php include_once("../parts/header.php"); ?>
 
     <main>
         <article>
             <h2><span>新着順</span></h2>
             <section>
-                <?php include_once('toc.php');?>
+                <?php include_once("toc.php");?>
             </section>
         </article>
     </main>
 
-    <?php include_once('../_module/footer.php'); ?>
+    <?php include_once("../parts/footer.php"); ?>
 </body>
 
 </html>

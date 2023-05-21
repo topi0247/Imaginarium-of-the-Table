@@ -1,0 +1,87 @@
+@charset "UTF-8";
+
+/* === ユーザー設定 === */
+body#USER_SETTING input[type="text"] {
+    width: calc(var(--font-size) * 15);
+}
+
+.novel-thumbnail .novel:has(form){
+    margin-bottom: calc(var(--font-size)*2);
+}
+
+.private .novel-cover,.draft .novel-cover{
+    position: relative;
+}
+
+.private .novel-cover::after,.draft .novel-cover::after{
+    position: absolute;
+    top: 0;
+    color: var(--white);
+}
+
+.private .novel-cover::after{
+    content: "非公開";
+    background: var(--more-dark);
+}
+
+.draft .novel-cover::after{
+    content: "下書き";
+    background: var(--gray);
+}
+
+#pswd-status,#novel-status {
+    display: none;
+    padding: 10px;
+    margin: 10px 0;
+    width: 100%;
+    border: 1px solid transparent;
+    text-align: center;
+}
+
+#pswd-status {
+    max-width: calc(var(--font-size)*18);
+}
+
+#pswd-status.init,#pswd-status.error,
+#novel-status.error{
+    display: block;
+    border-color: #de9a9a;
+    background: rgba(222, 154, 154, 0.25);
+}
+
+#pswd-status.init::after {
+    content: "パスワードが初期状態です\A変更をおすすめします";
+    white-space: pre;
+}
+
+#pswd-status.success {
+    display: block;
+    border: 1px solid #9ac5de;
+    background: rgba(154, 209, 222, 0.25);
+}
+
+#pswd-status.success::after {
+    content: "パスワードを変更しました";
+}
+
+#pswd-status.error::after,#novel-status.error::after {
+    content: "エラーが発生しました";
+}
+
+#novel-status.public, #novel-status.private, #novel-status.delete {
+    display: block;
+    border: 1px solid #9ac5de;
+    background: rgba(154, 209, 222, 0.25);
+}
+
+#novel-status.public::after {
+    content: "公開しました";
+}
+
+#novel-status.private::after {
+    content: "非公開にしました";
+}
+
+#novel-status.delete::after {
+    content: "削除しました";
+}

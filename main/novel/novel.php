@@ -1,50 +1,36 @@
 <?php
 
 // ユーザーID取得
-if (isset($_GET['userid'])) {
-    $userid = $_GET['userid'];
+if (isset($_GET["userid"])) {
+    $userid = $_GET["userid"];
 }
 
 // 投稿番号取得
-if (isset($_GET['postid'])) {
-    $postid = $_GET['postid'];
+if (isset($_GET["postid"])) {
+    $postid = $_GET["postid"];
 }
 
-$novel_path = '../data/' . $userid . '/novel/' . $postid . '.xml';
+$novel_path = "../data/{$userid}/novel/{$postid}.xml";
 $xml = simplexml_load_file($novel_path);
 
 $novel_info = $xml->info;
 $novel_body = $xml->body;
-$title = (string)$novel_info->title;
+$title = $novel_info->title;
 $is_novel = true;
-include('../_module/head.php');
+include("../parts/head.php");
 
-$member = parse_ini_file('../data/member.ini', true);
-$user = $xml['anonymous'] == 'false' ? $member[(string)$userid]['name'] : '匿名';
-$tags = [];
-if ($novel_info->tags->children('tag') > 0) {
-    foreach ($novel_info->tags as $t) {
-        $tags[] = (string)$t->tag;
-    }
+$member = parse_ini_file("../data/member.cgi", true);
+$user = $xml["anonymous"] === "false" ? $member[$userid]["name"] : "匿名";
+foreach ($novel_info->tags->tag as $t) {
+    $tags[] = (string)$t;
 }
 $page_count = count($novel_body->page);
-
-function showTags(){
-    if (!empty($tags)) {
-        echo '<ul class="hashtag">';
-        foreach ($tags as $tag) {
-            echo '<li><a>' . $tag . '</a></li>';
-        }
-        echo '</ul>';
-    }
-}
+$caption = $novel_info->caption;
+$caption = str_replace("&#13;","<br>",$caption);
 ?>
 
 <body id="NOVEL">
-    <?php
-    $is_novel = true;
-    include_once('../_module/header.php');
-    ?>
+    <?php include_once("../parts/header.php"); ?>
 
     <main>
         <article id="novel-header">
@@ -55,7 +41,13 @@ function showTags(){
                 </div>
                 <div class="caption">
                     <div class="user"><a><?php echo $user; ?></a></div>
-                    <?php showTags();?>
+                    <?php if (!empty($tags)) {?>
+                    <ul class="hashtag">
+                        <?php foreach ($tags as $tag) {?>
+                            <li><a><?php echo $tag; ?></a></li>
+                        <?php } // foreach ?>
+                    </ul>
+                    <?php } // if (!empty($tags)) ?>
                     <p><?php echo (string)$novel_info->caption; ?></p>
                     <div class="post-data">
                         <span class="length"><?php echo $novel_info->length; ?>文字</span>
@@ -68,19 +60,12 @@ function showTags(){
         </article>
 
         <article id="novel-body">
-            <?php
-            $result = '';
-            for ($i = 0; $i < $page_count; $i++) {
-                $c = $i + 1;
-                if ($c === 1) {
-                    $result .= '<div id = "' . $c . '" class = "current "';
-                } else {
-                    $result .= '<div id = "' . $c . '">';
-                }
-                $result .= '<p>'.(string)$novel_body->page[$i] . '</p></div>';
-            }
-            echo $result;
-            ?>
+            <?php for ($i = 0; $i < $page_count; $i++) { 
+                $page = $novel_body->page[$i] ;?>
+                <div id="<?php echo $i + 1; ?>" class="<?php echo $i!==0 ? "" : "current"?>">
+                    <p><?php echo $page; ?></p>
+                </div>
+            <?php } ?>
         </article>
 
         <article id="novel-footer">
@@ -88,15 +73,9 @@ function showTags(){
                 <nav>
                     <button type="button" class="prev"></button>
                     <?php
-                    for ($i = 0; $i < $page_count; $i++) {
-                        $c = $i + 1;
-                        if ($c === 1) {
-                            echo '<button type="button" class="current">1</button>';
-                        } else {
-                            echo '<button type="button"">' . $c . '</button>';
-                        }
-                    }
-                    ?>
+                    for ($i = 0; $i < $page_count; $i++) { ?>
+                        <button type="button" class="<?php echo $i!==0 ? "": "current"?>"><?php echo $i+1; ?></button>
+                    <?php } // for ?>
                     <button type="button" class="next"></button>
                 </nav>
             </section>
@@ -104,7 +83,13 @@ function showTags(){
                 <div class="caption">
                     <h4><?php echo $title; ?></h4>
                     <div class="user"><a><?php echo $user; ?></a></div>
-                    <?php showTags();?>
+                    <?php if (!empty($tags)) {?>
+                    <ul class="hashtag">
+                        <?php foreach ($tags as $tag) {?>
+                            <li><a><?php echo $tag; ?></a></li>
+                        <?php } // foreach ?>
+                    </ul>
+                    <?php } // if (!empty($tags)) ?>
                     <p><?php echo (string)$novel_info->afterword; ?></p>
                     <div class="post-data">
                         <span class="length"><?php echo $novel_info->length; ?>文字</span>
@@ -117,7 +102,8 @@ function showTags(){
         </article>
     </main>
 
-    <?php include_once('../_module/footer.php'); ?>
+    <?php include_once("../parts/footer.php"); ?>
+    <script src="/js/novel.js"></script>
 </body>
 
 </html>

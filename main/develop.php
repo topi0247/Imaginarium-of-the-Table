@@ -1,12 +1,10 @@
 <?php 
-$title = 'develop';
-include('_module/head.php');
+$title = "develop";
+$is_develop = true;
+include_once("parts/head.php");
 ?>
 <body>
-    <?php 
-    $is_develop = true;
-    include('_module/header.php');
-    ?>
+    <?php include_once("parts/header.php"); ?>
 
     <main>
         <article>
@@ -14,6 +12,7 @@ include('_module/head.php');
             <section>
                 <h3><span>作業中</span></h3>
                 <ul>
+                    <li>リファクタリング（定期）</li>
                     <li>投稿作品の編集</li>
                     <li>投稿処理-セッション</li>
                     <li>投稿処理-イラスト</li>
@@ -90,6 +89,7 @@ include('_module/head.php');
                             <li>小説作品の削除</li>
                         </ul>
                     </li>
+                    <li>要望・不具合報告のフォーム設置</li>
                 </ul>
             </section>
     
@@ -143,6 +143,6 @@ include('_module/head.php');
         </article>
     </main>
     
-    <?php include_once('_module/footer.php'); ?>
+    <?php include_once("parts/footer.php"); ?>
 </body>
 </html>

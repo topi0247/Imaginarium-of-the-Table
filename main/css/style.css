@@ -27,7 +27,7 @@
 }
 
 :root[theme="light"] {
-    --mode: '\e518';
+    --mode: "\e518";
     --theme-color1: #917FB3;
     --theme-color2: #313cd8;
     --text-color: var(--more-dark);
@@ -45,7 +45,7 @@
 }
 
 :root[theme="dark"] {
-    --mode: '\e51c';
+    --mode: "\e51c";
     --text-color: var(--white);
     --bg-color: var(--more-dark);
     --bg-reverse-color: var(--white);
@@ -62,26 +62,26 @@
 
 /*
     h1
-    font-family: 'Caveat', cursive; 
+    font-family: "Caveat", cursive; 
     font-weight: 500;
 
     h2~h4
-    font-family: 'Zen Old Mincho', serif;
+    font-family: "Zen Old Mincho", serif;
     font-weight: 400;
     font-weight: 700;
 
     本文
-    font-family: 'Klee One', cursive;
+    font-family: "Klee One", cursive;
     font-weight: 400;
     font-weight: 600;
 
     本文２
-    font-family: 'Shippori Mincho', serif;
+    font-family: "Shippori Mincho", serif;
     font-weight: 400;
     font-weight: 700;
 
     本文３
-    font-family: 'Zen Kaku Gothic New', sans-serif;
+    font-family: "Zen Kaku Gothic New", sans-serif;
     font-weight: 400;
     font-weight: 700;
 
@@ -104,7 +104,7 @@ a {
   text-decoration: none;
 }
 
-a, a::after, a::before, button, button::after, button::before, input, textarea, select, label:has(input){
+a, a::after, a::before, button, button::after, button::before, input, select, label:has(input){
   transition: all 0.3s;
 }
 
@@ -159,7 +159,7 @@ p:last-child {
 
 /* ==== レイアウト ==== */
 body,button,input,textarea,select {
-  font-family: 'Klee One','Shippori Mincho',serif;
+  font-family: "Klee One","Shippori Mincho",serif;
   font-size: var(--font-size);
   line-height: calc(var(--font-size) + 1.05rem);
   color:var(--text-color);
@@ -176,14 +176,14 @@ body {
 }
 
 body::before,body::after{
-    mask-image: url('../img/magic_circle.png');
+    mask-image: url("/img/magic_circle.png");
     mask-size: contain;
-    -webkit-mask-image: url('../img/magic_circle.png');
+    -webkit-mask-image: url("/img/magic_circle.png");
     -webkit-mask-size: contain;
     background-blend-mode: multiply;
     background-color: var(--theme-color1);
     opacity: 0.2;
-    content: '';
+    content: "";
     width: 700px;
     aspect-ratio: 1 / 1;
     position: fixed;
@@ -235,40 +235,40 @@ button.prev::after,button.next::after,
 .user::before,.log::before,
 .create-day::before,.update-day::before,
 .post-day::before,.draft::before {
-  font-family: 'Material Icons';
+  font-family: "Material Icons";
 }
 
 button.prev::after{
-    content: '\e2ea';
+    content: "\e2ea";
 }
 
 button.next::after{
-    content: '\e5e1';
+    content: "\e5e1";
 }
 
 .user::before{
-    content: '\e7fd';
+    content: "\e7fd";
 }
 
 .log::before{
-    content: '\e889';
+    content: "\e889";
     padding-right: 0.2rem;
 }
 
 .create-day::before{
-    content: '\e3c9';
+    content: "\e3c9";
 }
 
 .update-day::before{
-    content: '\e923';
+    content: "\e923";
 }
 
 .post-day::before{
-    content: '\e255';
+    content: "\e255";
 }
 
 .draft::before{
-    content: '\e745';
+    content: "\e745";
 }
 
 .create-day,.update-day,.post-day{
@@ -305,7 +305,7 @@ input,textarea{
 }
 
 textarea{
-    height: calc(calc(var(--font-size) + 1.05rem) * 10);
+    height: calc(calc(var(--font-size) + 1.05rem) * 5);
 }
 
 input[type="checkbox"], input[type="radio"] {
@@ -335,9 +335,18 @@ textarea:hover,textarea:focus,button:disabled {
     border-color:var(--form-hover-border);
 }
 
+button:disabled{
+    pointer-events: none;
+}
+
+/* フォーム */
+form > *{
+    margin: 3px;;
+}
+
 /* 必須 */
 .required::after{
-    content: '*';
+    content: "*";
     color: var(--theme-color1);
 }
 
@@ -350,14 +359,14 @@ a[target="_blank"]{
 }
 
 a[target="_blank"]::before{
-    content: '\e157';
+    content: "\e157";
     display: inline-block;
     transform: rotate(-45deg);
 }
 
 /* 見出し */
 h1 {
-    font: 500 80px/120% 'Caveat', serif;
+    font: 500 80px/120% "Caveat", serif;
     text-align: center;
     color: var(--theme-color1);
     font-size: 50px;
@@ -381,7 +390,7 @@ html[theme="dark"] h1 a:hover {
 }
 
 h2,h3,h4,h5,h6 {
-    font-family: 'Zen Old Mincho', serif;
+    font-family: "Zen Old Mincho", serif;
     color: var(--theme-color1);
     display: block;
 }
@@ -400,7 +409,7 @@ h2 span {
 }
 
 h2 span::before,h2 span::after {
-    content: '';
+    content: "";
     position: absolute;
     top: 50%;
     display: inline-block;
@@ -433,7 +442,7 @@ h3 span {
 }
 
 h3 span::before {
-    content: '';
+    content: "";
     position: absolute;
     bottom: -5px;
     display: inline-block;
@@ -490,7 +499,7 @@ hr {
 }
 
 hr::after {
-    content: '';
+    content: "";
     position: absolute;
     top: 50%;
     left: 50%;
@@ -520,12 +529,12 @@ ul.inline{
 }
 
 ul.inline li::after{
-    content: '/';
+    content: "/";
     padding: 0 0.4rem;
 }
 
 ul.inline li:last-child::after{
-    content: '';
+    content: "";
 }
 
 dl dt,dl dd,
@@ -680,7 +689,7 @@ footer p{
 }
 
 .fixed-menu li.pagetop button::before{
-    content:'\eacf';
+    content:"\eacf";
 }
 
 .fixed-menu li.mode button::before{
@@ -754,14 +763,14 @@ footer p{
 
     #toggleMenu::after{
         font-size: 40px;
-        content: '\e5d2';
+        content: "\e5d2";
         position: absolute;
         top: 5px;
         right: 0;
     }
 
     #toggleMenu.close::after{
-        content: '\e5cd';
+        content: "\e5cd";
         color: var(--bg-reverse-color);
     }
     
@@ -787,8 +796,21 @@ footer p{
 
 }
 
-/* === ログイン === */
-#loginResult{
+/* === ログイン・要望不具合 === */
+body#INDEX form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 auto;
+    width: calc(var(--font-size) * 30);
+    max-width: 100%;
+}
+
+body#INDEX form > *{
+    margin: var(--font-size) auto;
+}
+
+#loginResult,#requestResult{
     display: none;
     padding: 10px;
     margin: 10px auto;
@@ -800,14 +822,42 @@ footer p{
     width: calc(var(--font-size) * 15);
 }
 
-#loginResult.error{
+#loginResult.error,#loginResult.fail,#requestResult.fail{
     display: block;
     border-color: #de9a9a;
     background: rgba(222, 154, 154, 0.25);
 }
 
-#loginResult.error::after{
-    content: 'パスワードが違います';
+#loginResult.error::after,#requestResult.fail::after{
+    content: "エラーが発生しました";
+}
+
+#loginResult.fail::after{
+    content: "パスワードが違います";
+}
+
+#requestResult{
+    width: 100%;
+    padding: var(--font-size);
+    text-align: center;
+}
+
+#loginResult.logout,#requestResult.success {
+    display: block;
+    border: 1px solid #9ac5de;
+    background: rgba(154, 209, 222, 0.25);
+}
+
+#requestResult.success::after{
+    content: "送信しました";
+}
+
+#requestResult.success + #request{
+    display: none;
+}
+
+#loginResult.logout::after{
+    content: "ログアウトしました";
 }
 
 /* === 列配置 === */
@@ -893,7 +943,7 @@ ul.hashtag li{
 }
 
 ul.hashtag li:not(:has(a))::before,ul.hashtag li a::before{
-    content: '#';
+    content: "#";
 }
 
 /* 卓予定サムネイル */
@@ -920,7 +970,7 @@ ul.hashtag li:not(:has(a))::before,ul.hashtag li a::before{
 }
 
 .sess-date .month,.sess-date .date{
-    font-family: 'Caveat', serif;
+    font-family: "Caveat", serif;
     font-size: 8rem;
 }
 
@@ -952,7 +1002,7 @@ ul.hashtag li:not(:has(a))::before,ul.hashtag li a::before{
 }
 
 .sess-time .start::after{
-    content:'～';
+    content:"～";
     font-size: var(--font-size);
 }
 
@@ -979,12 +1029,12 @@ ul.hashtag li:not(:has(a))::before,ul.hashtag li a::before{
 }
 
 .sess-thumbnail ul.member li::after{
-    content: '/';
+    content: "/";
     padding: 0 0.5rem;
 }
 
 .sess-thumbnail ul.member li:last-child::after{
-    content: '';
+    content: "";
 }
 
 ul.member li.gm::before,ul.member li.kp::before,ul.member li.sgm::before,ul.member li.skp::before{
@@ -997,11 +1047,11 @@ ul.member li.gm::before,ul.member li.kp::before{
 }
 
 ul.member li.gm::before{
-    content: 'GM';
+    content: "GM";
 }
 
 ul.member li.kp::before{
-    content: 'KP';
+    content: "KP";
 }
 
 ul.member li.sgm::before,ul.member li.skp::before{
@@ -1010,11 +1060,11 @@ ul.member li.sgm::before,ul.member li.skp::before{
 }
 
 ul.member li.sgm::before{
-    content: 'SGM';
+    content: "SGM";
 }
 
 ul.member li.skp::before{
-    content: 'SKP';
+    content: "SKP";
 }
 
 .sess-thumbnail p.caption{
@@ -1120,22 +1170,6 @@ ul.member li.skp::before{
     display: none;
 }
 
-.novel-thumbnail .novel:has(form){
-    margin-bottom: calc(var(--font-size)*2);
-}
-
-.private .novel-cover{
-    position: relative;
-}
-
-.private .novel-cover::after{
-    content: '非公開';
-    position: absolute;
-    top: 0;
-    background: var(--bg-color);
-}
-
-
 /* === セッションページ === */
 .scenario ul.author{
     display: flex;
@@ -1148,18 +1182,18 @@ ul.member li.skp::before{
 }
 
 .scenario ul.author::before{
-    mask-image: url('../img/icon.png');
+    mask-image: url("../img/icon.png");
     mask-size: contain;
-    -webkit-mask-image: url('../img/icon.png');
+    -webkit-mask-image: url("../img/icon.png");
     -webkit-mask-size: contain;
     background-color: var(--bg-reverse-color);
-    content: '';
+    content: "";
     width: calc(var(--font-size) * 2);
     height: calc(var(--font-size) * 2);
 }
 
 .scenario ul.author li:not(:last-child)::after{
-    content: '&';
+    content: "&";
     padding: 0 0.8rem;
 }
 
@@ -1220,13 +1254,13 @@ body#NOVEL header h1{
     display: none;
 }
 
-#novel-body div::before{
-    content: '';
+body#NOVEL #novel-body div::before{
+    content: "";
     height: 7rem;
     display: block;
 }
 
-#novel-body div:not(.current){
+body#NOVEL #novel-body div:not(.current){
     display: none;
 }
 
@@ -1334,73 +1368,6 @@ table.calendar{
     background: #94bce98c;
 }
 
-/* === ユーザー設定 === */
-body#USER_SETTING input[type='text']{
-    width: calc(var(--font-size) * 15);
-}
-
-#pswd-status{
-    display: none;
-    padding: 10px;
-    margin: 10px 0;
-    width: 100%;
-    max-width: calc(var(--font-size)*18);
-    border: 1px solid transparent;
-    text-align: center;
-}
-
-#pswd-status.init,#novel-status.error{
-    display: block;
-    border-color: #de9a9a;
-    background: rgba(222, 154, 154, 0.25);
-}
-
-#pswd-status.init::after{
-    content: 'パスワードが初期状態です\A変更をおすすめします';
-    white-space: pre;
-}
-
-#pswd-status.change{
-    display: block;
-    border: 1px solid #9ac5de;
-    background: rgba(154, 209, 222, 0.25);
-}
-
-#pswd-status.change::after{
-    content: 'パスワードを変更しました';
-}
-
-#novel-status{
-    display: none;
-    padding: 10px;
-    margin: 10px 0;
-    width: 100%;
-    border: 1px solid transparent;
-    text-align: center;
-}
-
-#novel-status.error::after{
-    content: 'エラーが発生しました';
-}
-
-#novel-status.public,#novel-status.private,#novel-status.delete{
-    display: block;
-    border: 1px solid #9ac5de;
-    background: rgba(154, 209, 222, 0.25);
-}
-
-#novel-status.public::after{
-    content: '公開しました';
-}
-
-#novel-status.private::after{
-    content: '非公開に変更しました';
-}
-
-#novel-status.delete::after{
-    content: '削除しました';
-}
-
 /* === 汎用 === */
 br.br-sp{ display: none; }
 
@@ -1444,12 +1411,12 @@ br.br-sp{ display: none; }
 
 /* サイト名 */
 .sitename-before::before,.sitename-after::after{
-    content:'Imaginarium of the Table'; 
+    content:"Imaginarium of the Table"; 
 }
 
 /* フォント種類 */
-.sitename-font{ font-family: 'Caveat', serif; }
-.gothic { font-family: 'Zen Kaku Gothic New', sans-serif;}
+.sitename-font{ font-family: "Caveat", serif; }
+.gothic { font-family: "Zen Kaku Gothic New", sans-serif;}
 
 /* spotlight */
 #spotlight{
@@ -1507,7 +1474,7 @@ br.br-sp{ display: none; }
     }
 
     .sess-thumbnail ul.member li::after{
-        content: '';
+        content: "";
     }
 
     /* イラスト */

@@ -1,31 +1,19 @@
 <?php 
-$title = 'セッション';
-include('../_module/head.php');
+$title = "セッション";
+$is_index_session = true;
+include_once("../parts/head.php");
 ?>
 <body>
-    <?php 
-    $is_index_session = true;
-    include('../_module/header.php');
-    ?>
+    <?php include_once("../parts/header.php"); ?>
 
     <main>
         <article>
             <section>
-                <p>サムネイルデザインはできてるけど実装はまだです。<br>
-                現在はとりあえず投稿済みだけを列挙してます。</p>
-            </section>
-            <section>
                 <h3><span>セッション</span></h3>
-                <ul style="list-style: none; padding : 0;">
-                <?php
-                $data_path = './';
-                include('../_module/toc.php');
-                ?>
-                </ul>
             </section>
         </article>
     </main>
     
-    <?php include_once('../_module/footer.php'); ?>
+    <?php include_once("../parts/footer.php"); ?>
 </body>
 </html>
