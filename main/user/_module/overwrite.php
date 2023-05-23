@@ -286,7 +286,7 @@ if(!$public_exist){
 /* ============================================== */
 /*                 公開リスト                     */
 /* ============================================== */
-$public_data = $public_datas[$count];
+$public_data = $public_datas[$index];
 // 匿名
 $public_data["anonymous"] = $anonymous;
 // タイトル
