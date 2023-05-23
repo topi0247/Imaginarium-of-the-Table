@@ -70,6 +70,15 @@ include_once("parts/head.php");
                     <li>セッションページデザイン</li>
                     <li>小説ページデザイン・実装</li>
                     <li>イラストページデザイン</li>
+                    <li>投稿ページ</li>
+                    <li>投稿機能（小説のみ）
+                        <ul class="inline">
+                            <li>プレビュー</li>
+                            <li>公開投稿</li>
+                            <li>非公開投稿</li>
+                            <li>文字装飾（ルビ・文字大・文字小・文字中央・文字右端）</li>
+                        </ul>
+                    </li>
                     <li>過去ログページ</li>
                     <li>開発状況ページ</li>
                     <li>画像表示
@@ -90,6 +99,7 @@ include_once("parts/head.php");
                         </ul>
                     </li>
                     <li>要望・不具合報告のフォーム設置</li>
+                    
                 </ul>
             </section>
     

@@ -40,6 +40,37 @@ function send_discord($name,$text){
     file_get_contents($webhook, false, stream_context_create($options));
 }
 
+// 文字列をhtmlエンティティ置き換え
+function html_replace($text,$list = false){
+    $result = $text;
+    // ルビ
+    $ruby = "/\[RB:(.*?)>(.*?)\]/";
+    $replace = "<ruby><rb>$1</rb><rp>（</rp><rt>$2</rt><rp>）</rp></ruby>";
+    $result = preg_replace($ruby, $replace, $result);
+    // 文字小
+    $small ="/\[S:(.*?)\]/";
+    $replace = $list ? "$1" : "<span class='small'>$1</span>";
+    $result = preg_replace($small, $replace, $result);
+    // 文字大
+    $large ="/\[L:(.*?)\]/";
+    $replace = $list ? "$1" : "<span class='large'>$1</span>";
+    $result = preg_replace($large, $replace, $result);
+    // 文字中央
+    $center ="/\[C:(.*?)\]/";
+    $replace = $list ? "$1" : "<span class='block center'>$1</span>";
+    $result = preg_replace($center, $replace, $result);
+    // 文字右
+    $right ="/\[R:(.*?)\]/";
+    $replace = $list ? "$1" : "<span class='block right'>$1</span>";
+    $result = preg_replace($right, $replace, $result);
+    // 改行
+    $break = "/\r\n|\r|\n/";
+    $replace =  $list ? "　" : "<br>";
+    $result = preg_replace($break, $replace, $result);
+
+    return htmlspecialchars($result);
+}
+
 /* ============================================== */
 /*                 データ読み込み                 */
 /* ============================================== */
@@ -48,7 +79,7 @@ parse_str(json_decode($_POST["form_data"]), $jsonData);
 // 匿名フラグ
 $anonymous = isset($jsonData["anonymous"]) ? "true" : "false";
 // タイトル
-$title = $jsonData["title"];
+$title = html_replace($jsonData["title"]);
 // 表紙
 $img = $jsonData["novel-cover"];
 // カテゴリー
@@ -62,7 +93,9 @@ if(!empty($jsonData["hash-tag"])){
     }
 }
 // キャプション
-$caption = !empty($jsonData["caption"]) ? htmlspecialchars(str_replace(array("\r\n", "\r", "\n"), "<br>", $jsonData["caption"])) : "";
+$caption = !empty($jsonData["caption"]) ? html_replace($jsonData["caption"]):"";
+// リスト用キャプション
+$list_caption = !empty($jsonData["caption"]) ? html_replace($jsonData["caption"],true):"";
 // 文字数
 $length = $jsonData["length"];
 // 読了時間（600文字/m計算）
@@ -79,12 +112,12 @@ if ($length >= 600) {
     $readtime = 1 . "分";
 }
 // 後書き
-$afterword = !empty($jsonData["afterword"]) ? htmlspecialchars(str_replace(array("\r\n", "\r", "\n"), "<br>", $jsonData["afterword"])) : "";
+$afterword = !empty($jsonData["afterword"]) ? html_replace($jsonData["afterword"]):"";
 // 小説本文
 $page_count = $jsonData["pages"];
 $pages;
 for ($i = 1; $i < $page_count + 1; $i++) {
-    $pages[]= htmlspecialchars(str_replace(array("\r\n", "\r", "\n"), "<br>", $jsonData[$i]));
+    $pages[]= html_replace($jsonData[$i]);
 }
 // 非公開設定
 $post_private = empty($jsonData["is_private"]) ? false : true;
@@ -225,7 +258,7 @@ if(!empty($taglist)){
 
 // キャプション
 $novel_info->addChild("caption",$caption);
-$private_novel->addChild("caption",$caption);
+$private_novel->addChild("caption",$list_caption);
 
 // 文字数
 $novel_info->addChild("length",$length);
@@ -321,7 +354,7 @@ if(!empty($taglist)){
     }
 }
 // キャプション
-$public_novel->addChild("caption",$caption);
+$public_novel->addChild("caption",$list_caption);
 // 文字数
 $public_novel->addChild("length",$length);
 // 読了時間

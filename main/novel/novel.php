@@ -26,7 +26,7 @@ foreach ($novel_info->tags->tag as $t) {
 }
 $page_count = count($novel_body->page);
 $caption = $novel_info->caption;
-$caption = str_replace("&#13;","<br>",$caption);
+// $caption = str_replace("&#13;", "<br>", $caption);
 ?>
 
 <body id="NOVEL">
@@ -41,13 +41,15 @@ $caption = str_replace("&#13;","<br>",$caption);
                 </div>
                 <div class="caption">
                     <div class="user"><a><?php echo $user; ?></a></div>
-                    <?php if (!empty($tags)) {?>
-                    <ul class="hashtag">
-                        <?php foreach ($tags as $tag) {?>
-                            <li><a><?php echo $tag; ?></a></li>
-                        <?php } // foreach ?>
-                    </ul>
-                    <?php } // if (!empty($tags)) ?>
+                    <?php if (!empty($tags)) { ?>
+                        <ul class="hashtag">
+                            <?php foreach ($tags as $tag) { ?>
+                                <li><a><?php echo $tag; ?></a></li>
+                            <?php } // foreach 
+                            ?>
+                        </ul>
+                    <?php } // if (!empty($tags)) 
+                    ?>
                     <p><?php echo (string)$novel_info->caption; ?></p>
                     <div class="post-data">
                         <span class="length"><?php echo $novel_info->length; ?>文字</span>
@@ -60,9 +62,9 @@ $caption = str_replace("&#13;","<br>",$caption);
         </article>
 
         <article id="novel-body">
-            <?php for ($i = 0; $i < $page_count; $i++) { 
-                $page = $novel_body->page[$i] ;?>
-                <div id="<?php echo $i + 1; ?>" class="<?php echo $i!==0 ? "" : "current"?>">
+            <?php for ($i = 0; $i < $page_count; $i++) {
+                $page = $novel_body->page[$i]; ?>
+                <div id="<?php echo $i + 1; ?>" class="<?php echo $i !== 0 ? "" : "current" ?>">
                     <p><?php echo $page; ?></p>
                 </div>
             <?php } ?>
@@ -74,8 +76,9 @@ $caption = str_replace("&#13;","<br>",$caption);
                     <button type="button" class="prev"></button>
                     <?php
                     for ($i = 0; $i < $page_count; $i++) { ?>
-                        <button type="button" class="<?php echo $i!==0 ? "": "current"?>"><?php echo $i+1; ?></button>
-                    <?php } // for ?>
+                        <button type="button" class="<?php echo $i !== 0 ? "" : "current" ?>"><?php echo $i + 1; ?></button>
+                    <?php } // for 
+                    ?>
                     <button type="button" class="next"></button>
                 </nav>
             </section>
@@ -83,13 +86,15 @@ $caption = str_replace("&#13;","<br>",$caption);
                 <div class="caption">
                     <h4><?php echo $title; ?></h4>
                     <div class="user"><a><?php echo $user; ?></a></div>
-                    <?php if (!empty($tags)) {?>
-                    <ul class="hashtag">
-                        <?php foreach ($tags as $tag) {?>
-                            <li><a><?php echo $tag; ?></a></li>
-                        <?php } // foreach ?>
-                    </ul>
-                    <?php } // if (!empty($tags)) ?>
+                    <?php if (!empty($tags)) { ?>
+                        <ul class="hashtag">
+                            <?php foreach ($tags as $tag) { ?>
+                                <li><a><?php echo $tag; ?></a></li>
+                            <?php } // foreach 
+                            ?>
+                        </ul>
+                    <?php } // if (!empty($tags)) 
+                    ?>
                     <p><?php echo (string)$novel_info->afterword; ?></p>
                     <div class="post-data">
                         <span class="length"><?php echo $novel_info->length; ?>文字</span>

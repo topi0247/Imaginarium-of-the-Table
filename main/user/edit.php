@@ -13,16 +13,41 @@ if (!stristr($domain["host"], "localhost-iott") && !stristr($domain["host"], "im
 }
 
 
+/* ==================================== */
+/*                 関数                 */
+/* ==================================== */
+function put_back_notation($text){
+    $result = $text;
+    // ルビ
+    $ruby = "/<ruby><rb>(.*?)<\/rb><rp>（<\/rp><rt>(.*?)<\/rt><rp>）<\/rp><\/ruby>/";
+    $replace = "[RB:$1>$2]";
+    $result = preg_replace($ruby, $replace, $result);
+    // 文字小
+    $small ="/<span class='small'>(.*?)<\/span>/";
+    $replace ="[S:$1]";
+    $result = preg_replace($small, $replace, $result);
+    // 文字大
+    $large ="/<span class='large'>(.*?)<\/span>/";
+    $replace ="[L:$1]";
+    $result = preg_replace($large, $replace, $result);
+    // 文字中央
+    $center ="/<span class='block center'>(.*?)<\/span>/";
+    $replace ="[C:$1]";
+    $result = preg_replace($center, $replace, $result);
+    // 文字右
+    $right ="/<span class='block right'>(.*?)<\/span>/";
+    $replace ="[R:$1]";
+    $result = preg_replace($right, $replace, $result);
+    // 改行
+    $result = str_replace('<br>', "\n", $result);
+    return $result;
+}
+
 /* ============================================== */
 /*                 データ読み込み                 */
 /* ============================================== */
 $postid = $_POST["postid"];
 $type = $_POST["type"];
-
-
-/* ========================================== */
-/*                 データ読み込み                 */
-/* ========================================== */
 $userid = $_COOKIE["loginuserid"] !== "develop" ? $_COOKIE["loginuserid"]: "0000";
 $data_path = "../data/";
 $post_data = "{$data_path}{$userid}/{$type}/{$postid}.xml";
@@ -32,7 +57,7 @@ if ($type === "novel") {
     $novel_root = simplexml_load_file($post_data);
     $anonymous = $novel_root["anonymous"];
     $novel_info = $novel_root->info;
-    $title = $novel_info->title;
+    $novel_title = put_back_notation($novel_info->title);
     $img = $novel_info->img;
     $category = $novel_info->category;
     $tags = $novel_info->tags;
@@ -42,18 +67,18 @@ if ($type === "novel") {
             $taglist .= "{$tag}　";
         }
     }
-    $caption = preg_replace('/<br[[:space:]]*\/?[[:space:]]*>/i', "\n", $novel_info->caption);
+    $caption = put_back_notation($novel_info->caption);
     $length = $novel_info->length;
     $postday = $novel_info->postday;
     $createday = $novel_info->createday;
-    $afterword = preg_replace('/<br[[:space:]]*\/?[[:space:]]*>/i', "\n", $novel_info->afterword);
+    $afterword = put_back_notation($novel_info->afterword);
     foreach ($novel_root->body->page as $page) {
-        $pages[] = preg_replace('/<br[[:space:]]*\/?[[:space:]]*>/i', "\n", $page);
+        $pages[] = put_back_notation($page);
     }
 } else {
 }
 $member = parse_ini_file("../data/member.cgi", true);
-$title = "編集 {$title}";
+$title = "編集 {$novel_title}";
 $is_edit = true;
 include_once("../parts/head.php");
 ?>
@@ -101,7 +126,7 @@ include_once("../parts/head.php");
                         </dd>
 
                         <dt>タイトル</dt>
-                        <dd><input type="text" name="title" value="<?php echo $title ?>"></dd>
+                        <dd><input type="text" name="title" value="<?php echo $novel_title ?>"></dd>
 
                         <dt>表紙</dt>
                         <dd id="novel-cover">

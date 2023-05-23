@@ -1,11 +1,40 @@
 <?php
+// 特殊置き換え
+function html_replace($text){
+    $result = $text;
+    // ルビ
+    $ruby = "/\[RB:(.*?)>(.*?)\]/";
+    $replace = "<ruby><rb>$1</rb><rp>（</rp><rt>$2</rt><rp>）</rp></ruby>";
+    $result = preg_replace($ruby, $replace, $result);
+    // 文字小
+    $small ="/\[S:(.*?)\]/";
+    $replace ="<span class='small'>$1</span>";
+    $result = preg_replace($small, $replace, $result);
+    // 文字大
+    $large ="/\[L:(.*?)\]/";
+    $replace ="<span class='large'>$1</span>";
+    $result = preg_replace($large, $replace, $result);
+    // 文字中央
+    $center ="/\[C:(.*?)\]/";
+    $replace ="<span class='block center'>$1</span>";
+    $result = preg_replace($center, $replace, $result);
+    // 文字右
+    $right ="/\[R:(.*?)\]/";
+    $replace ="<span class='block right'>$1</span>";
+    $result = preg_replace($right, $replace, $result);
+    // 改行
+    $result = preg_replace('/\r\n|\r|\n/', '<br>', $result);
+
+    return $result;
+}
+
 // ユーザー名
 $userid = $_COOKIE["loginuserid"] !== "develop" ? $_COOKIE["loginuserid"] : "0000";
 $member = parse_ini_file("../data/member.cgi", true);
 $user_name = isset($_POST["anonymous"]) ? "匿名" : $member[$userid]["name"];
 
 // タイトル
-$novel_title = empty($_POST["title"]) ? "no title" : $_POST["title"];
+$novel_title = empty($_POST["title"]) ? "no title" : html_replace($_POST["title"]);
 
 // 表紙
 $novel_cover_dir = isset($_POST["novel-cover"]) ? "../img/novel-cover/" : "../img/";
@@ -24,7 +53,7 @@ if(isset($_POST["hash-tag"]) && !empty($_POST["hash-tag"])){
 }
 
 // キャプション
-$caption = isset($_POST["caption"]) ? str_replace(array("\r\n", "\r", "\n"), "<br>", $_POST["caption"]) : "";
+$caption = isset($_POST["caption"]) ? html_replace($_POST["caption"]) : "";
 
 // ページ数
 $pages = $_POST["pages"] ?? 0;
@@ -48,11 +77,11 @@ if ($length >= 600) {
 
 $novel_body = [];
 for ($i = 1; $i < $pages + 1; $i++) {
-    $novel_body[] = str_replace(array("\r\n", "\r", "\n"), "<br>", $_POST[$i]);
+    $novel_body[] = html_replace($_POST[$i]);
 }
 
 // 後書き
-$afterword = isset($_POST["afterword"]) ? str_replace(array("\r\n", "\r", "\n"), "<br>", $_POST["afterword"]) : "";
+$afterword = isset($_POST["afterword"]) ? html_replace($_POST["afterword"]) : "";
 
 // 投稿日
 if(isset($_POST["postday"])){

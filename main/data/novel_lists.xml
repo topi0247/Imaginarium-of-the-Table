@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <novels>
   <novel anonymous="false">
+    <title>朝と夜の&lt;ruby&gt;&lt;rb&gt;物語&lt;/rb&gt;&lt;rp&gt;（&lt;/rp&gt;&lt;rt&gt;Roman&lt;/rt&gt;&lt;rp&gt;）&lt;/rp&gt;&lt;/ruby&gt;</title>
+    <img>illust-01.jpg</img>
+    <category>novel</category>
+    <tags/>
+    <caption>&lt;span class='block center'&gt;其処に&lt;ruby&gt;&lt;rb&gt;物語&lt;/rb&gt;&lt;rp&gt;（&lt;/rp&gt;&lt;rt&gt;Roman&lt;/rt&gt;&lt;rp&gt;）&lt;/rp&gt;&lt;/ruby&gt;はあるのだろうか…&lt;/span&gt;</caption>
+    <length>1520</length>
+    <readtime>3分</readtime>
+    <postday>2023/05/22 22:26</postday>
+    <updateday/>
+    <userid>0000</userid>
+    <postid>0008</postid>
+  </novel>
+  <novel anonymous="false">
     <title>錬金術師</title>
     <img>photo-05.jpg</img>
     <category>novel</category>
@@ -16,6 +29,19 @@
     <postid>0006</postid>
   </novel>
   <novel anonymous="false">
+    <title>断章　アザトース</title>
+    <img>photo-02.jpg</img>
+    <category>novel</category>
+    <tags/>
+    <caption/>
+    <length>967</length>
+    <readtime>2分</readtime>
+    <postday>2023/05/14 15:39</postday>
+    <updateday/>
+    <userid>0000</userid>
+    <postid>0000</postid>
+  </novel>
+  <novel anonymous="false">
     <title>ニャルラトホテプ</title>
     <img>illust-04.jpg</img>
     <category>novel</category>
@@ -27,18 +53,5 @@
     <updateday/>
     <userid>0000</userid>
     <postid>0001</postid>
-  </novel>
-  <novel anonymous="false">
-    <title>テストタイトル</title>
-    <img>illust-03.jpg</img>
-    <category>novel</category>
-    <tags/>
-    <caption>キャプション　キャプション&lt;br&gt;キャプション</caption>
-    <length>24</length>
-    <readtime>1分</readtime>
-    <postday>2023/05/16 0:19</postday>
-    <updateday/>
-    <userid>0000</userid>
-    <postid>0007</postid>
   </novel>
 </novels>

@@ -150,20 +150,4 @@ $(function () {
                 })
         }
     })
-
-    function send_disord(text) {
-        const message = {
-            content: text,
-            tts: false
-        }
-
-        const param = {
-            method: "POST",
-            headers: { "Content-type": "application/json" },
-            body: JSON.stringify(message)
-        }
-
-        const webhook = "";
-        fetch(webhook, param).then((res) => { }).then((json) => { });
-    }
 })

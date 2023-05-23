@@ -1,18 +1,80 @@
 $(function () {
+    var toolbox = `
+    <div class="toolbox">
+        <ul>
+            <li><a class="addRuby">ルビを挿入</a></li>
+            <li><a class="addSmall">文字を小さく</a></li>
+            <li><a class="addLarge">文字を大きく</a></li>
+            <li><a class="addCenter">中央に文字</a></li>
+            <li><a class="addRight">右側に文字</a></li>
+        </ul>
+    </div>`;
+    var $addTarget;
+
+    $(document).on("click",".tools a",function(){
+        $("body").append(toolbox);
+        let $toppos = $(this).offset().top;
+        let $leftpos = $(this).offset().left -80;
+        $(".toolbox").offset({ top: $toppos, left: $leftpos });
+        $addTarget = $(this).prev();
+    })
+
+    $(document).click(function(e){
+        if($(".toolbox").length && !$(e.target).closest(".tools a").length && !$(e.target).closest(".toolbox").length){
+            $(".toolbox").remove();
+            return false;
+        }
+    })
+
+    $(document).on("click",".toolbox a",function(){
+        let $tagClass = $(this).attr("class");
+        let add;
+        switch($tagClass){
+            case "addRuby":
+                add = "[RB:漢字>かんじ]";
+                break;
+            case "addSmall":
+                add = "[S:文字小]";
+                break;
+            case "addLarge":
+                add = "[L:文字大]";
+                break;
+            case "addCenter":
+                add = "[C:文字中央]";
+                break;
+            case "addRight":
+                add = "[R:文字右端]";
+                break;
+        }
+        let selectPos = $addTarget.get(0).selectionStart;
+        let preText = $addTarget.val().substr(0,selectPos);
+        let nextText = $addTarget.val().substr(selectPos);
+        $addTarget.val(preText + add + nextText);
+        CountLength();
+    })
+
     $("#add-page").click(function () {
         let $prevNum = $("#pages").attr("value");
         let addNum = Number($prevNum) + 1;
         let placeholder = `本文${addNum}`;
         $(this).before(`
+            <div id="page-${addNum}">
             <label>${addNum}ページ目</label>
+            <div class="tools">
             <textarea name="${addNum}" placeholder="${placeholder}"></textarea>
-            <label class="length length-${addNum}">文字数</label>`);
+            <a></a></div>
+            <label class="length length-${addNum}">文字数</label>
+            </div>`);
         $("#pages").attr("value", addNum);
     })
 
     $(document).on("input", "#novel-body textarea", function () {
-        const length = $(this).val().replace(/\n/g, "").length;
-        $(this).next("label").text(`${length}文字`);
+        const length = $(this).val()
+                            .replace(/\n/g, "")
+                            .replace(/\[[a-zA-Z]*:/g, "")
+                            .replace(/>/g, "")
+                            .replace(/\]/g, "").length;
+        $(this).parents("[id*='page-']").find("label.length").text(`${length}文字`);
 
         CountLength();
     })
@@ -22,10 +84,7 @@ $(function () {
         let result = window.confirm(`本文${$value}を削除しますか？`);
 
         if (result) {
-            const textarea = $(`textarea[name="${$value}"]`);
-            textarea.prev("label").remove();
-            textarea.remove();
-            $(`.length-${$value}`).remove();
+            $(`#page-${$value}`).remove();
             $("#pages").attr("value", $value - 1);
 
             CountLength();
@@ -35,7 +94,11 @@ $(function () {
     function CountLength() {
         let all_length = 0;
         $("#novel-body textarea").each(function () {
-            all_length += $(this).val().replace(/\n/g, "").length;
+            all_length += $(this).val()
+                        .replace(/\n/g, "")
+                        .replace(/\[[a-zA-Z]*:/g, "")
+                        .replace(/>/g, "")
+                        .replace(/\]/g, "").length;
         })
 
         $("#length").attr("value", all_length);
@@ -64,10 +127,14 @@ $(function () {
     })
 
     $("button.send").click(function () {
+        let $form = $(this).parents("form");
+        if(!$form[0].reportValidity()){
+            return false;
+        }
+
         if ($(this).attr("name") === "post-private") {
             $("input[name='is_private']").val("true");
         }
-        let $form = $(this).parents("form");
         let url;
         switch ($form.attr("id")) {
             case "form-session":
@@ -91,6 +158,14 @@ $(function () {
         })
             .done(function (data) {
                 post_result(true, data);
+                $form
+                    .find('input,textarea')
+                    .not('input[type=\"radio\"],input[type=\"checkbox\"],:hidden, :button, :submit,:reset')
+                    .val('');
+                $form
+                    .find('input[type=\"radio\"], input[type=\"checkbox\"],select')
+                    .removeAttr('checked')
+                    .removeAttr('selected');
             })
             .fail(function (jqXHR, textStatus, errorThrown) {
                 post_result(false, null, errorThrown.message);
@@ -104,13 +179,11 @@ $(function () {
         $result.removeClass();
         if (success === false) {
             $result.addClass("post-error");
-            //send_disord(`投稿時予期せぬエラーが発生しました\n${error_text}`);
             return false;
         }
 
         if (jsonData.result === "error") {
             $result.addClass("post-error");
-            //send_disord(jsonData.error_text);
             return false;
         }
 
@@ -141,22 +214,6 @@ $(function () {
         $result.addClass("post-success");
         let link = `<a href="${url}">投稿されたページを見る</a>`;
         $result.append(link);
-    }
-
-    function send_disord(text) {
-        const message = {
-            content: text,
-            tts: false
-        }
-
-        const param = {
-            method: "POST",
-            headers: { "Content-type": "application/json" },
-            body: JSON.stringify(message)
-        }
-
-        const webhook = "";
-        fetch(webhook, param).then((res) => { }).then((json) => { });
     }
 
     $(window).on("beforeunload", function (e) {

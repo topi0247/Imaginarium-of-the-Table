@@ -1254,6 +1254,10 @@ body#NOVEL header h1{
     display: none;
 }
 
+article#novel-body{
+    margin-top: 0;
+}
+
 body#NOVEL #novel-body div::before{
     content: "";
     height: 7rem;

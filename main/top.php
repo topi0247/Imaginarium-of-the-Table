@@ -11,14 +11,14 @@ include_once("parts/head.php");
             <section>
                 <div class="border">
                     <dl class="inline">
+                        <dt>2023/05/23</dt>
+                        <dd>小説投稿にて装飾ツール（ルビ・文字大・文字小・文字中央・文字右端）を追加しました。</dd>
+
                         <dt>2023/05/21</dt>
                         <dd>小説投稿の不具合を修正しました。<br>要望・不具合報告のフォームを用意しました。</dd>
 
                         <dt>2023/05/12</dt>
                         <dd>アップデート！詳細は<a href="log">こちら</a>　開発状況は<a href="develop">こちら</a></dd>
-
-                        <dt>2023/05/06</dt>
-                        <dd>β版公開　開発状況は<a href="develop">こちら</a></dd>
                     </dl>
                 </div>
                 <span class="block right"><a class="log" href="log">log</a></span>

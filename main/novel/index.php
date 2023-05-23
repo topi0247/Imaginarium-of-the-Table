@@ -11,6 +11,7 @@ include("../parts/head.php");
         <article>
             <h2><span>新着順</span></h2>
             <section>
+                <p>新着順に見せかけて新着順ではない</p>
                 <?php include_once("toc.php");?>
             </section>
         </article>

@@ -93,6 +93,9 @@ if ($novel_is_create) {
                         $url = "../novel/novel?userid={$novels[$i]->userid}&postid={$postid}";
                         $imgurl = "{$dir}../img/novel-cover/{$novel->img}";
                         $title = $novel->title;
+                        // ルビ対策
+                        $ruby = "/<ruby><rb>(.*?)<\/rb><rp>（<\/rp><rt>(.*?)<\/rt><rp>）<\/rp><\/ruby>/";
+                        $title_rmruby = preg_replace($ruby, "$1", $title);
                         $is_private = !isset($pub_novel_list) || !in_array($postid, $pub_novel_list);
                     ?>
                     <div class="novel <?php echo $is_private ? "private":""; ?>">
@@ -118,7 +121,7 @@ if ($novel_is_create) {
                                 </div>
                             </div>
                         </div>
-                        <form type="novel" title="<?php echo $title; ?>" postid="<?php echo $postid; ?>">
+                        <form type="novel" title="<?php echo $title_rmruby; ?>" postid="<?php echo $postid; ?>">
                             <button type="button" class="showToggle"><?php echo $is_private ? "公開" : "非公開"; ?></button>
                             <button type="button" class="edit">編集</button>
                             <button type="button" class="delete">削除</button>

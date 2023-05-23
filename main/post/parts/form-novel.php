@@ -1,17 +1,18 @@
 <dl>
     <?php include("parts/header.php"); ?>
-
     <dt class="required">タイトル</dt>
-    <dd><input type="text" name="title" placeholder="タイトル"></dd>
+    <dd><div class="tools"><input type="text" name="title" placeholder="タイトル" required><a></a></div></dd>
 
     <dt class="required">表紙</dt>
     <dd id="novel-cover">
         <?php
         $novel_cover = glob("../img/novel-cover/*");
+        $count = 0;
         foreach ($novel_cover as $cover) { 
             $cover_name = basename($cover);?>
-            <label><img src="<?php echo $cover; ?>"><input type="radio" name="novel-cover" value = "<?php echo $cover_name; ?>"></label>
-        <?php } ?>
+            <label><img src="<?php echo $cover; ?>"><input type="radio" name="novel-cover" value = "<?php echo $cover_name; ?>" <?php echo $count === 0 ? "required":""?>></label>
+        <?php $count++;
+        } ?>
     </dd>
 
     <dt>カテゴリ</dt>
@@ -26,15 +27,16 @@
     </dd>
 
     <dt>キャプション</dt>
-    <dd>
-        <textarea id="caption" name="caption" placeholder="キャプション"></textarea>
-    </dd>
+    <dd><div class="tools"><textarea id="caption" name="caption" placeholder="キャプション"></textarea><a></a></div></dd>
 
     <dt class="required">本文</dt>
     <dd id="novel-body">
-        <label>1ページ目</label>
-        <textarea name="1" placeholder="本文 1" required></textarea>
-        <label class="length length-1">文字数</label>
+        <div id="page-1">
+            <label>1ページ目</label>
+            <div class="tools"><textarea name="1" placeholder="本文 1" required></textarea><a></a></div>
+            <label class="length length-1">文字数</label>
+        </div>
+        
         <button type="button" id="add-page">ページを追加</button>
         <button type="button" id="remove-page">ページを削除</button>
         <input type="hidden" id="pages" name="pages" value="1">
@@ -43,7 +45,7 @@
 
     <dt>後書き</dt>
     <dd>
-        <textarea id="afterword" name="afterword" placeholder="後書き"></textarea>
+    <div class="tools"><textarea id="afterword" name="afterword" placeholder="後書き"></textarea><a></a></div>
     </dd>
 </dl>
 

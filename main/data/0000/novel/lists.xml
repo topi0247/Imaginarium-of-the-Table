@@ -48,40 +48,22 @@
     <postday>2023/05/15 22:01</postday>
     <updateday/>
     <userid>0000</userid>
-    <postid>0005</postid>
-  </novel>
-  <novel anonymous="false">
-    <title>錬金術師</title>
-    <img>photo-05.jpg</img>
-    <category>novel</category>
-    <tags>
-      <tag>原作</tag>
-      <tag>ラヴクラフト</tag>
-    </tags>
-    <caption>THE ALCHEMIST&lt;br&gt;
-著：Ｈ・Ｐ・ラヴクラフト&lt;br&gt;
-訳：Morishous T.H.E creative</caption>
-    <length>8653</length>
-    <readtime>14分</readtime>
-    <postday>2023/05/15 22:01</postday>
-    <updateday/>
-    <userid>0000</userid>
     <postid>0006</postid>
   </novel>
   <novel anonymous="false">
-    <title>テストタイトル</title>
-    <img>illust-03.jpg</img>
+    <title>朝と夜の&lt;ruby&gt;&lt;rb&gt;物語&lt;/rb&gt;&lt;rp&gt;（&lt;/rp&gt;&lt;rt&gt;Roman&lt;/rt&gt;&lt;rp&gt;）&lt;/rp&gt;&lt;/ruby&gt;</title>
+    <img>illust-01.jpg</img>
     <category>novel</category>
     <tags>
-      <tag>タグ１</tag>
-      <tag>タグ２</tag>
+      <tag>SoundHorizon</tag>
+      <tag>Roman</tag>
     </tags>
-    <caption>キャプション　キャプション&lt;br&gt;キャプション</caption>
-    <length>24</length>
-    <readtime>1分</readtime>
-    <postday>2023/05/16 0:19</postday>
+    <caption>其処に&lt;ruby&gt;&lt;rb&gt;物語&lt;/rb&gt;&lt;rp&gt;（&lt;/rp&gt;&lt;rt&gt;Roman&lt;/rt&gt;&lt;rp&gt;）&lt;/rp&gt;&lt;/ruby&gt;はあるのだろうか…</caption>
+    <length>1343</length>
+    <readtime>2分</readtime>
+    <postday>2023/05/23 14:55</postday>
     <updateday/>
     <userid>0000</userid>
-    <postid>0007</postid>
+    <postid>0008</postid>
   </novel>
 </novels>

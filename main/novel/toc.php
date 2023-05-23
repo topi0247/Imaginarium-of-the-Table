@@ -65,7 +65,7 @@ for ($i = 0; $i < count($novels); $i++) {
                 <a href="<?php echo $url; ?>"><img src="<?php echo "{$imgurl}{$novel->img}"; ?>"><span><?php echo "{$novel->title}"; ?></span></a>
             </div>
             <div class="caption">
-                <h4><a href="<?php echo $url; ?>"></a></h4>
+                <h4><a href="<?php echo $url; ?>"><?php echo "{$novel->title}"; ?></a></h4>
                 <div class="user"><a><?php echo $user; ?></a></div>
                 <?php if (isset($novel->tags)) { ?>
                 <ul class="hashtag">

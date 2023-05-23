@@ -57,6 +57,7 @@ body#POST header h1{
     content: "下書き保存に失敗しました";
 }
 
+
 /* === セッション投稿 === */
 input[type="url"]{
     width: 100%;
@@ -72,7 +73,7 @@ textarea#caption,textarea#afterword{
     height: calc(calc(var(--font-size) + 1.05rem) * 5);
 }
 
-#novel-body:has(textarea:only-of-type) #remove-page{
+#novel-body:not(:has([id="page-2"])) #remove-page{
     display: none;
 }
 
@@ -144,6 +145,61 @@ textarea#caption,textarea#afterword{
     content: "select";
     text-align: center;
     color: white;
+}
+
+.tools{
+    position: relative;
+}
+
+.tools a{
+    position: absolute;
+    top: calc(calc(var(--font-size) + 1.05rem) * -1);
+    right: 0;
+}
+
+.tools a::after{
+    font-family: "Material Icons";
+    content: "\e5d3";
+    font-size: 25px;
+}
+
+.toolbox{
+    width: calc(var(--font-size)*7);
+    text-align: center;
+    position: absolute;
+    z-index: 3;
+}
+
+.toolbox ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border: 1px solid var(--gray);
+}
+
+.toolbox ul li{
+    padding: 2px 0;
+    background: var(--form-bg);
+    border-bottom: 0.5px solid var(--gray);
+    transition: all 0.3s;
+}
+
+.toolbox ul li:hover{
+    background: var(--form-hover-bg);
+    border-color:var(--form-hover-border);
+}
+
+.toolbox ul li:last-child{
+    border: none;
+}
+
+.toolbox ul li a{
+    color: var(--form-color);
+}
+
+.toolbox ul li a:hover{
+    opacity: 1;
+    color: var(--form-hover-color);
 }
 
 @media only screen and (max-width: 1024px) {
