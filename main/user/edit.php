@@ -114,8 +114,8 @@ include_once("../parts/head.php");
                         <?php } // for ?>
                     </div>
 
-                    <button type="button" class="add-page">ページを追加</button>
-                    <button type="button" class="remove-page">ページを削除</button>
+                    <button type="button" id="add-page">ページを追加</button>
+                    <button type="button" id="remove-page">ページを削除</button>
                     <input type="hidden" id="pages" name="pages" value="<?php echo count($pages)?>">
                     <input type="hidden" id="length" name="length" value="<?php echo $length;?>">
                 </section>
