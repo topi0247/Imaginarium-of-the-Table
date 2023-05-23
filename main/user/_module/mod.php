@@ -155,8 +155,8 @@ if($mod === "public" || $mod === "delete"){
             $node->addChild("img", $addData->img);
             $node->addChild("category", $addData->category);
             $tags = $node->addChild("tags");
-            if (!empty($addData->$tags)) {
-                foreach ($addData->$tags as $tag) {
+            if ($addData->tags->count() > 0) {
+                foreach ($addData->tags as $tag) {
                     $tags->addChild("tag", $tag);
                 }
             }
