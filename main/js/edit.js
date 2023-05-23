@@ -1,75 +1,76 @@
 $(function () {
-
-    $(".add-page").click(function () {
-        let pageNum = CountPages(false,true);
-        let addNum = pageNum + 1;
-        let placeholder = `本文${addNum}`;
-        let elem = 
-        `<div id="page-${addNum}">
-            <label>${addNum}ページ目</label>
-            <textarea name="${addNum}" placeholder="${placeholder}"></textarea>
-            <label class="length length-${addNum}">文字数</label>
-        </div>`;
-
-        $("#novel-body").append(elem);
-        CountPages(true,false);
-    })
-
-    // $(document).on("input", "#novel-body textarea", function () {
-    //     const length = $(this).val().replace(/\n/g, "").length;
-    //     $(this).next("label").text(`${length}文字`);
-
-    //     CountLength();
-    // })
-
-    // $("#remove-page").click(function () {
-    //     let $value = $("#pages").val();
-    //     let result = window.confirm(`本文${$value}を削除しますか？`);
-
-    //     if (result) {
-    //         const textarea = $(`textarea[name="${$value}"]`);
-    //         textarea.prev("label").remove();
-    //         textarea.remove();
-    //         $(`.length-${$value}`).remove();
-    //         $("#pages").attr("value", $value - 1);
-
-    //         CountLength();
-    //     }
-    // })
-
-    function CountPages(set = true,get = true){
-        let $pageCount = $("#novel-body > div").length;
-        if(set) $("#pages").attr("value",$pageCount);
-        if(get) return $pageCount;
-    }
-
-    function CountAllLength() {
-        let all_length = 0;
-        $("dev[id*='page-'] textarea").each(function(){
-            all_length += $(this).val().replace(/\n/g, "").length;
-        })
-        $("#length").attr("value", all_length);
-    }
+    const $form = $("form");
 
     $("#preview button").click(function () {
-        if ($("input[value='type-session']").prop("checked")) {
-            preview($("#form-session"));
+        $form.attr("action", "/post/preview");
+        $form.attr("target", "_blank");
+        $form.attr("method", "POST");
+        $form.submit();
+        $form.attr("action", "");
+        $form.attr("target", "");
+        $form.attr("method", "");
+    })
+
+    $("button.overwrite").click(function(){
+        if(!$form[0].reportValidity()){
+            return false;
         }
-        else if ($("input[value='type-novel']").prop("checked")) {
-            preview($("#form-novel"));
+        
+        $.ajax({
+            url: "/user/_module/overwrite",
+            type: "POST",
+            data: { form_data: JSON.stringify($form.serialize()) },
+            dataType: "json",
+            timespan: 1000,
+        })
+            .done(function(data){
+                edit_result(true, data);
+            })
+            .fail(function (jqXHR, textStatus, errorThrown) {
+                edit_result(false, null, errorThrown.message);
+            })
+    })
+
+    function edit_result(success,jsonData,error_text=null){
+        $("body,html").animate({ scrollTop: 0 }, 0);
+        const $result = $("#editResult");
+        // クラスを全削除
+        $result.removeClass();
+        if (success === false) {
+            $result.addClass("error");
+            return false;
         }
-        else if ($("input[value='type-illust']").prop("checked")) {
-            preview($("#form-illust"));
+        if (jsonData.result === "error") {
+            $result.addClass("error");
+            return false;
         }
 
-        function preview($form) {
-            $form.attr("action", "preview");
-            $form.attr("target", "_blank");
-            $form.attr("method", "POST");
-            $form.submit();
-            $form.attr("action", "");
-            $form.attr("target", "");
-            $form.attr("method", "");
+        let type = jsonData.type;
+        let userid = jsonData.userid;
+        let postid = jsonData.postid;
+        let url;
+
+        switch (type) {
+            case "session":
+                url = "/session/session";
+                break;
+            case "novel":
+                url = "/novel/novel";
+                break;
+            case "illust":
+                url = "/illust/illust";
+                break;
         }
-    })
+
+        if (url === undefined) {
+            $result.addClass("error");
+            $result.append("<p>投稿がされているか<a href='/user'>設定</a>からご確認ください</p>");
+            return false;
+        }
+
+        url += `?userid=${userid}&postid=${postid}`;
+        $result.addClass("success");
+        let link = `<a href="${url}">編集結果を確認する</a>`;
+        $result.append(link);
+    }
 })

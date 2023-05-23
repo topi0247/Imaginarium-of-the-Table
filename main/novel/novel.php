@@ -17,7 +17,7 @@ $novel_info = $xml->info;
 $novel_body = $xml->body;
 // ルビ対策
 $ruby = "/<ruby><rb>(.*?)<\/rb><rp>（<\/rp><rt>(.*?)<\/rt><rp>）<\/rp><\/ruby>/";
-$title = preg_replace($ruby, "$1", $novel_info->title);
+$title = preg_replace($ruby, "$1", (string)$novel_info->title);
 $is_novel = true;
 include("../parts/head.php");
 $title = $novel_info->title;

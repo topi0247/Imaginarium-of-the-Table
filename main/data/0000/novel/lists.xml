@@ -50,7 +50,7 @@
     <userid>0000</userid>
     <postid>0006</postid>
   </novel>
-  <novel anonymous="false">
+  <novel anonymous="true">
     <title>朝と夜の&lt;ruby&gt;&lt;rb&gt;物語&lt;/rb&gt;&lt;rp&gt;（&lt;/rp&gt;&lt;rt&gt;Roman&lt;/rt&gt;&lt;rp&gt;）&lt;/rp&gt;&lt;/ruby&gt;</title>
     <img>illust-01.jpg</img>
     <category>novel</category>
@@ -58,12 +58,28 @@
       <tag>SoundHorizon</tag>
       <tag>Roman</tag>
     </tags>
-    <caption>其処に&lt;ruby&gt;&lt;rb&gt;物語&lt;/rb&gt;&lt;rp&gt;（&lt;/rp&gt;&lt;rt&gt;Roman&lt;/rt&gt;&lt;rp&gt;）&lt;/rp&gt;&lt;/ruby&gt;はあるのだろうか…</caption>
-    <length>1343</length>
+    <caption>ルビ・文字小・文字大・文字位置などの装飾を確認できます。　其処に&lt;ruby&gt;&lt;rb&gt;物語&lt;/rb&gt;&lt;rp&gt;（&lt;/rp&gt;&lt;rt&gt;Roman&lt;/rt&gt;&lt;rp&gt;）&lt;/rp&gt;&lt;/ruby&gt;はあるのだろうか…</caption>
+    <length>1342</length>
     <readtime>2分</readtime>
     <postday>2023/05/23 14:55</postday>
-    <updateday/>
+    <updateday>2023/05/23 18:23</updateday>
     <userid>0000</userid>
     <postid>0008</postid>
+  </novel>
+  <novel anonymous="true">
+    <title> 石畳の緋き悪魔</title>
+    <img>illust-04.jpg</img>
+    <category>novel</category>
+    <tags>
+      <tag>SoundHorizon</tag>
+      <tag>聖戦のイベリア</tag>
+    </tags>
+    <caption/>
+    <length>1127</length>
+    <readtime>2分</readtime>
+    <postday>2023/05/23 17:48</postday>
+    <updateday>2023/05/23 17:48</updateday>
+    <userid>0000</userid>
+    <postid>0009</postid>
   </novel>
 </novels>

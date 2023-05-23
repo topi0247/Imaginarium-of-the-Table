@@ -1381,6 +1381,10 @@ br.br-sp{ display: none; }
     text-align: center;
 }
 
+.block + br{
+    display: none;
+}
+
 .border{
     border: 1px solid var(--theme-color1); 
     padding: var(--font-size);

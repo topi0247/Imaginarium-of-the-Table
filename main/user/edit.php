@@ -55,17 +55,18 @@ $post_data = "{$data_path}{$userid}/{$type}/{$postid}.xml";
 if ($type === "novel") {
     $is_novel_edit = true;
     $novel_root = simplexml_load_file($post_data);
-    $anonymous = $novel_root["anonymous"];
+    $anonymous = (string)$novel_root["anonymous"];
     $novel_info = $novel_root->info;
     $novel_title = put_back_notation($novel_info->title);
-    $img = $novel_info->img;
-    $category = $novel_info->category;
+    $img = (string)$novel_info->img;
+    $category = (string)$novel_info->category;
     $tags = $novel_info->tags;
     if ($tags->count() > 0) {
         $taglist="";
         foreach($tags->tag as $tag){
             $taglist .= "{$tag}　";
         }
+        $taglist = mb_substr($taglist,0,-1);
     }
     $caption = put_back_notation($novel_info->caption);
     $length = $novel_info->length;
@@ -78,7 +79,10 @@ if ($type === "novel") {
 } else {
 }
 $member = parse_ini_file("../data/member.cgi", true);
-$title = "編集 {$novel_title}";
+// ルビ対策
+$ruby = "/<ruby><rb>(.*?)<\/rb><rp>（<\/rp><rt>(.*?)<\/rt><rp>）<\/rp><\/ruby>/";
+$title = preg_replace($ruby, "$1", $novel_info->title);
+$title = "編集 {$title}";
 $is_edit = true;
 include_once("../parts/head.php");
 ?>
@@ -87,8 +91,8 @@ include_once("../parts/head.php");
     <?php include_once("../parts/header.php"); ?>
     <main>
         <h2><span>編集</span></h2>
+        <div id="editResult"></div>
         <article>
-            <h3><span>準備中です。編集してもデータが保存されないので気をつけてください。</span></h3>
             <form>
                 <section>
                 <h4>本文</h4>
@@ -104,7 +108,7 @@ include_once("../parts/head.php");
                         ?>
                         <div id="page-<?php echo $id; ?>">
                             <label><?php echo $id; ?>ページ目</label>
-                            <textarea name="<?php echo $id; ?>"><?php echo $pages[$i]; ?></textarea>
+                            <div class="tools"><textarea name="<?php echo $id; ?>"><?php echo $pages[$i]; ?></textarea><a></a></div>
                             <label class="length length-<?php echo $id; ?>">文字数</label>
                         </div>
                         <?php } // for ?>
@@ -125,25 +129,26 @@ include_once("../parts/head.php");
                             <label>名前を隠して投稿したい場合はこちらを選択してください</label>
                         </dd>
 
-                        <dt>タイトル</dt>
-                        <dd><input type="text" name="title" value="<?php echo $novel_title ?>"></dd>
+                        <dt class="required">タイトル</dt>
+                        <dd><div class="tools"><input type="text" name="title" value="<?php echo $novel_title ?>" required><a></a></div></dd>
 
-                        <dt>表紙</dt>
+                        <dt class="required">表紙</dt>
                         <dd id="novel-cover">
                             <?php
                             $novel_cover = glob("../img/novel-cover/*");
+                            $count = 0;
                             foreach ($novel_cover as $cover) {
                                 $cover_name = basename($cover); ?>
                                 <label>
                                     <img src="<?php echo $cover; ?>">
-                                    <input type="radio" name="novel-cover" value="<?php echo $cover_name; ?>" <?php echo $cover_name === (string)$img ? "checked" :""; ?>>
+                                    <input type="radio" name="novel-cover" value="<?php echo $cover_name; ?>" <?php echo $cover_name === $img ? "checked" :""; ?>  <?php echo $count === 0 ? "required":""?>>
                                 </label>
                             <?php } ?>
                         </dd>
 
                         <dt>カテゴリ</dt>
                         <dd>
-                            <label>小説<input type="radio" name="category" value="novel" <?php echo $category === "novel" ? "checked": ""; ?>></label>
+                            <label>小説<input type="radio" name="category" value="novel" <?php echo $category === "novel" ? "checked": ""; ?> required></label>
                             <label>ひとコマ<input type="radio" name="category" value="one-scene" <?php echo $category === "one-scene" ? "checked": ""; ?>></label>
                         </dd>
 
@@ -153,22 +158,25 @@ include_once("../parts/head.php");
                         </dd>
 
                         <dt>キャプション</dt>
-                        <dd><textarea id="caption" name="caption"><?php echo $caption ?></textarea></dd>
+                        <dd><div class="tools"><textarea id="caption" name="caption"><?php echo $caption ?></textarea><a></a></div></dd>
 
                         <dt>後書き</dt>
-                        <dd><textarea id="afterword" name="afterword"><?php echo $afterword ?></textarea></dd>
+                        <dd><div class="tools"><textarea id="afterword" name="afterword"><?php echo $afterword ?></textarea><a></a></div></dd>
                     </dl>
                 </section>
                 <div class="center margin-3">
-                    <button type="button" class="send">保存</button>
+                    <button type="button" class="overwrite">保存</button>
                 </div>
                 <input type="hidden" name="postday" value="<?php echo $postday; ?>">
                 <input type="hidden" name="updateday" value="now">
+                <input type="hidden" name="postid" value="<?php echo $postid; ?>">
+                <input type="hidden" name="type" value="<?php echo $type; ?>">
             </form>
         </article>
     </main>
 
     <?php include_once("../parts/footer.php"); ?>
+    <script src="/js/post.js"></script>
     <script src="/js/edit.js"></script>
 </body>
 </html>

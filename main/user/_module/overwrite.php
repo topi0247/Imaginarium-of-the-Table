@@ -68,7 +68,6 @@ function html_replace($text,$list = false){
     $replace =  $list ? "　" : "<br>";
     $result = preg_replace($break, $replace, $result);
 
-    //return htmlspecialchars($result);
     return $result;
 }
 
@@ -77,6 +76,10 @@ function html_replace($text,$list = false){
 /* ============================================== */
 parse_str(json_decode($_POST["form_data"]), $jsonData);
 
+// 投稿Type
+$type = $jsonData["type"];
+// 投稿番号
+$postid = $jsonData["postid"];
 // 匿名フラグ
 $anonymous = isset($jsonData["anonymous"]) ? "true" : "false";
 // タイトル
@@ -120,24 +123,16 @@ $pages;
 for ($i = 1; $i < $page_count + 1; $i++) {
     $pages[]= html_replace($jsonData[$i]);
 }
-// 非公開設定
-$post_private = empty($jsonData["is_private"]) ? false : true;
 
 /******************************/
 /*         データ設定         */
 /******************************/
 // ユーザーid
 $userid = $_COOKIE["loginuserid"] === "develop" ? "0000" : $_COOKIE["loginuserid"];
-// ファイル作成日時
+// 更新日時
 $datetime = new DateTime();
 $datetime->setTimeZone(new DateTimeZone("Asia/Tokyo"));
-$createday = $datetime->format("Y/m/d G:i");
-// 投稿日時
-$postday = $datetime->format("Y/m/d G:i");
-// 投稿id
-$postid;
-// 個人リストの存在有無
-$private_list_exists = true;
+$updateday = $datetime->format("Y/m/d G:i");
 // 成功フラグ
 $succes;
 
@@ -146,173 +141,112 @@ $succes;
 /****************************************/
 $data_path = "../../data";
 // 個人データまでのパス
-$userdata_path = "{$data_path}/{$userid}";
-// 小説データまでのパス
-$noveldata_path = "{$userdata_path}/novel";
-// 個人データファイル
-$private_list_file = "{$noveldata_path}/lists.xml";
+$userdata_path = "{$data_path}/{$userid}/{$type}";
+// データファイル
+$data_file = "{$userdata_path}/{$postid}.xml";
+// 個人データリストファイル
+$private_list_file = "{$userdata_path}/lists.xml";
 
 
-/* ========================================================== */
-/*                    個人データリストから                    */
-/*                   投稿id（postid）を決定                   */
-/*                 ディレクトリがなければ作成                 */
-/* ========================================================== */
-if(!file_exists($userdata_path)){
-    $private_list_exists = false;
-    // ユーザーデータフォルダ作成
-    $succes = mkdir($userdata_path, 0777,true) ? chmod($userdata_path, 0777) : false;
-    if(!$succes){
-        $error_text = ["result" => "error"];
-        $text = "ユーザーフォルダ作成に失敗しました：post-novel / userid = {$userid} path : {$userdata_path}";
-        $error_text += ["error_text" => $text];
-        send_discord("空想世界で揃う星辰",$text);
-        send_message_exit($error_text);
+/* =========================================== */
+/*                 xml読み込み                 */
+/* =========================================== */
+$data_root = simplexml_load_file($data_file);
+$data_info = $data_root->info;
+$private_root = simplexml_load_file($private_list_file);
+
+/**********************************/
+/*         個人リスト検索         */
+/**********************************/
+$count = 0;
+foreach($private_root->novel as $novel){
+    if((string)$novel->postid === $postid){
+        break;
     }
+    $count++;
 }
-if(!file_exists($noveldata_path)){
-    $private_list_exists = false;
-    // 小説データフォルダを作成
-    $succes = mkdir($noveldata_path, 0777,true) ? chmod($noveldata_path, 0777) : false;
-    if(!$succes){
-        $message = ["result" => "error"];
-        $text = "小説フォルダ作成に失敗しました：post-novel / userid = {$userid} path : {$noveldata_path}";
-        $message += ["error_text" => $text];
-        send_discord("空想世界で揃う星辰",$text);
-        send_message_exit($message);
-    }
-}
-// リストだけない場合
-if(!file_exists($private_list_file)){
-    $private_list_exists = false;
-}
+$private_data = $private_root->novel[$count];
 
-if($private_list_exists){
-    $private_root = simplexml_load_file($private_list_file);
-    if ($private_root->count() > 0) {
-        $tmp = [];
-        foreach($private_root as $data){
-            $tmp[] = (int)$data->postid;
-        }
-        $postid = max($tmp) + 1;
-    }
-    else {
-        $postid = 0;
-    }
-}
-$postid = sprintf("%04d",$postid);
-
-// ファイル名
-$novel_file = "{$noveldata_path}/{$postid}.xml";
-
-/* ======================================= */
-/*                 xml作成                 */
-/* ======================================= */
-// 小説
-$novel_xml = <<<EOM
-<?xml version="1.0" encoding="utf-8"?>
-<novel>
-</novel>
-EOM;
-$novel_root = new SimpleXMLElement($novel_xml);
-$novel_info = $novel_root->addChild("info");
-
-// 個人リスト
-if(!$private_list_exists){
-    $private_xml = <<<EOM
-    <?xml version="1.0" encoding="utf-8"?>
-    <novels>
-    </novels>
-    EOM;
-    $private_root = new SimpleXMLElement($private_xml);
-}
-$private_novel = $private_root->addChild("novel");
-
+/* ========================================== */
+/*                 上書き操作                 */
+/* ========================================== */
 /**********************************************/
 /*         小説データ・個人リスト共通         */
 /**********************************************/
 // 匿名
-$novel_root->addAttribute("anonymous",$anonymous);
-$private_novel->addAttribute("anonymous",$anonymous);
+$data_root["anonymous"] = $anonymous;
+$private_data["anonymous"] = $anonymous;
 
 // タイトル
-$novel_info->addChild("title",$title);
-$private_novel->addChild("title",$title);
+$data_info->title = $title;
+$private_data->title = $title;
 
 // 表紙
-$novel_info->addChild("img",$img);
-$private_novel->addChild("img",$img);
+$data_info->img = $img;
+$private_data->img = $img;
 
 // カテゴリー
-$novel_info->addChild("category",$category);
-$private_novel->addChild("category",$category);
+$data_info->category = $category;
+$private_data->category = $category;
 
 // ハッシュタグ
-$novel_tags = $novel_info->addChild("tags");
-$private_tags = $private_novel->addChild("tags");
+$data_tags = $data_info->tags;
+$private_tags = $private_data->tags;
+if ($data_tags->count() > 0) {
+    // 一度全部消す
+    unset($data_tags->tag);
+}
+if ($private_tags->count() > 0) {
+    // 一度全部消す
+    unset($private_tags->tag);
+}
 if(!empty($taglist)){
     foreach($taglist as $tag){
-        $novel_tags->addChild("tag",$tag);
+        $data_tags->addChild("tag",$tag);
         $private_tags->addChild("tag",$tag);
     }
 }
 
 // キャプション
-$novel_info->addChild("caption",$caption);
-$private_novel->addChild("caption",$list_caption);
+$data_info->caption = $caption;
+$private_data->caption = $list_caption;
 
 // 文字数
-$novel_info->addChild("length",$length);
-$private_novel->addChild("length",$length);
+$data_info->length = $length;
+$private_data->length = $length;
 
 // 読了時間
-$novel_info->addChild("readtime",$readtime);
-$private_novel->addChild("readtime",$readtime);
-
-// 投稿日
-$novel_info->addChild("postday",$postday);
-$private_novel->addChild("postday",$postday);
+$data_info->readtime = $readtime;
+$private_data->readtime = $readtime;
 
 // 更新日
-$novel_info->addChild("updateday");
-$private_novel->addChild("updateday");
+$data_info->updateday = $updateday;
+$private_data->updateday = $updateday;
 
 /******************************/
 /*         小説データ         */
 /******************************/
-// 作成日
-$novel_info->addChild("createday",$createday);
-
 // 後書き
-$novel_info->addChild("afterword",$afterword);
+$data_info->afterword = $afterword;
 
 // 本文
-$novel_body = $novel_root->addChild("body");
+unset($data_root->body);
+$novel_body = $data_root->addChild("body");
 foreach($pages as $p){
     $novel_body->addChild("page",$p);
 }
 
-/******************************/
-/*         個人リスト         */
-/******************************/
-// ユーザーid
-$private_novel->addChild("userid",$userid);
-
-// 投稿id
-$private_novel->addChild("postid",$postid);
-
-
-/* ============================================== */
-/*                      出力                      */
-/* ============================================== */
+/* ==================================================== */
+/*                      上書き保存                      */
+/* ==================================================== */
 /******************************/
 /*         小説データ         */
 /******************************/
 $novel_dom = new DOMDocument('1.0');
 $novel_dom->formatOutput = true;
 $novel_dom->preserveWhiteSpace = false;
-$novel_dom->loadXML($novel_root->asXML());
-$novel_dom->save($novel_file);
+$novel_dom->loadXML($data_root->asXML());
+$novel_dom->save($data_file);
 
 /******************************/
 /*         個人リスト         */
@@ -323,8 +257,24 @@ $private_dom->preserveWhiteSpace = false;
 $private_dom->loadXML($private_root->asXML());
 $private_dom->save($private_list_file);
 
-// 非公開投稿であればここで終了
-if($post_private){
+/********************************************/
+/*         公開されてるかどうか確認         */
+/********************************************/
+$public_list_file = "../../data/{$type}_lists.xml";
+$public_root = simplexml_load_file($public_list_file);
+if($type === "novel") $public_datas = $public_root->novel;
+$public_exist = false;
+$index = 0;
+foreach($public_datas as $data){
+    if($userid === (string)$data->userid && $postid === (string)$data->postid){
+        $public_exist = true;
+        break;
+    }
+    $index++;
+}
+
+// 非公開ならここで終了
+if(!$public_exist){
     $message = ["result" => "success"];
     $message += ["type" => "novel"];
     $message += ["userid" => $userid];
@@ -336,45 +286,40 @@ if($post_private){
 /* ============================================== */
 /*                 公開リスト                     */
 /* ============================================== */
-$public_list_file = "{$data_path}/novel_lists.xml";
-$public_root = simplexml_load_file($public_list_file);
-$public_novel = $public_root->addChild("novel");
+$public_data = $public_datas[$count];
 // 匿名
-$public_novel->addAttribute("anonymous",$anonymous);
+$public_data["anonymous"] = $anonymous;
 // タイトル
-$public_novel->addChild("title",$title);
+$public_data->title = $title;
 // 表紙
-$public_novel->addChild("img",$img);
+$public_data->img = $img;
 // カテゴリー
-$public_novel->addChild("category",$category);
+$public_data->category = $category;
 // ハッシュタグ
-$public_tags = $public_novel->addChild("tags");
+$public_tags = $public_data->tags;
+if ($public_tags->count() > 0) {
+    // 一度全部消す
+    unset($public_tags->tag);
+}
 if(!empty($taglist)){
     foreach($taglist as $tag){
         $public_tags->addChild("tag",$tag);
     }
 }
 // キャプション
-$public_novel->addChild("caption",$list_caption);
+$public_data->caption = $list_caption;
 // 文字数
-$public_novel->addChild("length",$length);
+$public_data->length = $length;
 // 読了時間
-$public_novel->addChild("readtime",$readtime);
-// 投稿日
-$public_novel->addChild("postday",$postday);
+$public_data->readtime = $readtime;
 // 更新日
-$public_novel->addChild("updateday");
-// ユーザーid
-$public_novel->addChild("userid",$userid);
-// 投稿id
-$public_novel->addChild("postid",$postid);
+$public_data->updateday = $updateday;
 // 出力
 $public_dom = new DOMDocument("1.0");
 $public_dom->formatOutput = true;
 $public_dom->preserveWhiteSpace = false;
 $public_dom->loadXML($public_root->asXML());
 $public_dom->save($public_list_file);
-
 
 /* ======================================== */
 /*                 終了                     */

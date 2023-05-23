@@ -19,10 +19,9 @@ if (!stristr($domain["host"], "localhost-iott") && !stristr($domain["host"], "im
 /*                 関数                 */
 /* ==================================== */
 // 成功
-function send_success($text,$log = "none")
+function send_success($text)
 {
     $array = ["status" => $text];
-    $array += ["log" => $log];
     echo json_encode($array);
     exit;
 }
@@ -62,7 +61,6 @@ function send_discord($name,$text){
 /*                 グローバル                 */
 /* ========================================== */
 $userid = $_COOKIE["loginuserid"];
-$log ="log : \n";
 
 /* ============================================== */
 /*                 パスワード変更                 */
@@ -121,7 +119,7 @@ if($type === "novel") $public_data = $public_lists_root->novel;
 if($mod === "private" || $mod === "delete"){
     $index = 0;
     foreach($public_data as $data){
-        if($userid === (string)$data->userid && $postid === (string)$data->postid) $log .= "__1__ \n "; break;
+        if($userid === (string)$data->userid && $postid === (string)$data->postid) break;
         $index++;
     }
     unset($public_data[$index]);
@@ -186,7 +184,7 @@ $public_dom->loadXML($public_lists_root->asXML());
 $public_dom->save($public_list_file);
 
 // 公開・非公開ならここで終わり
-if($mod === "private" || $mod === "public") send_success($mod,$log);
+if($mod === "private" || $mod === "public") send_success($mod);
 
 // 削除処理 - 非公開リスト上書き保存
 $private_dom = new DOMDocument("1.0");

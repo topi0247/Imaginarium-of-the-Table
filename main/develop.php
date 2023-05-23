@@ -13,8 +13,13 @@ include_once("parts/head.php");
                 <h3><span>作業中</span></h3>
                 <ul>
                     <li>リファクタリング（定期）</li>
-                    <li>投稿作品の編集</li>
                     <li>投稿処理-セッション</li>
+                </ul>
+            </section>
+
+            <section>
+                <h3><span>未着手</span></h3>
+                <ul>
                     <li>投稿処理-イラスト</li>
                     <li>目次・投稿作品のサムネイル表示
                         <ul class="inline">
@@ -55,28 +60,40 @@ include_once("parts/head.php");
                             <li>装飾</li>
                         </ul>
                     </li>
-                    <li>目次デザイン
+                    <li>セッション
                         <ul class="inline">
-                            <li>セッション</li>
-                            <li>小説</li>
-                            <li>イラスト</li>
+                            <li>目次デザイン</li>
+                            <li>ページデザイン</li>
                         </ul>
                     </li>
-                    <li>目次実装
+                    <li>小説
                         <ul class="inline">
-                            <li>小説</li>
+                            <li>目次デザイン/仮実装</li>
+                            <li>ページデザイン</li>
+                            <li>閲覧実装</li>
                         </ul>
                     </li>
-                    <li>セッションページデザイン</li>
-                    <li>小説ページデザイン・実装</li>
-                    <li>イラストページデザイン</li>
-                    <li>投稿ページ</li>
-                    <li>投稿機能（小説のみ）
+                    <li>イラスト
                         <ul class="inline">
+                            <li>目次デザイン</li>
+                            <li>ページデザイン</li>
+                        </ul>
+                    </li>
+                    <li>投稿
+                        <ul class="inline">
+                            <li>小説のみ</li>
                             <li>プレビュー</li>
-                            <li>公開投稿</li>
-                            <li>非公開投稿</li>
+                            <li>公開/非公開投稿</li>
                             <li>文字装飾（ルビ・文字大・文字小・文字中央・文字右端）</li>
+                        </ul>
+                    </li>
+                    <li>ユーザー設定
+                        <ul class="inline">
+                            <li>パスワード変更</li>
+                            <li>ダークモード設定（端末依存・ライト・ダーク）</li>
+                            <li>小説作品の公開・非公開切り替え</li>
+                            <li>小説作品の削除</li>
+                            <li>小説作品の編集</li>
                         </ul>
                     </li>
                     <li>過去ログページ</li>
@@ -85,21 +102,12 @@ include_once("parts/head.php");
                         <ul class="inline">
                             <li>大</li>
                             <li>サムネ</li>
-                        </ul>
-                    </li>
-                    <li>画像サムネの拡大表示</li>
-                    <li>上記のレスポンシブ（スマホ・タブレット）対応</li>
-                    <li>phpへ移行し管理の簡易化</li>
-                    <li>ユーザー設定
-                        <ul class="inline">
-                            <li>パスワード変更</li>
-                            <li>ダークモード設定（端末依存・ライト・ダーク）</li>
-                            <li>小説作品の公開・非公開切り替え</li>
-                            <li>小説作品の削除</li>
+                            <li>拡大表示</li>
                         </ul>
                     </li>
                     <li>要望・不具合報告のフォーム設置</li>
-                    
+                    <li>phpへ移行し管理の簡易化</li>
+                    <li>上記のレスポンシブ（スマホ・タブレット）対応</li>
                 </ul>
             </section>
     

@@ -4,3 +4,31 @@ body header h1{
     display: none;
 }
 
+#editResult{
+    display: none;
+    text-align: center;
+    padding: 20px 0;
+}
+
+#editResult.success,#editResult.success::before,
+#editResult.error,#editResult.error::after{
+    display: block;
+}
+
+#editResult.success{
+    border: 1px solid #9ac5de;
+    background: rgba(154, 209, 222, 0.25);
+}
+
+#editResult.error{
+    border: 1px solid #de9a9a;
+    background: rgba(222, 154, 154, 0.25);
+}
+
+#editResult.success::before{
+    content: "保存しました";
+}
+
+#editResult.error::after{
+    content: "保存に失敗しました";
+}

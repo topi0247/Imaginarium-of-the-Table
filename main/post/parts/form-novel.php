@@ -15,7 +15,7 @@
         } ?>
     </dd>
 
-    <dt>カテゴリ</dt>
+    <dt class="required">カテゴリ</dt>
     <dd>
         <label>小説<input type="radio" name="category" value="novel" checked></label>
         <label>ひとコマ<input type="radio" name="category" value="one-scene"></label>
