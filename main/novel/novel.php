@@ -15,9 +15,12 @@ $xml = simplexml_load_file($novel_path);
 
 $novel_info = $xml->info;
 $novel_body = $xml->body;
-$title = $novel_info->title;
+// ルビ対策
+$ruby = "/<ruby><rb>(.*?)<\/rb><rp>（<\/rp><rt>(.*?)<\/rt><rp>）<\/rp><\/ruby>/";
+$title = preg_replace($ruby, "$1", $novel_info->title);
 $is_novel = true;
 include("../parts/head.php");
+$title = $novel_info->title;
 
 $member = parse_ini_file("../data/member.cgi", true);
 $user = (string)$xml["anonymous"] === "false" ? $member[$userid]["name"] : "匿名";
