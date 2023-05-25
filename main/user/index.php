@@ -89,7 +89,7 @@ if ($novel_is_create) {
                     for ($i = $count - 1; $i >= 0; $i--) {
                         $novel = $novels[$i];
                         $postid = (string)$novel->postid;
-                        $username = $novels[$i]["anonymous"] === "false" ? $member[(string)$novels[$i]->userid]["name"] : "匿名";
+                        $username = (string)$novels[$i]["anonymous"] === "false" ? $member[(string)$novels[$i]->userid]["name"] : "匿名";
                         $url = "../novel/novel?userid={$novels[$i]->userid}&postid={$postid}";
                         $imgurl = "{$dir}../img/novel-cover/{$novel->img}";
                         $title = $novel->title;
