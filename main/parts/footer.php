@@ -10,7 +10,7 @@
             <li id="preview"><button></button></li>
             <?php } // is_index_post ?>
 
-            <?php if($develop_mode) { ?>
+            <?php if(isset($develop_mode)) { ?>
             <li id="changeMode" class="mode"><button></button></li>
             <li id="debugMode"><button>D</button></li>
             <?php } // develop_mode ?>

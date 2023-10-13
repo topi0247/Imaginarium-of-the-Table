@@ -14,11 +14,13 @@ if(!isset($is_index)){
   }
 }
 
-// 開発モード
-$develop_mode = $_COOKIE["loginuserid"] === "develop" ? true : false;
+if (isset($_COOKIE["loginuserid"])) {
+  // 開発モード
+  $develop_mode = $_COOKIE["loginuserid"] === "develop" ? true : false;
 
-// ゲストモード 
-$guest_mode = isset($_COOKIE["loginuserid"]) ? $_COOKIE["loginuserid"] === "guest":false;
+  // ゲストモード 
+  $guest_mode = isset($_COOKIE["loginuserid"]) ? $_COOKIE["loginuserid"] === "guest" : false;
+}
 ?>
 <!DOCTYPE html>
 <html lang="ja">

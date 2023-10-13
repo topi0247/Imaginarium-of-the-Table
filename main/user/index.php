@@ -59,8 +59,7 @@ if ($novel_is_create) {
     <?php include_once("../parts/footer.php"); ?>
     </body>
 </html>
-                    
-                <?php exit; } ?>
+    <?php exit; } ?>
 
                     <dt>パスワード</dt>
                     <dd>
